@@ -328,6 +328,9 @@ def train(
     best_loss = float(initial_best_loss) if initial_best_loss is not None else float("inf")
     best_record = {"loss": best_loss, "iter": 0}
     if history:
+        for idx, item in enumerate(history, start=1):
+            if "iter" not in item:
+                item["iter"] = idx
         best_entry = min(history, key=lambda item: item["loss"])
         if best_entry["loss"] < best_record["loss"]:
             best_record["loss"] = best_entry["loss"]
