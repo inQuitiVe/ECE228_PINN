@@ -217,23 +217,76 @@ def build_loss(model, data):
     }
 
 
-def train(model, data, adam_iters, learning_rate, lbfgs_steps, print_every):
+def train(
+    model,
+    data,
+    adam_iters,
+    learning_rate,
+    lbfgs_steps,
+    print_every,
+    early_stop_patience=0,
+    early_stop_min_delta=0.0,
+    early_stop_warmup=0,
+    scheduler_type="none",
+    scheduler_step_size=1000,
+    scheduler_gamma=0.5,
+    scheduler_min_lr=1e-5,
+    scheduler_plateau_patience=200,
+    start_iter=1,
+    checkpoint_path=None,
+    save_every=0,
+    save_best=False,
+    best_checkpoint_path=None,
+    optimizer_state_dict=None,
+    scheduler_state_dict=None,
+):
     history = []
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    if scheduler_type == "cosine":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=max(1, adam_iters), eta_min=scheduler_min_lr
+        )
+    elif scheduler_type == "step":
+        scheduler = torch.optim.lr_scheduler.StepLR(
+            optimizer, step_size=max(1, scheduler_step_size), gamma=scheduler_gamma
+        )
+    elif scheduler_type == "plateau":
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer,
+            mode="min",
+            factor=scheduler_gamma,
+            patience=max(1, scheduler_plateau_patience),
+            min_lr=scheduler_min_lr,
+        )
+    else:
+        scheduler = None
+    if optimizer_state_dict is not None:
+        optimizer.load_state_dict(optimizer_state_dict)
+    if scheduler is not None and scheduler_state_dict is not None:
+        scheduler.load_state_dict(scheduler_state_dict)
     start_time = time.time()
 
     model.train()
-    for iteration in range(1, adam_iters + 1):
+    best_loss = float("inf")
+    best_record = {"loss": float("inf"), "iter": 0}
+    stale_steps = 0
+    for iteration in range(start_iter, adam_iters + 1):
         optimizer.zero_grad(set_to_none=True)
         losses = build_loss(model, data)
         losses["loss"].backward()
         optimizer.step()
+        if scheduler is not None:
+            if scheduler_type == "plateau":
+                scheduler.step(losses["loss"].detach().cpu().item())
+            else:
+                scheduler.step()
 
         snapshot = {name: value.detach().cpu().item() for name, value in losses.items()}
+        snapshot["iter"] = iteration
         history.append(snapshot)
         if iteration == 1 or iteration % print_every == 0:
             print(
-                "Adam %d | total=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e"
+                "Adam %d | total=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e lr=%.3e"
                 % (
                     iteration,
                     snapshot["loss"],
@@ -242,7 +295,45 @@ def train(model, data, adam_iters, learning_rate, lbfgs_steps, print_every):
                     snapshot["loss_wall"],
                     snapshot["loss_inlet"],
                     snapshot["loss_outlet"],
+                    optimizer.param_groups[0]["lr"],
                 )
+            , flush=True)
+
+        loss_value = snapshot["loss"]
+        if loss_value < (best_loss - early_stop_min_delta):
+            best_loss = loss_value
+            stale_steps = 0
+            if save_best and best_checkpoint_path:
+                save_checkpoint(
+                    model,
+                    best_checkpoint_path,
+                    history,
+                    {"best_iter": iteration, "best_loss": loss_value},
+                    optimizer=optimizer,
+                    scheduler=scheduler,
+                    extra_state={"iteration": iteration, "best_loss": loss_value},
+                )
+                best_record["loss"] = loss_value
+                best_record["iter"] = iteration
+        elif iteration > early_stop_warmup:
+            stale_steps += 1
+            if early_stop_patience > 0 and stale_steps >= early_stop_patience:
+                print(
+                    "Early stop at Adam iteration %d (best=%.3e, current=%.3e)"
+                    % (iteration, best_loss, loss_value),
+                    flush=True,
+                )
+                break
+
+        if save_every > 0 and checkpoint_path and iteration % save_every == 0:
+            save_checkpoint(
+                model,
+                checkpoint_path,
+                history,
+                {"last_iter": iteration},
+                optimizer=optimizer,
+                scheduler=scheduler,
+                extra_state={"iteration": iteration, "best_loss": best_loss},
             )
 
     if lbfgs_steps > 0:
@@ -273,15 +364,15 @@ def train(model, data, adam_iters, learning_rate, lbfgs_steps, print_every):
                         losses["loss_inlet"].detach().cpu().item(),
                         losses["loss_outlet"].detach().cpu().item(),
                     )
-                )
+                , flush=True)
             return losses["loss"]
 
         lbfgs.step(closure)
         final_losses = build_loss(model, data)
         history.append({name: value.detach().cpu().item() for name, value in final_losses.items()})
 
-    print("--- %.2f seconds ---" % (time.time() - start_time))
-    return history
+    print("--- %.2f seconds ---" % (time.time() - start_time), flush=True)
+    return history, best_record
 
 
 def post_process(xmin, xmax, ymin, ymax, field, out_path, s=2, title=""):
@@ -315,22 +406,33 @@ def post_process(xmin, xmax, ymin, ymax, field, out_path, s=2, title=""):
     plt.close(fig)
 
 
-def save_checkpoint(model, path, history, config):
+def save_checkpoint(model, path, history, config, optimizer=None, scheduler=None, extra_state=None):
+    checkpoint_dir = os.path.dirname(path)
+    if checkpoint_dir:
+        os.makedirs(checkpoint_dir, exist_ok=True)
+    payload = {
+        "model_state_dict": model.state_dict(),
+        "history": history,
+        "config": config,
+    }
+    if optimizer is not None:
+        payload["optimizer_state_dict"] = optimizer.state_dict()
+    if scheduler is not None:
+        payload["scheduler_state_dict"] = scheduler.state_dict()
+    if extra_state is not None:
+        payload["extra_state"] = extra_state
     torch.save(
-        {
-            "model_state_dict": model.state_dict(),
-            "history": history,
-            "config": config,
-        },
+        payload,
         path,
     )
-    print("Saved PyTorch checkpoint to %s" % path)
+    print("Saved PyTorch checkpoint to %s" % path, flush=True)
 
 
 def load_checkpoint(model, path, map_location):
     checkpoint = torch.load(path, map_location=map_location)
     model.load_state_dict(checkpoint["model_state_dict"])
-    print("Loaded PyTorch checkpoint from %s" % path)
+    print("Loaded PyTorch checkpoint from %s" % path, flush=True)
+    return checkpoint
 
 
 def parse_args():
@@ -340,12 +442,24 @@ def parse_args():
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--checkpoint", default="uvNN_torch.pt")
+    parser.add_argument("--best-checkpoint", default="uvNN_torch_best.pt")
     parser.add_argument("--load-checkpoint", default="")
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--save-every", type=int, default=0)
+    parser.add_argument("--save-best", action="store_true")
     parser.add_argument("--output-dir", default="output")
     parser.add_argument("--loss-history", default="loss_history_torch.pickle")
     parser.add_argument("--num-frames", type=int, default=51)
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)
+    parser.add_argument("--scheduler", default="none", choices=["none", "cosine", "step", "plateau"])
+    parser.add_argument("--scheduler-step-size", type=int, default=1000)
+    parser.add_argument("--scheduler-gamma", type=float, default=0.5)
+    parser.add_argument("--scheduler-min-lr", type=float, default=1e-5)
+    parser.add_argument("--scheduler-plateau-patience", type=int, default=200)
+    parser.add_argument("--early-stop-patience", type=int, default=0)
+    parser.add_argument("--early-stop-min-delta", type=float, default=0.0)
+    parser.add_argument("--early-stop-warmup", type=int, default=0)
     return parser.parse_args()
 
 
@@ -362,7 +476,7 @@ def resolve_device(device_arg):
 def main():
     args = parse_args()
     device = resolve_device(args.device)
-    print("Using device:", device)
+    print("Using device:", device, flush=True)
 
     torch.manual_seed(1234)
     np.random.seed(1234)
@@ -371,16 +485,39 @@ def main():
     data = build_training_data(device=device, tmax=args.tmax)
     model = PINNLaminarFlowTransient(uv_layers=uv_layers, lb=data["lb"], ub=data["ub"]).to(device)
 
+    optimizer_state = None
+    scheduler_state = None
+    start_iter = 1
     if args.load_checkpoint:
-        load_checkpoint(model, args.load_checkpoint, map_location=device)
+        ckpt = load_checkpoint(model, args.load_checkpoint, map_location=device)
+        optimizer_state = ckpt.get("optimizer_state_dict")
+        scheduler_state = ckpt.get("scheduler_state_dict")
+        if args.resume:
+            start_iter = int(ckpt.get("extra_state", {}).get("iteration", 0)) + 1
+            print("Resuming from iteration %d" % start_iter, flush=True)
 
-    history = train(
+    history, best_record = train(
         model=model,
         data=data,
         adam_iters=args.adam_iters,
         learning_rate=args.learning_rate,
         lbfgs_steps=args.lbfgs_iters,
         print_every=args.print_every,
+        early_stop_patience=args.early_stop_patience,
+        early_stop_min_delta=args.early_stop_min_delta,
+        early_stop_warmup=args.early_stop_warmup,
+        scheduler_type=args.scheduler,
+        scheduler_step_size=args.scheduler_step_size,
+        scheduler_gamma=args.scheduler_gamma,
+        scheduler_min_lr=args.scheduler_min_lr,
+        scheduler_plateau_patience=args.scheduler_plateau_patience,
+        start_iter=start_iter,
+        checkpoint_path=args.checkpoint,
+        save_every=args.save_every,
+        save_best=args.save_best,
+        best_checkpoint_path=args.best_checkpoint,
+        optimizer_state_dict=optimizer_state,
+        scheduler_state_dict=scheduler_state,
     )
 
     save_checkpoint(
@@ -395,7 +532,10 @@ def main():
             "lbfgs_iters": args.lbfgs_iters,
             "learning_rate": args.learning_rate,
             "tmax": args.tmax,
+            "best_iter": best_record["iter"],
+            "best_loss": best_record["loss"],
         },
+        extra_state={"iteration": args.adam_iters, "best_loss": best_record["loss"]},
     )
 
     with open(args.loss_history, "wb") as handle:
