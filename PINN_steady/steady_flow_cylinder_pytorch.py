@@ -541,7 +541,14 @@ def main():
         existing_history = list(ckpt.get("history", []))
         if args.resume:
             extra_state = ckpt.get("extra_state", {})
-            start_iter = int(extra_state.get("iteration", 0)) + 1
+            if "iteration" in extra_state:
+                start_iter = int(extra_state.get("iteration", 0)) + 1
+            elif existing_history:
+                hist_last = existing_history[-1]
+                if "iter" in hist_last:
+                    start_iter = int(hist_last["iter"]) + 1
+                else:
+                    start_iter = len(existing_history) + 1
             best_loss_resume = extra_state.get("best_loss")
             stale_steps_resume = int(extra_state.get("stale_steps", 0))
             print("Resuming from iteration %d" % start_iter, flush=True)
