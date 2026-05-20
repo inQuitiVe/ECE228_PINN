@@ -362,14 +362,24 @@ def parse_args():
     parser.add_argument("--load-checkpoint", default="")
     parser.add_argument("--output-figure", default="uvp_torch.png")
     parser.add_argument("--loss-history", default="loss_history_torch.pickle")
-    parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
+    parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)
     return parser.parse_args()
 
 
+def resolve_device(device_arg):
+    if device_arg == "auto":
+        if torch.cuda.is_available():
+            return torch.device("cuda")
+        if torch.backends.mps.is_available():
+            return torch.device("mps")
+        return torch.device("cpu")
+    return torch.device(device_arg)
+
+
 def main():
     args = parse_args()
-    device = torch.device(args.device)
+    device = resolve_device(args.device)
     print("Using device:", device)
 
     torch.manual_seed(1234)

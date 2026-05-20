@@ -30,6 +30,9 @@ This repo include the implementation of mixed-form physics-informed neural netwo
 - Install dependencies with `pip install -r requirements-pytorch.txt`.
 - Steady run: `python3 PINN_steady/SteadyFlowCylinder_mixed.py` (PyTorch entrypoint).
 - Transient run: `python3 PINN_unsteady/TransientFlowCylinder.py` (PyTorch entrypoint).
+- Device selection is supported through `--device {auto,cpu,cuda,mps}`.
+- On MacBook GPU (Apple Silicon), use `--device mps`.
+- For CPU-only execution, use `--device cpu`.
 - Direct module entrypoints are also available:
   - `python3 PINN_steady/steady_flow_cylinder_pytorch.py`
   - `python3 PINN_unsteady/transient_flow_cylinder_pytorch.py`

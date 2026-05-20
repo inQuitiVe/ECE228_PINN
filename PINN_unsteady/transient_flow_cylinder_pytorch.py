@@ -43,14 +43,20 @@ class MLP(nn.Module):
 
 
 class PINNLaminarFlowTransient(nn.Module):
-    def __init__(self, uv_layers, rho=1.0, mu=0.005):
+    def __init__(self, uv_layers, lb, ub, rho=1.0, mu=0.005):
         super().__init__()
         self.rho = rho
         self.mu = mu
+        self.lb = torch.as_tensor(lb, dtype=torch.float32).reshape(1, -1)
+        self.ub = torch.as_tensor(ub, dtype=torch.float32).reshape(1, -1)
         self.network = MLP(uv_layers)
 
     def net_uv(self, x, y, t):
-        outputs = self.network(torch.cat([x, y, t], dim=1))
+        inputs = torch.cat([x, y, t], dim=1)
+        lb = self.lb.to(inputs.device)
+        ub = self.ub.to(inputs.device)
+        inputs = 2.0 * (inputs - lb) / (ub - lb) - 1.0
+        outputs = self.network(inputs)
         psi = outputs[:, 0:1]
         p = outputs[:, 1:2]
         s11 = outputs[:, 2:3]
@@ -166,6 +172,8 @@ def build_training_data(device, tmax=0.5):
     xy_c = np.concatenate((xy_c, wall, outb, inb[:, 0:3]), axis=0)
 
     return {
+        "lb": lb,
+        "ub": ub,
         "x_c": to_tensor(xy_c[:, 0:1], requires_grad=True, device=device),
         "y_c": to_tensor(xy_c[:, 1:2], requires_grad=True, device=device),
         "t_c": to_tensor(xy_c[:, 2:3], requires_grad=True, device=device),
@@ -336,14 +344,24 @@ def parse_args():
     parser.add_argument("--output-dir", default="output")
     parser.add_argument("--loss-history", default="loss_history_torch.pickle")
     parser.add_argument("--num-frames", type=int, default=51)
-    parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
+    parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)
     return parser.parse_args()
 
 
+def resolve_device(device_arg):
+    if device_arg == "auto":
+        if torch.cuda.is_available():
+            return torch.device("cuda")
+        if torch.backends.mps.is_available():
+            return torch.device("mps")
+        return torch.device("cpu")
+    return torch.device(device_arg)
+
+
 def main():
     args = parse_args()
-    device = torch.device(args.device)
+    device = resolve_device(args.device)
     print("Using device:", device)
 
     torch.manual_seed(1234)
@@ -351,7 +369,7 @@ def main():
 
     uv_layers = [3] + 7 * [50] + [5]
     data = build_training_data(device=device, tmax=args.tmax)
-    model = PINNLaminarFlowTransient(uv_layers=uv_layers).to(device)
+    model = PINNLaminarFlowTransient(uv_layers=uv_layers, lb=data["lb"], ub=data["ub"]).to(device)
 
     if args.load_checkpoint:
         load_checkpoint(model, args.load_checkpoint, map_location=device)
@@ -371,6 +389,8 @@ def main():
         history,
         {
             "uv_layers": uv_layers,
+            "lb": data["lb"].tolist(),
+            "ub": data["ub"].tolist(),
             "adam_iters": args.adam_iters,
             "lbfgs_iters": args.lbfgs_iters,
             "learning_rate": args.learning_rate,
