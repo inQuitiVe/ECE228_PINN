@@ -27,3 +27,11 @@ This repo include the implementation of mixed-form physics-informed neural netwo
 
 # Note
 - These implementations were developed and tested on the GPU version of TensorFlow 1.10.0. 
+- The original scripts in `PINN_steady/SteadyFlowCylinder_mixed.py` and `PINN_unsteady/TransientFlowCylinder.py` are still TensorFlow 1.x based.
+
+# PyTorch migration
+- A first PyTorch port of the steady cylinder case is available at `PINN_steady/steady_flow_cylinder_pytorch.py`.
+- Install the PyTorch-side dependencies with `pip install -r requirements-pytorch.txt`.
+- Run the steady PyTorch solver with `python3 PINN_steady/steady_flow_cylinder_pytorch.py`.
+- The new script writes a PyTorch checkpoint (`uvNN_torch.pt` by default), loss history (`loss_history_torch.pickle`), and a comparison figure (`uvp_torch.png`).
+- The transient solver has not been ported yet and still uses the TensorFlow implementation.
