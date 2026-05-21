@@ -460,8 +460,8 @@ def parse_args():
     parser.add_argument("--lbfgs-iters", type=int, default=500)
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
-    parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/unsteady_latest.pt")
-    parser.add_argument("--best-checkpoint", default="results/unsteady/checkpoints/unsteady_best.pt")
+    parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")
+    parser.add_argument("--best-checkpoint", default="results/unsteady/checkpoints/best.pt")
     parser.add_argument("--load-checkpoint", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--save-every", type=int, default=0)
@@ -606,7 +606,7 @@ def main():
     plt.title("Pressure at leading point")
     plt.xlabel("t")
     plt.ylabel("p")
-    plt.savefig(os.path.join(args.output_dir, "pressure_front_torch.png"), dpi=150)
+    plt.savefig(os.path.join(args.output_dir, "front_pressure.png"), dpi=150)
     plt.close()
 
     x_star = np.linspace(0, 1.1, 401)
@@ -628,7 +628,7 @@ def main():
             ymin=0,
             ymax=0.41,
             field=field,
-            out_path=os.path.join(args.output_dir, "uvp_comparison_%d.png" % i),
+            out_path=os.path.join(args.output_dir, "field_frame_%03d.png" % i),
             s=2,
             title="Time: %.3fs" % (i * args.tmax / (args.num_frames - 1)),
         )

@@ -481,13 +481,13 @@ def load_checkpoint(model, path, map_location):
 def resolve_reference_path(base_dir):
     repo_root = os.path.abspath(os.path.join(base_dir, "..", ".."))
     candidates = [
-        os.path.join(repo_root, "data", "reference", "FluentSol.mat"),
-        os.path.abspath(os.path.join(os.getcwd(), "data", "reference", "FluentSol.mat")),
+        os.path.join(repo_root, "data", "reference", "steady_reference.mat"),
+        os.path.abspath(os.path.join(os.getcwd(), "data", "reference", "steady_reference.mat")),
     ]
     for path in candidates:
         if os.path.exists(path):
             return path
-    raise FileNotFoundError("Could not find FluentSol.mat in data/reference")
+    raise FileNotFoundError("Could not find steady_reference.mat in data/reference")
 
 
 def parse_args():
@@ -497,13 +497,13 @@ def parse_args():
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--n-collo", type=int, default=40000)
     parser.add_argument("--n-refine", type=int, default=10000)
-    parser.add_argument("--checkpoint", default="results/steady/checkpoints/steady_latest.pt")
-    parser.add_argument("--best-checkpoint", default="results/steady/checkpoints/steady_best.pt")
+    parser.add_argument("--checkpoint", default="results/steady/checkpoints/latest.pt")
+    parser.add_argument("--best-checkpoint", default="results/steady/checkpoints/best.pt")
     parser.add_argument("--load-checkpoint", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--save-every", type=int, default=0)
     parser.add_argument("--save-best", action="store_true")
-    parser.add_argument("--output-figure", default="results/steady/figures/steady_uvp.png")
+    parser.add_argument("--output-figure", default="results/steady/figures/field_comparison.png")
     parser.add_argument("--loss-history", default="results/steady/logs/loss_history.pkl")
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)

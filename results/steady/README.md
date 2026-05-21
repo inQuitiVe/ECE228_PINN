@@ -4,15 +4,15 @@ This folder stores artifacts from the steady PyTorch PINN run.
 
 ## Contents
 
-- `checkpoints/steady_new.pt`
+- `checkpoints/latest.pt`
   - Latest checkpoint with model, optimizer, scheduler, history, and resume metadata.
-- `checkpoints/steady_new_best.pt`
+- `checkpoints/best.pt`
   - Best checkpoint by total loss.
-- `logs/steady_new_loss.pkl`
+- `logs/loss_history.pkl`
   - Serialized loss history for plotting and analysis.
-- `figures/steady_new_uvp.png`
+- `figures/field_comparison.png`
   - Velocity and pressure field comparison.
-- `figures/steady_new_iter_loss_full.png`
+- `figures/loss_curve.png`
   - Full `iteration` vs `total loss` curve from checkpoint history.
 
 ## Resume
@@ -20,17 +20,17 @@ This folder stores artifacts from the steady PyTorch PINN run.
 Run from repo root:
 
 ```bash
-python3 scripts/train_steady.py \
+python3 train.py steady \
   --device mps \
   --adam-iters 30000 \
-  --load-checkpoint results/steady/checkpoints/steady_new.pt \
+  --load-checkpoint results/steady/checkpoints/latest.pt \
   --resume \
   --save-every 200 \
   --save-best \
-  --checkpoint results/steady/checkpoints/steady_new.pt \
-  --best-checkpoint results/steady/checkpoints/steady_new_best.pt \
-  --loss-history results/steady/logs/steady_new_loss.pkl \
-  --output-figure results/steady/figures/steady_new_uvp.png
+  --checkpoint results/steady/checkpoints/latest.pt \
+  --best-checkpoint results/steady/checkpoints/best.pt \
+  --loss-history results/steady/logs/loss_history.pkl \
+  --output-figure results/steady/figures/field_comparison.png
 ```
 
 `--adam-iters` is the target final iteration. Increase it to continue beyond an already completed run.

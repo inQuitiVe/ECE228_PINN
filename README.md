@@ -11,9 +11,9 @@ This repository follows the mixed-form PINN setup from:
 ## Repository Layout
 
 - `src/pinn_laminar_flow/`
-  - PyTorch source code for steady and transient PINN models.
-- `scripts/`
-  - User-facing training and plotting entrypoints.
+  - PyTorch source code for steady/transient PINN models and plotting utilities.
+- `train.py`
+  - Root training entrypoint for steady and transient experiments.
 - `data/reference/`
   - Reference CFD data used for steady-flow comparison.
 - `results/`
@@ -32,38 +32,38 @@ Device selection is supported with `--device {auto,cpu,cuda,mps}`. Use `--device
 Run steady training:
 
 ```bash
-python3 scripts/train_steady.py --device mps
+python3 train.py steady --device mps
 ```
 
 Run transient training:
 
 ```bash
-python3 scripts/train_unsteady.py --device mps
+python3 train.py unsteady --device mps
 ```
 
 Resume steady training:
 
 ```bash
-python3 scripts/train_steady.py \
+python3 train.py steady \
   --device mps \
   --adam-iters 30000 \
-  --load-checkpoint results/steady/checkpoints/steady_new.pt \
+  --load-checkpoint results/steady/checkpoints/latest.pt \
   --resume \
   --save-every 200 \
   --save-best \
-  --checkpoint results/steady/checkpoints/steady_new.pt \
-  --best-checkpoint results/steady/checkpoints/steady_new_best.pt \
-  --loss-history results/steady/logs/steady_new_loss.pkl \
-  --output-figure results/steady/figures/steady_new_uvp.png
+  --checkpoint results/steady/checkpoints/latest.pt \
+  --best-checkpoint results/steady/checkpoints/best.pt \
+  --loss-history results/steady/logs/loss_history.pkl \
+  --output-figure results/steady/figures/field_comparison.png
 ```
 
 Resume transient training:
 
 ```bash
-python3 scripts/train_unsteady.py \
+python3 train.py unsteady \
   --device mps \
   --adam-iters 10000 \
-  --load-checkpoint results/unsteady/checkpoints/unsteady_latest.pt \
+  --load-checkpoint results/unsteady/checkpoints/latest.pt \
   --resume \
   --save-every 200 \
   --save-best
@@ -90,9 +90,9 @@ Useful flags:
 Plot steady total loss from a checkpoint:
 
 ```bash
-python3 scripts/plot_steady_loss.py \
-  --input results/steady/checkpoints/steady_new.pt \
-  --output results/steady/figures/steady_loss_curve.png
+PYTHONPATH=src python3 -m pinn_laminar_flow.plotting \
+  --input results/steady/checkpoints/latest.pt \
+  --output results/steady/figures/loss_curve.png
 ```
 
 ## Results
@@ -111,6 +111,6 @@ Transient artifacts:
 
 Representative steady outputs:
 
-![](results/steady/figures/steady_new_uvp.png)
+![](results/steady/figures/field_comparison.png)
 
-![](results/steady/figures/steady_new_iter_loss_full.png)
+![](results/steady/figures/loss_curve.png)
