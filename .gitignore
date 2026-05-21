@@ -2,5 +2,5 @@
 __pycache__/
 *.pyc
 
-# Local training outputs
-pressure_front_torch.png
+# Local training outputs written from old entrypoints
+/pressure_front_torch.png

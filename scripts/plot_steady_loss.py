@@ -10,12 +10,12 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Plot steady loss history from a checkpoint or pickle file.")
     parser.add_argument(
         "--input",
-        default="PINN_steady/result/steady_new.pt",
+        default="results/steady/checkpoints/steady_new.pt",
         help="Path to a .pt checkpoint or .pkl history file.",
     )
     parser.add_argument(
         "--output",
-        default="PINN_steady/result/steady_loss_curve.png",
+        default="results/steady/figures/steady_loss_curve.png",
         help="Output image path.",
     )
     return parser.parse_args()

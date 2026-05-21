@@ -1,6 +1,6 @@
 # PINN Laminar Flow
 
-Physics-informed neural network experiments for incompressible laminar flow around a cylinder, with PyTorch training flows for both steady and transient cases.
+PyTorch implementation of physics-informed neural networks (PINNs) for incompressible laminar flow around a cylinder. The project includes steady and transient training flows, checkpoint/resume support, and saved experiment artifacts.
 
 ## Reference
 
@@ -10,31 +10,24 @@ This repository follows the mixed-form PINN setup from:
 
 ## Repository Layout
 
-- `data/reference/`
-  - Reference CFD data used by the steady case.
+- `src/pinn_laminar_flow/`
+  - PyTorch source code for steady and transient PINN models.
 - `scripts/`
-  - Top-level entrypoints for training and plotting.
-- `PINN_steady/`
-  - Steady-flow implementation and steady experiment outputs.
-- `PINN_unsteady/`
-  - Transient-flow implementation and transient experiment outputs.
+  - User-facing training and plotting entrypoints.
+- `data/reference/`
+  - Reference CFD data used for steady-flow comparison.
+- `results/`
+  - Checkpoints, figures, logs, and archived outputs from experiments.
 
-## Main Entry Points
-
-- `scripts/train_steady.py`
-  - Run or resume the steady PyTorch model.
-- `scripts/train_unsteady.py`
-  - Run or resume the transient PyTorch model.
-- `scripts/plot_steady_loss.py`
-  - Plot `iter` vs `total loss` from a checkpoint or loss-history pickle.
-
-## Runtime
-
-Install dependencies:
+## Setup
 
 ```bash
 pip install -r requirements.txt
 ```
+
+Device selection is supported with `--device {auto,cpu,cuda,mps}`. Use `--device mps` on Apple Silicon, `--device cuda` on NVIDIA GPUs, and `--device cpu` for CPU-only runs.
+
+## Training
 
 Run steady training:
 
@@ -48,58 +41,76 @@ Run transient training:
 python3 scripts/train_unsteady.py --device mps
 ```
 
-Resume steady training from a checkpoint:
+Resume steady training:
 
 ```bash
 python3 scripts/train_steady.py \
   --device mps \
   --adam-iters 30000 \
-  --load-checkpoint PINN_steady/result/steady_new.pt \
+  --load-checkpoint results/steady/checkpoints/steady_new.pt \
   --resume \
   --save-every 200 \
   --save-best \
-  --checkpoint PINN_steady/result/steady_new.pt \
-  --best-checkpoint PINN_steady/result/steady_new_best.pt \
-  --loss-history PINN_steady/result/steady_new_loss.pkl \
-  --output-figure PINN_steady/result/steady_new_uvp.png
+  --checkpoint results/steady/checkpoints/steady_new.pt \
+  --best-checkpoint results/steady/checkpoints/steady_new_best.pt \
+  --loss-history results/steady/logs/steady_new_loss.pkl \
+  --output-figure results/steady/figures/steady_new_uvp.png
 ```
 
-Resume transient training from a checkpoint:
+Resume transient training:
 
 ```bash
 python3 scripts/train_unsteady.py \
   --device mps \
   --adam-iters 10000 \
-  --load-checkpoint PINN_unsteady/uvNN_torch.pt \
+  --load-checkpoint results/unsteady/checkpoints/unsteady_latest.pt \
   --resume \
   --save-every 200 \
   --save-best
 ```
 
-Plot a steady loss curve from a checkpoint or loss pickle:
+## Checkpoints
+
+Both training flows save PyTorch `.pt` checkpoints with:
+
+- model state
+- optimizer state
+- scheduler state
+- loss history
+- resume metadata (`iteration`, `best_loss`, `stale_steps`)
+
+Useful flags:
+
+- `--resume` continues from the checkpoint iteration.
+- `--save-every N` writes a checkpoint every `N` Adam iterations.
+- `--save-best` writes the best model by total loss.
+
+## Plotting
+
+Plot steady total loss from a checkpoint:
 
 ```bash
 python3 scripts/plot_steady_loss.py \
-  --input PINN_steady/result/steady_new.pt \
-  --output PINN_steady/result/steady_loss_curve.png
+  --input results/steady/checkpoints/steady_new.pt \
+  --output results/steady/figures/steady_loss_curve.png
 ```
-
-Device selection is supported through `--device {auto,cpu,cuda,mps}`.
-
-Checkpoint behavior:
-
-- Both steady and transient flows save model state, optimizer state, scheduler state, and loss history in `.pt` checkpoints.
-- `--resume` continues from the stored iteration.
-- `--save-every` writes periodic checkpoints.
-- `--save-best` writes the current best model by total loss.
 
 ## Results
 
-- Latest steady artifacts live in `PINN_steady/result/`.
-- Transient frames and animations live under `PINN_unsteady/output/`.
+Steady artifacts:
 
-Representative outputs:
+- `results/steady/checkpoints/`
+- `results/steady/figures/`
+- `results/steady/logs/`
 
-![](PINN_steady/result/steady_new_uvp.png)
+Transient artifacts:
 
-![](PINN_steady/result/steady_new_iter_loss_full.png)
+- `results/unsteady/checkpoints/`
+- `results/unsteady/figures/`
+- `results/unsteady/logs/`
+
+Representative steady outputs:
+
+![](results/steady/figures/steady_new_uvp.png)
+
+![](results/steady/figures/steady_new_iter_loss_full.png)

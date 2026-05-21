@@ -460,14 +460,14 @@ def parse_args():
     parser.add_argument("--lbfgs-iters", type=int, default=500)
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
-    parser.add_argument("--checkpoint", default="uvNN_torch.pt")
-    parser.add_argument("--best-checkpoint", default="uvNN_torch_best.pt")
+    parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/unsteady_latest.pt")
+    parser.add_argument("--best-checkpoint", default="results/unsteady/checkpoints/unsteady_best.pt")
     parser.add_argument("--load-checkpoint", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--save-every", type=int, default=0)
     parser.add_argument("--save-best", action="store_true")
-    parser.add_argument("--output-dir", default="output")
-    parser.add_argument("--loss-history", default="loss_history_torch.pickle")
+    parser.add_argument("--output-dir", default="results/unsteady/figures")
+    parser.add_argument("--loss-history", default="results/unsteady/logs/loss_history.pkl")
     parser.add_argument("--num-frames", type=int, default=51)
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)
@@ -588,6 +588,9 @@ def main():
         },
     )
 
+    loss_history_dir = os.path.dirname(os.path.abspath(args.loss_history))
+    if loss_history_dir:
+        os.makedirs(loss_history_dir, exist_ok=True)
     with open(args.loss_history, "wb") as handle:
         pickle.dump(history, handle)
 
