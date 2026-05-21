@@ -239,8 +239,11 @@ def train(
     best_checkpoint_path=None,
     optimizer_state_dict=None,
     scheduler_state_dict=None,
+    existing_history=None,
+    initial_best_loss=None,
+    initial_stale_steps=0,
 ):
-    history = []
+    history = list(existing_history) if existing_history else []
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     if scheduler_type == "cosine":
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
@@ -267,9 +270,17 @@ def train(
     start_time = time.time()
 
     model.train()
-    best_loss = float("inf")
-    best_record = {"loss": float("inf"), "iter": 0}
-    stale_steps = 0
+    best_loss = float(initial_best_loss) if initial_best_loss is not None else float("inf")
+    best_record = {"loss": best_loss, "iter": 0}
+    if history:
+        for idx, item in enumerate(history, start=1):
+            if "iter" not in item:
+                item["iter"] = idx
+        best_entry = min(history, key=lambda item: item["loss"])
+        if best_entry["loss"] < best_record["loss"]:
+            best_record["loss"] = best_entry["loss"]
+            best_record["iter"] = int(best_entry["iter"])
+    stale_steps = int(initial_stale_steps)
     for iteration in range(start_iter, adam_iters + 1):
         optimizer.zero_grad(set_to_none=True)
         losses = build_loss(model, data)
@@ -311,7 +322,11 @@ def train(
                     {"best_iter": iteration, "best_loss": loss_value},
                     optimizer=optimizer,
                     scheduler=scheduler,
-                    extra_state={"iteration": iteration, "best_loss": loss_value},
+                    extra_state={
+                        "iteration": iteration,
+                        "best_loss": loss_value,
+                        "stale_steps": stale_steps,
+                    },
                 )
                 best_record["loss"] = loss_value
                 best_record["iter"] = iteration
@@ -333,7 +348,11 @@ def train(
                 {"last_iter": iteration},
                 optimizer=optimizer,
                 scheduler=scheduler,
-                extra_state={"iteration": iteration, "best_loss": best_loss},
+                extra_state={
+                    "iteration": iteration,
+                    "best_loss": best_loss,
+                    "stale_steps": stale_steps,
+                },
             )
 
     if lbfgs_steps > 0:
@@ -372,7 +391,7 @@ def train(
         history.append({name: value.detach().cpu().item() for name, value in final_losses.items()})
 
     print("--- %.2f seconds ---" % (time.time() - start_time), flush=True)
-    return history, best_record
+    return history, best_record, stale_steps
 
 
 def post_process(xmin, xmax, ymin, ymax, field, out_path, s=2, title=""):
@@ -488,15 +507,29 @@ def main():
     optimizer_state = None
     scheduler_state = None
     start_iter = 1
+    existing_history = []
+    best_loss_resume = None
+    stale_steps_resume = 0
     if args.load_checkpoint:
         ckpt = load_checkpoint(model, args.load_checkpoint, map_location=device)
         optimizer_state = ckpt.get("optimizer_state_dict")
         scheduler_state = ckpt.get("scheduler_state_dict")
+        existing_history = list(ckpt.get("history", []))
         if args.resume:
-            start_iter = int(ckpt.get("extra_state", {}).get("iteration", 0)) + 1
+            extra_state = ckpt.get("extra_state", {})
+            if "iteration" in extra_state:
+                start_iter = int(extra_state.get("iteration", 0)) + 1
+            elif existing_history:
+                hist_last = existing_history[-1]
+                if "iter" in hist_last:
+                    start_iter = int(hist_last["iter"]) + 1
+                else:
+                    start_iter = len(existing_history) + 1
+            best_loss_resume = extra_state.get("best_loss")
+            stale_steps_resume = int(extra_state.get("stale_steps", 0))
             print("Resuming from iteration %d" % start_iter, flush=True)
 
-    history, best_record = train(
+    history, best_record, stale_steps = train(
         model=model,
         data=data,
         adam_iters=args.adam_iters,
@@ -518,7 +551,12 @@ def main():
         best_checkpoint_path=args.best_checkpoint,
         optimizer_state_dict=optimizer_state,
         scheduler_state_dict=scheduler_state,
+        existing_history=existing_history,
+        initial_best_loss=best_loss_resume,
+        initial_stale_steps=stale_steps_resume,
     )
+
+    last_iter = int(history[-1]["iter"]) if history else (start_iter - 1)
 
     save_checkpoint(
         model,
@@ -532,14 +570,29 @@ def main():
             "lbfgs_iters": args.lbfgs_iters,
             "learning_rate": args.learning_rate,
             "tmax": args.tmax,
+            "scheduler": args.scheduler,
+            "scheduler_step_size": args.scheduler_step_size,
+            "scheduler_gamma": args.scheduler_gamma,
+            "scheduler_min_lr": args.scheduler_min_lr,
+            "scheduler_plateau_patience": args.scheduler_plateau_patience,
+            "early_stop_patience": args.early_stop_patience,
+            "early_stop_min_delta": args.early_stop_min_delta,
+            "early_stop_warmup": args.early_stop_warmup,
             "best_iter": best_record["iter"],
             "best_loss": best_record["loss"],
         },
-        extra_state={"iteration": args.adam_iters, "best_loss": best_record["loss"]},
+        extra_state={
+            "iteration": last_iter,
+            "best_loss": best_record["loss"],
+            "stale_steps": stale_steps,
+        },
     )
 
     with open(args.loss_history, "wb") as handle:
         pickle.dump(history, handle)
+
+    shutil.rmtree(args.output_dir, ignore_errors=True)
+    os.makedirs(args.output_dir, exist_ok=True)
 
     t_front = np.linspace(0, args.tmax, 100).reshape(-1, 1)
     x_front = np.full_like(t_front, 0.15)
@@ -550,7 +603,7 @@ def main():
     plt.title("Pressure at leading point")
     plt.xlabel("t")
     plt.ylabel("p")
-    plt.savefig("pressure_front_torch.png", dpi=150)
+    plt.savefig(os.path.join(args.output_dir, "pressure_front_torch.png"), dpi=150)
     plt.close()
 
     x_star = np.linspace(0, 1.1, 401)
@@ -562,8 +615,6 @@ def main():
     x_star = x_star[dst >= 0.05].reshape(-1, 1)
     y_star = y_star[dst >= 0.05].reshape(-1, 1)
 
-    shutil.rmtree(args.output_dir, ignore_errors=True)
-    os.makedirs(args.output_dir, exist_ok=True)
     for i in range(args.num_frames):
         t_star = np.full((x_star.shape[0], 1), i * args.tmax / (args.num_frames - 1))
         u_pred, v_pred, p_pred = model.predict(x_star, y_star, t_star)

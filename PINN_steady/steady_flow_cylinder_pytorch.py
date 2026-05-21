@@ -478,6 +478,17 @@ def load_checkpoint(model, path, map_location):
     return checkpoint
 
 
+def resolve_reference_path(base_dir):
+    candidates = [
+        os.path.abspath(os.path.join(base_dir, "..", "data", "reference", "FluentSol.mat")),
+        os.path.abspath(os.path.join(base_dir, "..", "FluentReferenceMu002", "FluentSol.mat")),
+    ]
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    raise FileNotFoundError("Could not find FluentSol.mat in data/reference or FluentReferenceMu002")
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Steady mixed-form PINN in PyTorch")
     parser.add_argument("--adam-iters", type=int, default=30000)
@@ -617,7 +628,7 @@ def main():
         pickle.dump(history, handle)
 
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    ref_path = os.path.abspath(os.path.join(base_dir, "..", "FluentReferenceMu002", "FluentSol.mat"))
+    ref_path = resolve_reference_path(base_dir)
     x_fluent, y_fluent, u_fluent, v_fluent, p_fluent = preprocess_reference(ref_path)
     field_fluent = [x_fluent, y_fluent, u_fluent, v_fluent, p_fluent]
 
