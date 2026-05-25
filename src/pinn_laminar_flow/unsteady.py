@@ -163,7 +163,7 @@ def build_training_data(device, tmax=0.5):
     hole = np.concatenate((x_surf, y_surf, t_surf), axis=1)
     wall = np.concatenate((hole, wall_up, wall_lw), axis=0)
 
-    xy_c = lb + (ub - lb) * lhs(3, 80000)
+    xy_c = lb + (ub - lb) * lhs(3, 100000)
     xy_c_refine = np.array([0.0, 0.0, 0.0], dtype=np.float32) + np.array([0.4, 0.4, tmax], dtype=np.float32) * lhs(3, 15000)
     xy_c_lw = np.array([0.0, 0.0, 0.0], dtype=np.float32) + np.array([1.1, 0.02, tmax], dtype=np.float32) * lhs(3, 3000)
     xy_c_up = np.array([0.0, 0.39, 0.0], dtype=np.float32) + np.array([1.1, 0.02, tmax], dtype=np.float32) * lhs(3, 3000)
@@ -202,11 +202,11 @@ def build_loss(model, data):
     _, _, p_outlet, _, _, _ = model.net_uv(data["x_outlet"], data["y_outlet"], data["t_outlet"])
 
     loss_f = mse_zero(f_u) + mse_zero(f_v) + mse_zero(f_s11) + mse_zero(f_s22) + mse_zero(f_s12) + mse_zero(f_p)
-    loss_ic = mse_zero(u_ic) + mse_zero(v_ic) + mse_zero(p_ic)
+    loss_ic = mse_zero(u_ic) + mse_zero(v_ic)
     loss_wall = mse_zero(u_wall) + mse_zero(v_wall)
     loss_inlet = torch.mean((u_inlet - data["u_inlet"]).square()) + torch.mean((v_inlet - data["v_inlet"]).square())
     loss_outlet = mse_zero(p_outlet)
-    loss = loss_f + 5.0 * loss_wall + 5.0 * loss_inlet + loss_outlet + loss_ic
+    loss = loss_f + 2.0 * (loss_wall + loss_inlet + loss_outlet + loss_ic)
     return {
         "loss": loss,
         "loss_f": loss_f,
@@ -362,6 +362,8 @@ def train(
             max_iter=lbfgs_steps,
             max_eval=lbfgs_steps,
             history_size=50,
+            tolerance_change=1e-12,
+            tolerance_grad=1e-12,
             line_search_fn="strong_wolfe",
         )
         step_counter = {"count": 0}
@@ -456,8 +458,8 @@ def load_checkpoint(model, path, map_location):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Transient mixed-form PINN in PyTorch")
-    parser.add_argument("--adam-iters", type=int, default=5000)
-    parser.add_argument("--lbfgs-iters", type=int, default=500)
+    parser.add_argument("--adam-iters", type=int, default=10000)
+    parser.add_argument("--lbfgs-iters", type=int, default=10000)
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")
