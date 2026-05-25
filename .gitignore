@@ -4,3 +4,10 @@ __pycache__/
 
 # Local training outputs written from old entrypoints
 /pressure_front_torch.png
+
+# Local agent/tooling artifacts
+/.cursor/
+/.codegraph/
+/.codegrapg/
+/docs/
+/CLAUDE.md
