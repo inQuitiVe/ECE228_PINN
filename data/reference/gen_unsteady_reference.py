@@ -154,7 +154,7 @@ def save(u, v, p, t):
     snap_u.append(u.copy()); snap_v.append(v.copy())
     snap_p.append(p.copy()); snap_t.append(t)
 
-save(u, v, p, 0.0)
+save(u, v, np.zeros((NY, NX)), 0.0)   # φ=0 at t=0 (no correction yet)
 print("Time integration...", flush=True)
 wall0 = time.time()
 
@@ -182,7 +182,7 @@ for step in range(1, N_STEPS + 1):
     u, v, p = u_new, v_new, p_new
 
     if step % SNAP_EVERY == 0 or step == N_STEPS:
-        save(u, v, p, t_new)
+        save(u, v, phi, t_new)   # save φ (instantaneous pressure correction)
         if step % (5*SNAP_EVERY) == 0 or step == N_STEPS:
             print(f"  step {step:4d}/{N_STEPS}  t={t_new:.3f}  "
                   f"max|u|={np.max(np.abs(u[FLUID])):.3e}  "
