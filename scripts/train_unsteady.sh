@@ -10,44 +10,41 @@
 # in scipy L-BFGS-B (same unit), so --lbfgs-iters 100000 is paper-faithful.
 #
 # Usage:
-#   bash scripts/train_unsteady.sh                  # auto device, fresh start
-#   bash scripts/train_unsteady.sh --device cuda    # force CUDA
-#   bash scripts/train_unsteady.sh --device mps     # force Apple MPS
-#   bash scripts/train_unsteady.sh --device cpu     # CPU (slow, for testing)
+#   bash scripts/train_unsteady.sh                         # vanilla experiment
+#   bash scripts/train_unsteady.sh --exp-name my_run       # custom name
+#   bash scripts/train_unsteady.sh --device cuda           # force CUDA
 #
-# Outputs (all under results/):
-#   checkpoints/best.pt          — Adam best
-#   checkpoints/latest.pt        — Adam final
-#   checkpoints/latest_lbfgs.pt  — L-BFGS checkpoint (every 500 steps)
-#   logs/train.log               — training stdout
-#   logs/loss_history.pkl        — full loss history
+# Outputs (all under results/{exp_name}/):
+#   checkpoints/{exp_name}/best.pt          — Adam best
+#   checkpoints/{exp_name}/latest.pt        — Adam final
+#   checkpoints/{exp_name}/latest_lbfgs.pt  — L-BFGS checkpoint (every 500 steps)
+#   logs/{exp_name}/loss_history.pkl        — full loss history
+#   figures/{exp_name}/                     — visualisations
 
 set -e
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-mkdir -p results/checkpoints results/logs results/figures
+EXP_NAME="vanilla"
 
-echo "=== Starting unsteady PINN training ==="
+echo "=== Starting unsteady PINN training (exp: $EXP_NAME) ==="
 echo "    Adam 10k (lr=5e-4) + L-BFGS 100k function evals"
 echo "    β: wall=5 inlet=5 outlet=1 ic=1"
 echo "    IC: u=v=p=0"
 echo "    N_g: 100k LHS collocation points"
 echo ""
 
+mkdir -p "results/checkpoints/$EXP_NAME" "results/logs/$EXP_NAME" "results/figures/$EXP_NAME"
+
 python3 -u src/unsteady.py \
+    --exp-name "$EXP_NAME" \
     --adam-iters 10000 \
     --learning-rate 5e-4 \
     --lbfgs-iters 100000 \
     --lbfgs-save-every 500 \
     --save-best \
-    --checkpoint      results/checkpoints/latest.pt \
-    --best-checkpoint results/checkpoints/best.pt \
-    --lbfgs-checkpoint results/checkpoints/latest_lbfgs.pt \
-    --loss-history    results/logs/loss_history.pkl \
-    --output-dir      results/figures \
     "$@" \
-    2>&1 | tee results/logs/train.log
+    2>&1 | tee "results/logs/$EXP_NAME/train.log"
 
 echo ""
 echo "=== Training complete. Run bench: bash scripts/bench_unsteady.sh ==="

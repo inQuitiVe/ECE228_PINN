@@ -522,17 +522,19 @@ def parse_args():
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--period", type=float, default=1.0,
                         help="Inlet sin period (s). Must match the reference generator. Default 1.0.")
-    parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")
-    parser.add_argument("--best-checkpoint", default="results/unsteady/checkpoints/best.pt")
-    parser.add_argument("--lbfgs-checkpoint", default="results/unsteady/checkpoints/latest_lbfgs.pt")
+    parser.add_argument("--exp-name", default="vanilla",
+                        help="Experiment name; all checkpoints/logs/figures are namespaced under this.")
+    parser.add_argument("--checkpoint", default="")
+    parser.add_argument("--best-checkpoint", default="")
+    parser.add_argument("--lbfgs-checkpoint", default="")
     parser.add_argument("--load-checkpoint", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--save-every", type=int, default=0)
     parser.add_argument("--save-best", action="store_true")
     parser.add_argument("--lbfgs-save-every", type=int, default=500,
                         help="Overwrite --lbfgs-checkpoint every N LBFGS closure calls; set 0 to disable")
-    parser.add_argument("--output-dir", default="results/unsteady/figures")
-    parser.add_argument("--loss-history", default="results/unsteady/logs/loss_history.pkl")
+    parser.add_argument("--output-dir", default="")
+    parser.add_argument("--loss-history", default="")
     parser.add_argument("--num-frames", type=int, default=51)
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)
@@ -559,8 +561,23 @@ def resolve_device(device_arg):
 
 def main():
     args = parse_args()
+
+    # Derive experiment-scoped paths from --exp-name when not set explicitly.
+    ckpt_dir = f"results/checkpoints/{args.exp_name}"
+    if not args.checkpoint:
+        args.checkpoint = f"{ckpt_dir}/latest.pt"
+    if not args.best_checkpoint:
+        args.best_checkpoint = f"{ckpt_dir}/best.pt"
+    if not args.lbfgs_checkpoint:
+        args.lbfgs_checkpoint = f"{ckpt_dir}/latest_lbfgs.pt"
+    if not args.output_dir:
+        args.output_dir = f"results/figures/{args.exp_name}"
+    if not args.loss_history:
+        args.loss_history = f"results/logs/{args.exp_name}/loss_history.pkl"
+
     device = resolve_device(args.device)
     print("Using device:", device, flush=True)
+    print(f"Experiment: {args.exp_name}  (checkpoints under {ckpt_dir})", flush=True)
 
     torch.manual_seed(1234)
     np.random.seed(1234)

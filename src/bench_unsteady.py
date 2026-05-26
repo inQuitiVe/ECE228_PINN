@@ -3,9 +3,9 @@ Evaluation harness for the unsteady PINN checkpoint.
 
 Usage:
     python bench_unsteady.py \
-        --checkpoint results/unsteady/checkpoints/latest.pt \
+        --checkpoint results/checkpoints/latest.pt \
         --reference  data/reference/unsteady_reference.mat \
-        --output-dir results/unsteady/bench
+        --output-dir results/bench
 """
 
 import argparse
@@ -30,9 +30,11 @@ PROBES = {
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate unsteady PINN checkpoint vs reference CFD")
-    parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")
+    parser.add_argument("--exp-name", default="vanilla",
+                        help="Experiment name; derives default checkpoint and output-dir paths.")
+    parser.add_argument("--checkpoint", default="")
     parser.add_argument("--reference",  default="data/reference/unsteady_reference.mat")
-    parser.add_argument("--output-dir", default="results/unsteady/bench")
+    parser.add_argument("--output-dir", default="")
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--field-times", type=float, nargs="+", default=[0.3, 0.4, 0.5],
@@ -42,7 +44,14 @@ def parse_args():
     parser.add_argument("--diagnostic-times", type=float, nargs="+",
                         default=[0.1, 0.2, 0.3, 0.4, 0.5],
                         help="Snapshot times for detailed v-field metric diagnostics")
-    return parser.parse_args()
+    args = parser.parse_args()
+    if not args.checkpoint:
+        args.checkpoint = f"results/checkpoints/{args.exp_name}/latest_lbfgs.pt"
+        if not os.path.exists(args.checkpoint):
+            args.checkpoint = f"results/checkpoints/{args.exp_name}/best.pt"
+    if not args.output_dir:
+        args.output_dir = f"results/bench/{args.exp_name}"
+    return args
 
 
 def resolve_device(device_arg):
@@ -267,6 +276,20 @@ def main():
         writer.writeheader()
         writer.writerows(v_diagnostics)
     print(f"Saved v-field diagnostics → {diag_csv}", flush=True)
+
+    # ── per-snapshot L2 CSV (u, v, p) ────────────────────────────────────────
+    snap_csv = os.path.join(args.output_dir, "snapshot_metrics.csv")
+    with open(snap_csv, "w", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=["t", "l2_u", "l2_v", "l2_p"])
+        writer.writeheader()
+        for k, t_val in enumerate(t_ref):
+            writer.writerow({
+                "t": float(t_val),
+                "l2_u": float(l2_u[k]) if np.isfinite(l2_u[k]) else "",
+                "l2_v": float(l2_v[k]) if np.isfinite(l2_v[k]) else "",
+                "l2_p": float(l2_p[k]) if np.isfinite(l2_p[k]) else "",
+            })
+    print(f"Saved per-snapshot L2 metrics → {snap_csv}", flush=True)
 
     # ── L2 vs time plot ───────────────────────────────────────────────────────
     fig, ax = plt.subplots(figsize=(8, 4))

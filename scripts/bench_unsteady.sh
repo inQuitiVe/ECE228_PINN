@@ -2,11 +2,13 @@
 # Evaluate an unsteady PINN checkpoint against the Re=10 reference CFD.
 #
 # Usage:
-#   bash scripts/bench_unsteady.sh                              # evaluate latest_lbfgs.pt
-#   bash scripts/bench_unsteady.sh --checkpoint <path/to.pt>   # custom checkpoint
-#   bash scripts/bench_unsteady.sh --device cpu                # force CPU
+#   bash scripts/bench_unsteady.sh                              # vanilla experiment
+#   bash scripts/bench_unsteady.sh --exp-name vanilla           # explicit name
+#   bash scripts/bench_unsteady.sh --checkpoint path/to.pt     # custom checkpoint
+#   bash scripts/bench_unsteady.sh --device cpu                 # force CPU
 #
-# Outputs (results/bench/):
+# Outputs (results/bench/{exp_name}/):
+#   snapshot_metrics.csv         — per-snapshot L2_u, L2_v, L2_p
 #   l2_vs_time.png               — per-snapshot L2 error plot
 #   field_comparison_t*.png      — reference vs PINN at t=0.3/0.4/0.5 s
 #   probe_pressures.png          — probe pressure histories (paper Fig 8)
@@ -17,18 +19,11 @@ set -e
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-# Default to latest_lbfgs.pt if it exists, otherwise best.pt
-DEFAULT_CKPT="results/checkpoints/latest_lbfgs.pt"
-if [ ! -f "$DEFAULT_CKPT" ]; then
-    DEFAULT_CKPT="results/checkpoints/best.pt"
-fi
+EXP_NAME="vanilla"
 
-mkdir -p results/bench
-
-echo "=== Evaluating unsteady PINN checkpoint ==="
+echo "=== Evaluating unsteady PINN checkpoint (exp: $EXP_NAME) ==="
 
 python3 -u src/bench_unsteady.py \
-    --checkpoint "$DEFAULT_CKPT" \
-    --reference  data/reference/unsteady_reference.mat \
-    --output-dir results/bench \
+    --exp-name "$EXP_NAME" \
+    --reference data/reference/unsteady_reference.mat \
     "$@"
