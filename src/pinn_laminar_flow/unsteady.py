@@ -202,11 +202,11 @@ def build_loss(model, data):
     _, _, p_outlet, _, _, _ = model.net_uv(data["x_outlet"], data["y_outlet"], data["t_outlet"])
 
     loss_f = mse_zero(f_u) + mse_zero(f_v) + mse_zero(f_s11) + mse_zero(f_s22) + mse_zero(f_s12) + mse_zero(f_p)
-    loss_ic = mse_zero(u_ic) + mse_zero(v_ic)
+    loss_ic = mse_zero(u_ic) + mse_zero(v_ic) + mse_zero(p_ic)
     loss_wall = mse_zero(u_wall) + mse_zero(v_wall)
     loss_inlet = torch.mean((u_inlet - data["u_inlet"]).square()) + torch.mean((v_inlet - data["v_inlet"]).square())
     loss_outlet = mse_zero(p_outlet)
-    loss = loss_f + 2.0 * (loss_wall + loss_inlet + loss_outlet + loss_ic)
+    loss = loss_f + 5.0 * loss_wall + 5.0 * loss_inlet + loss_outlet + loss_ic
     return {
         "loss": loss,
         "loss_f": loss_f,
@@ -459,7 +459,7 @@ def load_checkpoint(model, path, map_location):
 def parse_args():
     parser = argparse.ArgumentParser(description="Transient mixed-form PINN in PyTorch")
     parser.add_argument("--adam-iters", type=int, default=10000)
-    parser.add_argument("--lbfgs-iters", type=int, default=10000)
+    parser.add_argument("--lbfgs-iters", type=int, default=50000)
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")

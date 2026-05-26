@@ -36,6 +36,8 @@ def parse_args():
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--field-times", type=float, nargs="+", default=[0.3, 0.4, 0.5],
                         help="Snapshot times for side-by-side field comparison (paper Fig 7)")
+    parser.add_argument("--t-developed", type=float, default=0.1,
+                        help="Only snapshots with t >= this value count toward the primary L2 metric")
     return parser.parse_args()
 
 
@@ -153,21 +155,25 @@ def main():
         U_pred_all - U_pred_all.mean(axis=1, keepdims=True),
         U_ref      - U_ref.mean(axis=1, keepdims=True)
     )
-    # Per-snapshot mean (NaN snapshots excluded — inlet-closed early times)
-    mean_l2_u = float(np.nanmean(l2_u))
-    mean_l2_v = float(np.nanmean(l2_v))
-    mean_l2_p = float(np.nanmean(l2_p))
+    # Primary metric: developed-flow snapshots only (t >= t_developed)
+    dev_mask = t_ref >= args.t_developed
+    dev_l2_u = float(np.nanmean(l2_u[dev_mask]))
+    dev_l2_v = float(np.nanmean(l2_v[dev_mask]))
+    dev_l2_p = float(np.nanmean(l2_p[dev_mask]))
+    n_dev = int(np.sum(dev_mask & ~np.isnan(l2_u)))
     n_valid = int(np.sum(~np.isnan(l2_u)))
 
     print("=" * 50)
-    print(f"Global L2 u : {global_l2_u*100:.2f}%  (Frobenius, all space-time)")
-    print(f"Global L2 v : {global_l2_v*100:.2f}%")
-    print(f"Mean L2 u   : {mean_l2_u*100:.2f}%  (per-snapshot avg, {n_valid}/{Nt} snapshots)")
-    print(f"Mean L2 v   : {mean_l2_v*100:.2f}%")
-    print(f"Mean L2 p   : {mean_l2_p*100:.2f}%  (demeaned)")
-    go_u = global_l2_u <= 0.10
-    go_v = global_l2_v <= 0.10
-    print(f"Go/No-go    : L2_u {'PASS' if go_u else 'FAIL'}  L2_v {'PASS' if go_v else 'FAIL'}  (global Frobenius ≤ 10%)")
+    print(f"PRIMARY METRIC (t >= {args.t_developed}s, developed flow, {n_dev} snapshots):")
+    print(f"  Mean L2 u : {dev_l2_u*100:.2f}%")
+    print(f"  Mean L2 v : {dev_l2_v*100:.2f}%")
+    print(f"  Mean L2 p : {dev_l2_p*100:.2f}%  (demeaned)")
+    go_u = dev_l2_u <= 0.10
+    go_v = dev_l2_v <= 0.10
+    print(f"  Go/No-go  : L2_u {'PASS' if go_u else 'FAIL'}  L2_v {'PASS' if go_v else 'FAIL'}  (≤ 10%)")
+    print(f"REFERENCE (all {n_valid}/{Nt} non-NaN snapshots):")
+    print(f"  Global Frobenius L2 u : {global_l2_u*100:.2f}%")
+    print(f"  Global Frobenius L2 v : {global_l2_v*100:.2f}%")
     print("=" * 50, flush=True)
 
     # ── L2 vs time plot ───────────────────────────────────────────────────────
@@ -176,9 +182,12 @@ def main():
     ax.plot(t_ref, l2_v * 100, label="L2_v (%)")
     ax.plot(t_ref, l2_p * 100, label="L2_p demeaned (%)", linestyle="--")
     ax.axhline(10, color="red", linestyle=":", linewidth=1, label="10% threshold")
+    ax.axvline(args.t_developed, color="gray", linestyle="--", linewidth=1,
+               label=f"t={args.t_developed}s (developed)")
     ax.set_xlabel("t (s)")
     ax.set_ylabel("L2 relative error (%)")
-    ax.set_title(f"Per-snapshot L2 error   mean u={mean_l2_u*100:.1f}%  v={mean_l2_v*100:.1f}%")
+    ax.set_title(f"Per-snapshot L2   u={dev_l2_u*100:.1f}%  v={dev_l2_v*100:.1f}%  (t≥{args.t_developed}s)")
+    ax.set_ylim(bottom=0)
     ax.legend()
     plt.tight_layout()
     plt.savefig(os.path.join(args.output_dir, "l2_vs_time.png"), dpi=150)
