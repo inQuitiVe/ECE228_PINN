@@ -899,6 +899,50 @@
         它把未知黏度 μ 當作一個可訓練的 scalar parameter，讓 Navier-Stokes equations 同時約束流場和 μ。
         10 個帶雜訊的量測點就夠了。
       </p>
+
+      <p><strong>Forward problem 裡哪些是寫死的已知數？</strong></p>
+      <table style="margin:8px 0 16px;font-size:0.85rem;">
+        <thead>
+          <tr>
+            <th>參數</th>
+            <th>目前值</th>
+            <th>D 的處理</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>μ（動力黏度）</td>
+            <td>0.02 kg/(m·s)</td>
+            <td style="color:#6b21a8;font-weight:600;">→ 改成 nn.Parameter，反推目標</td>
+          </tr>
+          <tr>
+            <td>U_max（入口最大流速）</td>
+            <td>1.0 m/s</td>
+            <td style="color:#0d9488;font-weight:600;">可選 stretch：與 μ 同時反推</td>
+          </tr>
+          <tr>
+            <td>ρ（密度）</td>
+            <td>1.0 kg/m³</td>
+            <td>與 μ 在方程式裡以 μ/ρ 出現，單獨反推冗餘</td>
+          </tr>
+          <tr>
+            <td>入口剖面形狀</td>
+            <td>拋物線（函數形式已知）</td>
+            <td>假設已知，不在反推範疇</td>
+          </tr>
+          <tr>
+            <td>圓柱位置 / 半徑</td>
+            <td>(0.2, 0.2)，r=0.05 m</td>
+            <td>幾何已知，需大幅改 data pipeline 才能反推</td>
+          </tr>
+          <tr>
+            <td>出口壓力</td>
+            <td>p = 0</td>
+            <td>BC 已知，不反推</td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="ws-meta">
         <div class="ws-meta-item">
           <strong>核心技術</strong>

@@ -9,6 +9,7 @@ Usage:
 """
 
 import argparse
+import csv
 import os
 
 import matplotlib.pyplot as plt
@@ -38,6 +39,9 @@ def parse_args():
                         help="Snapshot times for side-by-side field comparison (paper Fig 7)")
     parser.add_argument("--t-developed", type=float, default=0.1,
                         help="Only snapshots with t >= this value count toward the primary L2 metric")
+    parser.add_argument("--diagnostic-times", type=float, nargs="+",
+                        default=[0.1, 0.2, 0.3, 0.4, 0.5],
+                        help="Snapshot times for detailed v-field metric diagnostics")
     return parser.parse_args()
 
 
@@ -69,6 +73,31 @@ def l2_global(pred_all, ref_all):
 
 def demean(arr):
     return arr - arr.mean()
+
+
+def field_diagnostics(pred, ref, min_norm=1e-2):
+    norm_ref = np.linalg.norm(ref)
+    norm_pred = np.linalg.norm(pred)
+    if norm_ref < min_norm:
+        l2 = np.nan
+    else:
+        l2 = np.linalg.norm(pred - ref) / norm_ref
+    if norm_ref < 1e-12 or norm_pred < 1e-12:
+        cosine = np.nan
+    else:
+        cosine = float(np.dot(pred, ref) / (norm_pred * norm_ref))
+    return {
+        "ref_norm": norm_ref,
+        "pred_norm": norm_pred,
+        "ref_rms": float(np.sqrt(np.mean(ref ** 2))),
+        "pred_rms": float(np.sqrt(np.mean(pred ** 2))),
+        "ref_max_abs": float(np.max(np.abs(ref))),
+        "pred_max_abs": float(np.max(np.abs(pred))),
+        "pred_ref_norm_ratio": float(norm_pred / norm_ref) if norm_ref > 1e-12 else np.nan,
+        "cosine": cosine,
+        "l2": l2,
+        "near_zero_ref": bool(norm_ref < min_norm),
+    }
 
 
 def nearest_snap(t_ref, t_query):
@@ -152,8 +181,8 @@ def main():
     global_l2_u = l2_global(U_pred_all, U_ref)
     global_l2_v = l2_global(V_pred_all, V_ref)
     global_l2_p = l2_global(
-        U_pred_all - U_pred_all.mean(axis=1, keepdims=True),
-        U_ref      - U_ref.mean(axis=1, keepdims=True)
+        P_pred_all - P_pred_all.mean(axis=1, keepdims=True),
+        P_ref      - P_ref.mean(axis=1, keepdims=True)
     )
     # Primary metric: developed-flow snapshots only (t >= t_developed)
     dev_mask = t_ref >= args.t_developed
@@ -174,7 +203,70 @@ def main():
     print(f"REFERENCE (all {n_valid}/{Nt} non-NaN snapshots):")
     print(f"  Global Frobenius L2 u : {global_l2_u*100:.2f}%")
     print(f"  Global Frobenius L2 v : {global_l2_v*100:.2f}%")
+    print(f"  Global Frobenius L2 p : {global_l2_p*100:.2f}%  (demeaned)")
     print("=" * 50, flush=True)
+
+    v_diagnostics = []
+    for k, t_val in enumerate(t_ref):
+        diag = field_diagnostics(V_pred_all[:, k], V_ref[:, k])
+        diag["t"] = float(t_val)
+        v_diagnostics.append(diag)
+
+    dev_v = [diag for diag in v_diagnostics if diag["t"] >= args.t_developed and not diag["near_zero_ref"]]
+    if dev_v:
+        ratio_mean = float(np.nanmean([diag["pred_ref_norm_ratio"] for diag in dev_v]))
+        cosine_mean = float(np.nanmean([diag["cosine"] for diag in dev_v]))
+        ref_rms_min = float(np.nanmin([diag["ref_rms"] for diag in dev_v]))
+        ref_rms_max = float(np.nanmax([diag["ref_rms"] for diag in dev_v]))
+        pred_rms_mean = float(np.nanmean([diag["pred_rms"] for diag in dev_v]))
+        print("V-FIELD DIAGNOSTICS (t >= %.3fs):" % args.t_developed)
+        print("  ref_rms range       : %.3e .. %.3e" % (ref_rms_min, ref_rms_max))
+        print("  pred_rms mean       : %.3e" % pred_rms_mean)
+        print("  mean |pred|/|ref|   : %.3f" % ratio_mean)
+        print("  mean cosine(pred,ref): %.3f" % cosine_mean)
+        print("  Interpretation hint : L2≈100%% with |pred|/|ref|≈0 means near-zero prediction;")
+        print("                        L2≈100%% with nonzero |pred|/|ref| and low cosine means spatial/phase mismatch.")
+        print("  Selected snapshots:")
+        print("    t      ref_rms   pred_rms  |pred|/|ref|  cosine  L2_v     note")
+        for t_query in args.diagnostic_times:
+            k = nearest_snap(t_ref, t_query)
+            diag = v_diagnostics[k]
+            note = "near-zero ref" if diag["near_zero_ref"] else ""
+            print(
+                "    %.2f  %.3e  %.3e     %.3f      %.3f  %6.1f%%  %s"
+                % (
+                    diag["t"],
+                    diag["ref_rms"],
+                    diag["pred_rms"],
+                    diag["pred_ref_norm_ratio"],
+                    diag["cosine"],
+                    diag["l2"] * 100 if np.isfinite(diag["l2"]) else np.nan,
+                    note,
+                )
+            )
+        print("=" * 50, flush=True)
+
+    diag_csv = os.path.join(args.output_dir, "v_diagnostics.csv")
+    with open(diag_csv, "w", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "t",
+                "ref_norm",
+                "pred_norm",
+                "ref_rms",
+                "pred_rms",
+                "ref_max_abs",
+                "pred_max_abs",
+                "pred_ref_norm_ratio",
+                "cosine",
+                "l2",
+                "near_zero_ref",
+            ],
+        )
+        writer.writeheader()
+        writer.writerows(v_diagnostics)
+    print(f"Saved v-field diagnostics → {diag_csv}", flush=True)
 
     # ── L2 vs time plot ───────────────────────────────────────────────────────
     fig, ax = plt.subplots(figsize=(8, 4))
