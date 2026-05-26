@@ -134,7 +134,7 @@ def gen_circle_pt(xc, yc, r, tmin, tmax, num_r, num_t):
     return xx.flatten()[:, None], yy.flatten()[:, None], tt.flatten()[:, None]
 
 
-def build_training_data(device, tmax=0.5):
+def build_training_data(device, tmax=0.5, period=1.0):
     xmax = 1.1
     lb = np.array([0.0, 0.0, 0.0], dtype=np.float32)
     ub = np.array([xmax, 0.41, tmax], dtype=np.float32)
@@ -149,7 +149,6 @@ def build_training_data(device, tmax=0.5):
     wall_lw = np.concatenate((x_lwb, y_lwb, t_lwb), axis=1)
 
     u_max = 0.5
-    period = tmax * 2.0
     x_inb, y_inb, t_inb = cart_grid(0, 0, 0, 0.41, 0, tmax, 1, 61, 61)
     u_inb = 4.0 * u_max * y_inb * (0.41 - y_inb) / (0.41 ** 2) * (np.sin(2.0 * np.pi * t_inb / period + 1.5 * np.pi) + 1.0)
     v_inb = np.zeros_like(x_inb)
@@ -504,6 +503,8 @@ def parse_args():
     parser.add_argument("--lbfgs-iters", type=int, default=50000)
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
+    parser.add_argument("--period", type=float, default=1.0,
+                        help="Inlet sin period (s). Must match the reference generator. Default 1.0.")
     parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")
     parser.add_argument("--best-checkpoint", default="results/unsteady/checkpoints/best.pt")
     parser.add_argument("--lbfgs-checkpoint", default="results/unsteady/checkpoints/latest_lbfgs.pt")
@@ -548,7 +549,7 @@ def main():
     np.random.seed(1234)
 
     uv_layers = [3] + 7 * [50] + [5]
-    data = build_training_data(device=device, tmax=args.tmax)
+    data = build_training_data(device=device, tmax=args.tmax, period=args.period)
     model = PINNLaminarFlowTransient(uv_layers=uv_layers, lb=data["lb"], ub=data["ub"]).to(device)
 
     optimizer_state = None

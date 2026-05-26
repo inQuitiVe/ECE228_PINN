@@ -1,11 +1,14 @@
 """
-2D unsteady incompressible NS reference data generator.
+2D unsteady incompressible NS reference data generator — Re=100 variant.
 Chorin projection on collocated grid with CONSISTENT forward-divergence /
 backward-gradient pair — guarantees discrete div(u_new)=0 at every cell.
 
 Domain matches src/pinn_laminar_flow/unsteady.py exactly:
   x in [0,1.1], y in [0,0.41], cylinder (0.2,0.2) r=0.05
-  mu=0.005, rho=1.0, U_max=0.5, period=1.0, tmax=0.5
+  mu=0.0005, rho=1.0, U_max=0.5, period=1.0, tmax=2.0 (Re=100)
+
+T_max=2.0 chosen to capture ~2 Kármán shedding cycles (St≈0.30 → period≈0.67 s).
+Output: unsteady_reference_re100_t2.mat  (preserves the old 0.5 s file)
 """
 
 import os, time
@@ -14,14 +17,14 @@ import scipy.sparse, scipy.sparse.linalg, scipy.io
 
 # ── parameters ────────────────────────────────────────────────────────────────
 MU, RHO, NU = 0.0005, 1.0, 0.0005
-U_MAX, T_MAX, PERIOD = 0.5, 0.5, 1.0
+U_MAX, T_MAX, PERIOD = 0.5, 2.0, 1.0
 H = 0.41
 XC, YC, RC = 0.2, 0.2, 0.05
 
 NX, NY = 220, 82
 DX = 1.1 / NX   # 0.005
 DY = H   / NY   # 0.005
-DT = 0.001       # CFL≈0.1, viscous≈0.4
+DT = 0.001       # CFL = U_max·dt/dx = 0.1;  viscous = ν·dt/dx² = 0.02 (Re=100)
 
 N_STEPS  = int(round(T_MAX / DT))   # 500
 N_SNAP   = 51
@@ -211,7 +214,7 @@ for k in range(Nt):
     vo[:, k] = sv[k].flatten()[ff]
     po[:, k] = sp[k].flatten()[ff]
 
-out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unsteady_reference_re100.mat")
+out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unsteady_reference_re100_t2.mat")
 scipy.io.savemat(out, {"x": xf[:,None], "y": yf[:,None],
                        "t": st[:,None], "u": uo, "v": vo, "p": po})
 print(f"Saved → {out}  shape x({Ns},1) t({Nt},1) u({Ns},{Nt})", flush=True)
