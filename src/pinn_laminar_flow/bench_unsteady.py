@@ -49,9 +49,20 @@ def resolve_device(device_arg):
     return torch.device(device_arg)
 
 
-def l2_relative(pred, ref):
-    """L2 relative error: ||pred - ref|| / ||ref||"""
-    return np.linalg.norm(pred - ref) / (np.linalg.norm(ref) + 1e-12)
+def l2_relative(pred, ref, min_norm=1e-2):
+    """L2 relative error: ||pred - ref|| / ||ref||.
+    Returns NaN when ||ref|| < min_norm to avoid division by near-zero
+    (early snapshots where inlet is closed and the flow is at rest)."""
+    norm_ref = np.linalg.norm(ref)
+    if norm_ref < min_norm:
+        return np.nan
+    return np.linalg.norm(pred - ref) / norm_ref
+
+
+def l2_global(pred_all, ref_all):
+    """Global (space+time) Frobenius L2: ||P-R||_F / ||R||_F.
+    Primary scalar metric — unaffected by near-zero early snapshots."""
+    return np.linalg.norm(pred_all - ref_all) / (np.linalg.norm(ref_all) + 1e-12)
 
 
 def demean(arr):
@@ -114,9 +125,12 @@ def main():
     model.eval()
 
     # ── per-snapshot L2 errors ────────────────────────────────────────────────
-    l2_u = np.zeros(Nt)
-    l2_v = np.zeros(Nt)
-    l2_p = np.zeros(Nt)
+    l2_u = np.full(Nt, np.nan)
+    l2_v = np.full(Nt, np.nan)
+    l2_p = np.full(Nt, np.nan)
+    U_pred_all = np.zeros((Ns, Nt), dtype=np.float32)
+    V_pred_all = np.zeros((Ns, Nt), dtype=np.float32)
+    P_pred_all = np.zeros((Ns, Nt), dtype=np.float32)
 
     for k, t_val in enumerate(t_ref):
         t_query = np.full((Ns, 1), t_val, dtype=np.float32)
@@ -124,23 +138,36 @@ def main():
         u_pred = u_pred.flatten()
         v_pred = v_pred.flatten()
         p_pred = p_pred.flatten()
+        U_pred_all[:, k] = u_pred
+        V_pred_all[:, k] = v_pred
+        P_pred_all[:, k] = p_pred
 
         l2_u[k] = l2_relative(u_pred, U_ref[:, k])
         l2_v[k] = l2_relative(v_pred, V_ref[:, k])
-        # demeaned pressure comparison (Chorin φ vs PINN p)
         l2_p[k] = l2_relative(demean(p_pred), demean(P_ref[:, k]))
 
-    mean_l2_u = float(np.mean(l2_u))
-    mean_l2_v = float(np.mean(l2_v))
-    mean_l2_p = float(np.mean(l2_p))
+    # Global Frobenius norm (primary metric — robust to near-zero early snapshots)
+    global_l2_u = l2_global(U_pred_all, U_ref)
+    global_l2_v = l2_global(V_pred_all, V_ref)
+    global_l2_p = l2_global(
+        U_pred_all - U_pred_all.mean(axis=1, keepdims=True),
+        U_ref      - U_ref.mean(axis=1, keepdims=True)
+    )
+    # Per-snapshot mean (NaN snapshots excluded — inlet-closed early times)
+    mean_l2_u = float(np.nanmean(l2_u))
+    mean_l2_v = float(np.nanmean(l2_v))
+    mean_l2_p = float(np.nanmean(l2_p))
+    n_valid = int(np.sum(~np.isnan(l2_u)))
 
     print("=" * 50)
-    print(f"Mean L2 u : {mean_l2_u*100:.2f}%")
-    print(f"Mean L2 v : {mean_l2_v*100:.2f}%")
-    print(f"Mean L2 p : {mean_l2_p*100:.2f}%  (demeaned)")
-    go_u = mean_l2_u <= 0.10
-    go_v = mean_l2_v <= 0.10
-    print(f"Go/No-go  : L2_u {'PASS' if go_u else 'FAIL'}  L2_v {'PASS' if go_v else 'FAIL'}")
+    print(f"Global L2 u : {global_l2_u*100:.2f}%  (Frobenius, all space-time)")
+    print(f"Global L2 v : {global_l2_v*100:.2f}%")
+    print(f"Mean L2 u   : {mean_l2_u*100:.2f}%  (per-snapshot avg, {n_valid}/{Nt} snapshots)")
+    print(f"Mean L2 v   : {mean_l2_v*100:.2f}%")
+    print(f"Mean L2 p   : {mean_l2_p*100:.2f}%  (demeaned)")
+    go_u = global_l2_u <= 0.10
+    go_v = global_l2_v <= 0.10
+    print(f"Go/No-go    : L2_u {'PASS' if go_u else 'FAIL'}  L2_v {'PASS' if go_v else 'FAIL'}  (global Frobenius ≤ 10%)")
     print("=" * 50, flush=True)
 
     # ── L2 vs time plot ───────────────────────────────────────────────────────
