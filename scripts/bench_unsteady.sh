@@ -6,7 +6,7 @@
 #   bash scripts/bench_unsteady.sh --checkpoint <path/to.pt>   # custom checkpoint
 #   bash scripts/bench_unsteady.sh --device cpu                # force CPU
 #
-# Outputs (results/unsteady/bench/):
+# Outputs (results/bench/):
 #   l2_vs_time.png               — per-snapshot L2 error plot
 #   field_comparison_t*.png      — reference vs PINN at t=0.3/0.4/0.5 s
 #   probe_pressures.png          — probe pressure histories (paper Fig 8)
@@ -18,17 +18,17 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
 # Default to latest_lbfgs.pt if it exists, otherwise best.pt
-DEFAULT_CKPT="results/unsteady/checkpoints/latest_lbfgs.pt"
+DEFAULT_CKPT="results/checkpoints/latest_lbfgs.pt"
 if [ ! -f "$DEFAULT_CKPT" ]; then
-    DEFAULT_CKPT="results/unsteady/checkpoints/best.pt"
+    DEFAULT_CKPT="results/checkpoints/best.pt"
 fi
 
-mkdir -p results/unsteady/bench
+mkdir -p results/bench
 
 echo "=== Evaluating unsteady PINN checkpoint ==="
 
-python3 -u src/pinn_laminar_flow/bench_unsteady.py \
+python3 -u src/bench_unsteady.py \
     --checkpoint "$DEFAULT_CKPT" \
     --reference  data/reference/unsteady_reference.mat \
-    --output-dir results/unsteady/bench \
+    --output-dir results/bench \
     "$@"

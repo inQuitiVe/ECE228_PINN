@@ -20,27 +20,27 @@ set -e
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-mkdir -p results/unsteady/checkpoints results/unsteady/logs results/unsteady/figures
+mkdir -p results/checkpoints results/logs results/figures
 
 echo "=== Resuming unsteady PINN L-BFGS ==="
-echo "    Loading: results/unsteady/checkpoints/latest_lbfgs.pt"
+echo "    Loading: results/checkpoints/latest_lbfgs.pt"
 echo "    Additional L-BFGS function evals: 50k (default)"
 echo ""
 
-python3 -u src/pinn_laminar_flow/unsteady.py \
+python3 -u src/unsteady.py \
     --adam-iters 0 \
     --lbfgs-iters 50000 \
     --lbfgs-save-every 500 \
     --save-best \
-    --load-checkpoint results/unsteady/checkpoints/latest_lbfgs.pt \
+    --load-checkpoint results/checkpoints/latest_lbfgs.pt \
     --resume \
-    --checkpoint      results/unsteady/checkpoints/latest.pt \
-    --best-checkpoint results/unsteady/checkpoints/best.pt \
-    --lbfgs-checkpoint results/unsteady/checkpoints/latest_lbfgs.pt \
-    --loss-history    results/unsteady/logs/loss_history.pkl \
-    --output-dir      results/unsteady/figures \
+    --checkpoint      results/checkpoints/latest.pt \
+    --best-checkpoint results/checkpoints/best.pt \
+    --lbfgs-checkpoint results/checkpoints/latest_lbfgs.pt \
+    --loss-history    results/logs/loss_history.pkl \
+    --output-dir      results/figures \
     "$@" \
-    2>&1 | tee results/unsteady/logs/train_resume.log
+    2>&1 | tee results/logs/train_resume.log
 
 echo ""
 echo "=== Resume complete. Run bench: bash scripts/bench_unsteady.sh ==="

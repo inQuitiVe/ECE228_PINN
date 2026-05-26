@@ -3,17 +3,14 @@ __pycache__/
 *.pyc
 
 # Generated training artifacts — do not track
-/results/unsteady/checkpoints/
-/results/unsteady/logs/
-/results/unsteady/figures/
-/results/unsteady/bench/
-/results/unsteady/bench_adam/
-/results/unsteady/bench_lbfgs3k/
-/results/steady/checkpoints/
-/results/steady/logs/
-/results/steady/figures/
-/results/steady/archive/
-/results/unsteady/archive/
+/results/checkpoints/
+/results/logs/
+/results/figures/
+/results/bench/
+/results/bench_adam/
+/results/bench_final/
+/results/archive/
+/results/balanced/
 
 # Old root-level output
 /pressure_front_torch.png
