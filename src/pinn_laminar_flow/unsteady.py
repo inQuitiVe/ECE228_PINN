@@ -237,6 +237,8 @@ def train(
     save_every=0,
     save_best=False,
     best_checkpoint_path=None,
+    lbfgs_checkpoint_path=None,
+    lbfgs_save_every=0,
     optimizer_state_dict=None,
     scheduler_state_dict=None,
     existing_history=None,
@@ -367,17 +369,50 @@ def train(
             line_search_fn="strong_wolfe",
         )
         step_counter = {"count": 0}
+        last_iter = max((int(item.get("iter", 0)) for item in history), default=start_iter - 1)
+
+        def make_lbfgs_snapshot(losses, lbfgs_iter):
+            snapshot = {name: value.detach().cpu().item() for name, value in losses.items()}
+            snapshot["iter"] = last_iter + lbfgs_iter
+            snapshot["phase"] = "lbfgs"
+            snapshot["lbfgs_iter"] = lbfgs_iter
+            return snapshot
+
+        def save_lbfgs_checkpoint(losses, lbfgs_iter, final=False):
+            if not lbfgs_checkpoint_path:
+                return
+            snapshot = make_lbfgs_snapshot(losses, lbfgs_iter)
+            save_checkpoint(
+                model,
+                lbfgs_checkpoint_path,
+                history + [snapshot],
+                {
+                    "phase": "lbfgs",
+                    "lbfgs_iter": lbfgs_iter,
+                    "loss": snapshot["loss"],
+                    "final": final,
+                },
+                optimizer=lbfgs,
+                extra_state={
+                    "iteration": snapshot["iter"],
+                    "lbfgs_iter": lbfgs_iter,
+                    "current_loss": snapshot["loss"],
+                    "best_loss": best_record["loss"],
+                    "stale_steps": stale_steps,
+                },
+            )
 
         def closure():
             lbfgs.zero_grad(set_to_none=True)
             losses = build_loss(model, data)
             losses["loss"].backward()
             step_counter["count"] += 1
-            if step_counter["count"] == 1 or step_counter["count"] % print_every == 0:
+            lbfgs_iter = step_counter["count"]
+            if lbfgs_iter == 1 or lbfgs_iter % print_every == 0:
                 print(
                     "LBFGS %d | total=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e"
                     % (
-                        step_counter["count"],
+                        lbfgs_iter,
                         losses["loss"].detach().cpu().item(),
                         losses["loss_f"].detach().cpu().item(),
                         losses["loss_ic"].detach().cpu().item(),
@@ -386,11 +421,18 @@ def train(
                         losses["loss_outlet"].detach().cpu().item(),
                     )
                 , flush=True)
+            if lbfgs_save_every > 0 and lbfgs_iter % lbfgs_save_every == 0:
+                save_lbfgs_checkpoint(losses, lbfgs_iter)
             return losses["loss"]
 
         lbfgs.step(closure)
         final_losses = build_loss(model, data)
-        history.append({name: value.detach().cpu().item() for name, value in final_losses.items()})
+        final_snapshot = make_lbfgs_snapshot(final_losses, step_counter["count"])
+        history.append(final_snapshot)
+        if final_snapshot["loss"] < best_record["loss"]:
+            best_record["loss"] = final_snapshot["loss"]
+            best_record["iter"] = final_snapshot["iter"]
+        save_lbfgs_checkpoint(final_losses, step_counter["count"], final=True)
 
     print("--- %.2f seconds ---" % (time.time() - start_time), flush=True)
     return history, best_record, stale_steps
@@ -464,10 +506,13 @@ def parse_args():
     parser.add_argument("--tmax", type=float, default=0.5)
     parser.add_argument("--checkpoint", default="results/unsteady/checkpoints/latest.pt")
     parser.add_argument("--best-checkpoint", default="results/unsteady/checkpoints/best.pt")
+    parser.add_argument("--lbfgs-checkpoint", default="results/unsteady/checkpoints/latest_lbfgs.pt")
     parser.add_argument("--load-checkpoint", default="")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--save-every", type=int, default=0)
     parser.add_argument("--save-best", action="store_true")
+    parser.add_argument("--lbfgs-save-every", type=int, default=500,
+                        help="Overwrite --lbfgs-checkpoint every N LBFGS closure calls; set 0 to disable")
     parser.add_argument("--output-dir", default="results/unsteady/figures")
     parser.add_argument("--loss-history", default="results/unsteady/logs/loss_history.pkl")
     parser.add_argument("--num-frames", type=int, default=51)
@@ -551,6 +596,8 @@ def main():
         save_every=args.save_every,
         save_best=args.save_best,
         best_checkpoint_path=args.best_checkpoint,
+        lbfgs_checkpoint_path=args.lbfgs_checkpoint,
+        lbfgs_save_every=args.lbfgs_save_every,
         optimizer_state_dict=optimizer_state,
         scheduler_state_dict=scheduler_state,
         existing_history=existing_history,
@@ -558,7 +605,7 @@ def main():
         initial_stale_steps=stale_steps_resume,
     )
 
-    last_iter = int(history[-1]["iter"]) if history else (start_iter - 1)
+    last_iter = int(history[-1].get("iter", len(history))) if history else (start_iter - 1)
 
     save_checkpoint(
         model,
@@ -577,6 +624,8 @@ def main():
             "scheduler_gamma": args.scheduler_gamma,
             "scheduler_min_lr": args.scheduler_min_lr,
             "scheduler_plateau_patience": args.scheduler_plateau_patience,
+            "lbfgs_checkpoint": args.lbfgs_checkpoint,
+            "lbfgs_save_every": args.lbfgs_save_every,
             "early_stop_patience": args.early_stop_patience,
             "early_stop_min_delta": args.early_stop_min_delta,
             "early_stop_warmup": args.early_stop_warmup,
