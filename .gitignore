@@ -19,7 +19,9 @@ __pycache__/
 /pressure_front_torch.png
 
 # Local agent/tooling artifacts
+/.claude/
 /.cursor/
+/ref/
 /.codegraph/
 /.codegrapg/
 /docs/

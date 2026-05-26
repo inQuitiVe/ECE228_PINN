@@ -240,6 +240,7 @@ def train(
     lbfgs_save_every=0,
     optimizer_state_dict=None,
     scheduler_state_dict=None,
+    lbfgs_optimizer_state_dict=None,
     existing_history=None,
     initial_best_loss=None,
     initial_stale_steps=0,
@@ -363,10 +364,18 @@ def train(
             max_iter=lbfgs_steps,
             max_eval=lbfgs_steps,
             history_size=50,
-            tolerance_change=1e-12,
-            tolerance_grad=1e-12,
+            tolerance_change=0,
+            tolerance_grad=0,
             line_search_fn="strong_wolfe",
         )
+        if lbfgs_optimizer_state_dict is not None:
+            lbfgs.load_state_dict(lbfgs_optimizer_state_dict)
+            # Reset per-step tracking so the first step() call starts clean
+            # while preserving history vectors (old_dirs, old_stps, ro, H_diag).
+            for pg_state in lbfgs.state.values():
+                pg_state["n_iter"] = 0
+                pg_state["prev_flat_grad"] = None
+                pg_state.pop("prev_loss", None)
         step_counter = {"count": 0}
         last_iter = max((int(item.get("iter", 0)) for item in history), default=start_iter - 1)
 
@@ -424,7 +433,15 @@ def train(
                 save_lbfgs_checkpoint(losses, lbfgs_iter)
             return losses["loss"]
 
-        lbfgs.step(closure)
+        while step_counter["count"] < lbfgs_steps:
+            remaining = lbfgs_steps - step_counter["count"]
+            lbfgs.param_groups[0]["max_iter"] = remaining
+            lbfgs.param_groups[0]["max_eval"] = remaining
+            lbfgs.step(closure)
+            if step_counter["count"] < lbfgs_steps:
+                # direction became non-descent (gtd > 0) — reset history for fresh restart
+                for pg_state in lbfgs.state.values():
+                    pg_state.clear()
         final_losses = build_loss(model, data)
         final_snapshot = make_lbfgs_snapshot(final_losses, step_counter["count"])
         history.append(final_snapshot)
@@ -558,13 +575,20 @@ def main():
     existing_history = []
     best_loss_resume = None
     stale_steps_resume = 0
+    optimizer_state = None
+    scheduler_state = None
+    lbfgs_optimizer_state = None
     if args.load_checkpoint:
         ckpt = load_checkpoint(model, args.load_checkpoint, map_location=device)
-        optimizer_state = ckpt.get("optimizer_state_dict")
+        raw_optimizer_state = ckpt.get("optimizer_state_dict")
         scheduler_state = ckpt.get("scheduler_state_dict")
         existing_history = list(ckpt.get("history", []))
+        extra_state = ckpt.get("extra_state", {})
+        # Only restore Adam optimizer state; skip L-BFGS state (stale history vectors
+        # from prior checkpoint cause line-search failure on resume).
+        if raw_optimizer_state is not None and "lbfgs_iter" not in extra_state:
+            optimizer_state = raw_optimizer_state
         if args.resume:
-            extra_state = ckpt.get("extra_state", {})
             if "iteration" in extra_state:
                 start_iter = int(extra_state.get("iteration", 0)) + 1
             elif existing_history:
@@ -601,6 +625,7 @@ def main():
         lbfgs_save_every=args.lbfgs_save_every,
         optimizer_state_dict=optimizer_state,
         scheduler_state_dict=scheduler_state,
+        lbfgs_optimizer_state_dict=lbfgs_optimizer_state,
         existing_history=existing_history,
         initial_best_loss=best_loss_resume,
         initial_stale_steps=stale_steps_resume,
