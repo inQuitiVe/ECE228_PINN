@@ -3,9 +3,9 @@ Evaluation harness for the unsteady PINN checkpoint.
 
 Usage:
     python bench_unsteady.py \
-        --checkpoint results/checkpoints/latest.pt \
+        --checkpoint results/experiments/vanilla/checkpoints/latest.pt \
         --reference  data/reference/unsteady_reference.mat \
-        --output-dir results/bench
+        --output-dir results/experiments/vanilla/benchmarks/latest_lbfgs
 """
 
 import argparse
@@ -45,12 +45,13 @@ def parse_args():
                         default=[0.1, 0.2, 0.3, 0.4, 0.5],
                         help="Snapshot times for detailed v-field metric diagnostics")
     args = parser.parse_args()
+    run_dir = f"results/experiments/{args.exp_name}"
     if not args.checkpoint:
-        args.checkpoint = f"results/checkpoints/{args.exp_name}/latest_lbfgs.pt"
+        args.checkpoint = f"{run_dir}/checkpoints/latest_lbfgs.pt"
         if not os.path.exists(args.checkpoint):
-            args.checkpoint = f"results/checkpoints/{args.exp_name}/best.pt"
+            args.checkpoint = f"{run_dir}/checkpoints/best.pt"
     if not args.output_dir:
-        args.output_dir = f"results/bench/{args.exp_name}"
+        args.output_dir = f"{run_dir}/benchmarks/latest_lbfgs"
     return args
 
 
@@ -120,13 +121,13 @@ def plot_field_comparison(x, y, u_ref, v_ref, p_ref, u_pred, v_pred, p_pred,
     fig, axes = plt.subplots(3, 2, figsize=(12, 8))
     kw = dict(alpha=0.7, edgecolors="none", cmap="rainbow", marker="o", s=1)
     pairs = [
-        ("u ref", u_ref, "u PINN", u_pred, 0, 1.4),
-        ("v ref", v_ref, "v PINN", v_pred, -0.7, 0.7),
+        ("u ref", u_ref, "u PINN", u_pred, None, None),
+        ("v ref", v_ref, "v PINN", v_pred, None, None),
         ("p ref (demeaned)", demean(p_ref), "p PINN (demeaned)", demean(p_pred), None, None),
     ]
     for row, (lbl_l, data_l, lbl_r, data_r, vmin, vmax) in enumerate(pairs):
-        vmin_ = vmin if vmin is not None else np.min([data_l.min(), data_r.min()])
-        vmax_ = vmax if vmax is not None else np.max([data_l.max(), data_r.max()])
+        vmin_ = vmin if vmin is not None else np.nanmin([np.nanmin(data_l), np.nanmin(data_r)])
+        vmax_ = vmax if vmax is not None else np.nanmax([np.nanmax(data_l), np.nanmax(data_r)])
         for col, (lbl, data) in enumerate([(lbl_l, data_l), (lbl_r, data_r)]):
             ax = axes[row, col]
             cf = ax.scatter(x, y, c=data, vmin=vmin_, vmax=vmax_, **kw)
@@ -343,7 +344,8 @@ def main():
         u_pred = u_pred.flatten()
         v_pred = v_pred.flatten()
         p_pred = p_pred.flatten()
-        fname = f"field_comparison_t{t_val:.2f}.png".replace(".", "p")
+        t_str = f"{t_val:.2f}".replace(".", "p")
+        fname = f"field_comparison_t{t_str}.png"
         plot_field_comparison(
             x_ref, y_ref,
             U_ref[:, k], V_ref[:, k], P_ref[:, k],

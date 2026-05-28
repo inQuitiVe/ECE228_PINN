@@ -9,6 +9,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 from pyDOE import lhs
+from scipy.optimize import minimize
+
+
+STRICT_NOTES = (
+    "Strict reproduction recipe: TF-style truncated Xavier init, "
+    "80000 base LHS collocation points, Adam 5000, SciPy L-BFGS-B."
+)
 
 
 def gradients(y, x):
@@ -35,7 +42,11 @@ class MLP(nn.Module):
     def _reset_parameters(self):
         for module in self.network:
             if isinstance(module, nn.Linear):
-                nn.init.xavier_normal_(module.weight)
+                # TensorFlow v1 reference uses:
+                # tf.truncated_normal(stddev=sqrt(2 / (in_dim + out_dim))).
+                std = np.sqrt(2.0 / (module.in_features + module.out_features))
+                with torch.no_grad():
+                    module.weight.copy_(truncated_normal_like(module.weight, std=std))
                 nn.init.zeros_(module.bias)
 
     def forward(self, x):
@@ -111,6 +122,19 @@ def mse_zero(x):
     return torch.mean(x.square())
 
 
+def truncated_normal_like(tensor, std):
+    """Approximate TensorFlow's two-sigma truncated normal initializer."""
+    values = torch.empty_like(tensor)
+    filled = torch.zeros_like(values, dtype=torch.bool)
+    while not bool(filled.all()):
+        samples = torch.empty_like(values).normal_(mean=0.0, std=std)
+        valid = samples.abs() <= 2.0 * std
+        take = valid & ~filled
+        values[take] = samples[take]
+        filled |= take
+    return values
+
+
 def del_src_pt(xy_c, xc=0.0, yc=0.0, r=0.1):
     dst = np.sqrt((xy_c[:, 0] - xc) ** 2 + (xy_c[:, 1] - yc) ** 2)
     return xy_c[dst > r, :]
@@ -162,7 +186,8 @@ def build_training_data(device, tmax=0.5, period=1.0):
     hole = np.concatenate((x_surf, y_surf, t_surf), axis=1)
     wall = np.concatenate((hole, wall_up, wall_lw), axis=0)
 
-    xy_c = lb + (ub - lb) * lhs(3, 100000)
+    # Original public Rao code uses 80000 base LHS points before refinements.
+    xy_c = lb + (ub - lb) * lhs(3, 80000)
     xy_c_refine = np.array([0.0, 0.0, 0.0], dtype=np.float32) + np.array([0.4, 0.4, tmax], dtype=np.float32) * lhs(3, 15000)
     xy_c_lw = np.array([0.0, 0.0, 0.0], dtype=np.float32) + np.array([1.1, 0.02, tmax], dtype=np.float32) * lhs(3, 3000)
     xy_c_up = np.array([0.0, 0.39, 0.0], dtype=np.float32) + np.array([1.1, 0.02, tmax], dtype=np.float32) * lhs(3, 3000)
@@ -216,6 +241,135 @@ def build_loss(model, data):
     }
 
 
+def flatten_parameters(model):
+    return np.concatenate([
+        param.detach().cpu().numpy().ravel()
+        for param in model.parameters()
+    ]).astype(np.float64)
+
+
+def set_parameters_from_flat(model, flat_params):
+    offset = 0
+    with torch.no_grad():
+        for param in model.parameters():
+            size = param.numel()
+            values = flat_params[offset:offset + size].reshape(param.shape)
+            param.copy_(torch.as_tensor(values, dtype=param.dtype, device=param.device))
+            offset += size
+
+
+def flatten_gradients(model):
+    grads = []
+    for param in model.parameters():
+        if param.grad is None:
+            grads.append(torch.zeros_like(param).detach().cpu().numpy().ravel())
+        else:
+            grads.append(param.grad.detach().cpu().numpy().ravel())
+    return np.concatenate(grads).astype(np.float64)
+
+
+def run_scipy_lbfgsb(
+    model,
+    data,
+    maxiter,
+    print_every,
+    history,
+    last_iter,
+    lbfgs_checkpoint_path=None,
+    lbfgs_save_every=0,
+):
+    """Use SciPy L-BFGS-B to mirror the TensorFlow v1 reference optimizer."""
+    state = {"evals": 0, "best_loss": float("inf"), "best_iter": last_iter}
+
+    def snapshot_from_losses(losses, eval_count):
+        snapshot = {name: value.detach().cpu().item() for name, value in losses.items()}
+        snapshot["iter"] = last_iter + eval_count
+        snapshot["phase"] = "scipy_lbfgsb"
+        snapshot["lbfgs_iter"] = eval_count
+        return snapshot
+
+    def save_snapshot(losses, eval_count, final=False):
+        if not lbfgs_checkpoint_path:
+            return
+        snapshot = snapshot_from_losses(losses, eval_count)
+        save_checkpoint(
+            model,
+            lbfgs_checkpoint_path,
+            history + [snapshot],
+            {
+                "phase": "scipy_lbfgsb",
+                "lbfgs_iter": eval_count,
+                "loss": snapshot["loss"],
+                "final": final,
+            },
+            extra_state={
+                "iteration": snapshot["iter"],
+                "lbfgs_iter": eval_count,
+                "current_loss": snapshot["loss"],
+                "best_loss": min(state["best_loss"], snapshot["loss"]),
+                "stale_steps": 0,
+            },
+        )
+
+    def objective(flat_params):
+        set_parameters_from_flat(model, flat_params)
+        model.zero_grad(set_to_none=True)
+        losses = build_loss(model, data)
+        losses["loss"].backward()
+        grad = flatten_gradients(model)
+        loss_value = losses["loss"].detach().cpu().item()
+        state["evals"] += 1
+        eval_count = state["evals"]
+        if loss_value < state["best_loss"]:
+            state["best_loss"] = loss_value
+            state["best_iter"] = last_iter + eval_count
+        if eval_count == 1 or eval_count % print_every == 0:
+            print(
+                "SciPy L-BFGS-B %d | total=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e"
+                % (
+                    eval_count,
+                    loss_value,
+                    losses["loss_f"].detach().cpu().item(),
+                    losses["loss_ic"].detach().cpu().item(),
+                    losses["loss_wall"].detach().cpu().item(),
+                    losses["loss_inlet"].detach().cpu().item(),
+                    losses["loss_outlet"].detach().cpu().item(),
+                ),
+                flush=True,
+            )
+        if lbfgs_save_every > 0 and eval_count % lbfgs_save_every == 0:
+            save_snapshot(losses, eval_count)
+        return loss_value, grad
+
+    result = minimize(
+        fun=objective,
+        x0=flatten_parameters(model),
+        jac=True,
+        method="L-BFGS-B",
+        options={
+            "maxiter": maxiter,
+            "maxfun": maxiter,
+            "maxcor": 50,
+            "maxls": 50,
+            "ftol": np.finfo(float).eps,
+            "gtol": 0.0,
+        },
+    )
+    set_parameters_from_flat(model, result.x)
+    final_losses = build_loss(model, data)
+    final_snapshot = snapshot_from_losses(final_losses, state["evals"])
+    history.append(final_snapshot)
+    save_snapshot(final_losses, state["evals"], final=True)
+    print("SciPy L-BFGS-B status: %s" % result.message, flush=True)
+    return {
+        "loss": final_snapshot["loss"],
+        "iter": final_snapshot["iter"],
+        "lbfgs_iter": state["evals"],
+        "best_loss": min(state["best_loss"], final_snapshot["loss"]),
+        "best_iter": state["best_iter"],
+    }
+
+
 def train(
     model,
     data,
@@ -241,6 +395,7 @@ def train(
     optimizer_state_dict=None,
     scheduler_state_dict=None,
     lbfgs_optimizer_state_dict=None,
+    lbfgs_backend="scipy",
     existing_history=None,
     initial_best_loss=None,
     initial_stale_steps=0,
@@ -315,6 +470,8 @@ def train(
         loss_value = snapshot["loss"]
         if loss_value < (best_loss - early_stop_min_delta):
             best_loss = loss_value
+            best_record["loss"] = loss_value
+            best_record["iter"] = iteration
             stale_steps = 0
             if save_best and best_checkpoint_path:
                 save_checkpoint(
@@ -330,8 +487,6 @@ def train(
                         "stale_steps": stale_steps,
                     },
                 )
-                best_record["loss"] = loss_value
-                best_record["iter"] = iteration
         elif iteration > early_stop_warmup:
             stale_steps += 1
             if early_stop_patience > 0 and stale_steps >= early_stop_patience:
@@ -357,7 +512,23 @@ def train(
                 },
             )
 
-    if lbfgs_steps > 0:
+    if lbfgs_steps > 0 and lbfgs_backend == "scipy":
+        last_iter = max((int(item.get("iter", 0)) for item in history), default=start_iter - 1)
+        scipy_record = run_scipy_lbfgsb(
+            model=model,
+            data=data,
+            maxiter=lbfgs_steps,
+            print_every=print_every,
+            history=history,
+            last_iter=last_iter,
+            lbfgs_checkpoint_path=lbfgs_checkpoint_path,
+            lbfgs_save_every=lbfgs_save_every,
+        )
+        if scipy_record["best_loss"] < best_record["loss"]:
+            best_record["loss"] = scipy_record["best_loss"]
+            best_record["iter"] = scipy_record["best_iter"]
+
+    if lbfgs_steps > 0 and lbfgs_backend == "torch":
         lbfgs = torch.optim.LBFGS(
             model.parameters(),
             lr=1.0,
@@ -485,8 +656,7 @@ def post_process(xmin, xmax, ymin, ymax, field, out_path, s=2, title=""):
     plt.close(fig)
 
 
-def save_checkpoint(model, path, history, config, optimizer=None, scheduler=None,
-                    extra_state=None, optimizer_state_dict=None, scheduler_state_dict=None):
+def save_checkpoint(model, path, history, config, optimizer=None, scheduler=None, extra_state=None):
     checkpoint_dir = os.path.dirname(path)
     if checkpoint_dir:
         os.makedirs(checkpoint_dir, exist_ok=True)
@@ -495,13 +665,9 @@ def save_checkpoint(model, path, history, config, optimizer=None, scheduler=None
         "history": history,
         "config": config,
     }
-    if optimizer_state_dict is not None:
-        payload["optimizer_state_dict"] = optimizer_state_dict
-    elif optimizer is not None:
+    if optimizer is not None:
         payload["optimizer_state_dict"] = optimizer.state_dict()
-    if scheduler_state_dict is not None:
-        payload["scheduler_state_dict"] = scheduler_state_dict
-    elif scheduler is not None:
+    if scheduler is not None:
         payload["scheduler_state_dict"] = scheduler.state_dict()
     if extra_state is not None:
         payload["extra_state"] = extra_state
@@ -520,16 +686,14 @@ def load_checkpoint(model, path, map_location):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Transient mixed-form PINN in PyTorch")
-    parser.add_argument("--adam-iters", type=int, default=10000)
-    parser.add_argument("--lbfgs-iters", type=int, default=50000)
+    parser = argparse.ArgumentParser(description="Strict Rao-style transient mixed-form PINN in PyTorch")
+    parser.add_argument("--adam-iters", type=int, default=5000)
+    parser.add_argument("--lbfgs-iters", type=int, default=100000)
     parser.add_argument("--learning-rate", type=float, default=5e-4)
     parser.add_argument("--tmax", type=float, default=0.5)
-    parser.add_argument("--mu", type=float, default=0.005,
-                        help="Dynamic viscosity (Re=10: 0.005, Re=100: 0.0005)")
     parser.add_argument("--period", type=float, default=1.0,
                         help="Inlet sin period (s). Must match the reference generator. Default 1.0.")
-    parser.add_argument("--exp-name", default="vanilla",
+    parser.add_argument("--exp-name", default="strict_reproduce",
                         help="Experiment name; all checkpoints/logs/figures are namespaced under this.")
     parser.add_argument("--checkpoint", default="")
     parser.add_argument("--best-checkpoint", default="")
@@ -540,6 +704,8 @@ def parse_args():
     parser.add_argument("--save-best", action="store_true")
     parser.add_argument("--lbfgs-save-every", type=int, default=500,
                         help="Overwrite --lbfgs-checkpoint every N LBFGS closure calls; set 0 to disable")
+    parser.add_argument("--lbfgs-backend", default="scipy", choices=["scipy", "torch"],
+                        help="Default scipy mirrors TensorFlow v1 ScipyOptimizerInterface L-BFGS-B.")
     parser.add_argument("--output-dir", default="")
     parser.add_argument("--loss-history", default="")
     parser.add_argument("--num-frames", type=int, default=51)
@@ -570,7 +736,7 @@ def main():
     args = parse_args()
 
     # Derive experiment-scoped paths from --exp-name when not set explicitly.
-    run_dir = f"results/experiments/{args.exp_name}"
+    run_dir = f"results/phase1_reproduction/{args.exp_name}"
     ckpt_dir = f"{run_dir}/checkpoints"
     if not args.checkpoint:
         args.checkpoint = f"{ckpt_dir}/latest.pt"
@@ -586,13 +752,14 @@ def main():
     device = resolve_device(args.device)
     print("Using device:", device, flush=True)
     print(f"Experiment: {args.exp_name}  (checkpoints under {ckpt_dir})", flush=True)
+    print(STRICT_NOTES, flush=True)
 
     torch.manual_seed(1234)
     np.random.seed(1234)
 
     uv_layers = [3] + 7 * [50] + [5]
     data = build_training_data(device=device, tmax=args.tmax, period=args.period)
-    model = PINNLaminarFlowTransient(uv_layers=uv_layers, lb=data["lb"], ub=data["ub"], mu=args.mu).to(device)
+    model = PINNLaminarFlowTransient(uv_layers=uv_layers, lb=data["lb"], ub=data["ub"]).to(device)
 
     optimizer_state = None
     scheduler_state = None
@@ -605,11 +772,6 @@ def main():
     lbfgs_optimizer_state = None
     if args.load_checkpoint:
         ckpt = load_checkpoint(model, args.load_checkpoint, map_location=device)
-        ckpt_mu = ckpt.get("config", {}).get("mu")
-        if ckpt_mu is not None and ckpt_mu != args.mu:
-            print(f"[mu] CLI --mu={args.mu} overridden by checkpoint mu={ckpt_mu}", flush=True)
-            args.mu = ckpt_mu
-            model.mu = ckpt_mu
         raw_optimizer_state = ckpt.get("optimizer_state_dict")
         scheduler_state = ckpt.get("scheduler_state_dict")
         existing_history = list(ckpt.get("history", []))
@@ -656,6 +818,7 @@ def main():
         optimizer_state_dict=optimizer_state,
         scheduler_state_dict=scheduler_state,
         lbfgs_optimizer_state_dict=lbfgs_optimizer_state,
+        lbfgs_backend=args.lbfgs_backend,
         existing_history=existing_history,
         initial_best_loss=best_loss_resume,
         initial_stale_steps=stale_steps_resume,
@@ -673,9 +836,9 @@ def main():
             "ub": data["ub"].tolist(),
             "adam_iters": args.adam_iters,
             "lbfgs_iters": args.lbfgs_iters,
+            "lbfgs_backend": args.lbfgs_backend,
             "learning_rate": args.learning_rate,
             "tmax": args.tmax,
-            "mu": args.mu,
             "scheduler": args.scheduler,
             "scheduler_step_size": args.scheduler_step_size,
             "scheduler_gamma": args.scheduler_gamma,

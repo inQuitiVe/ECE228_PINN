@@ -14,18 +14,26 @@
 #   bash scripts/train_unsteady.sh --exp-name my_run       # custom name
 #   bash scripts/train_unsteady.sh --device cuda           # force CUDA
 #
-# Outputs (all under results/{exp_name}/):
-#   checkpoints/{exp_name}/best.pt          — Adam best
-#   checkpoints/{exp_name}/latest.pt        — Adam final
-#   checkpoints/{exp_name}/latest_lbfgs.pt  — L-BFGS checkpoint (every 500 steps)
-#   logs/{exp_name}/loss_history.pkl        — full loss history
-#   figures/{exp_name}/                     — visualisations
+# Outputs:
+#   results/phase1_reproduction/<exp_name>/checkpoints/
+#   results/phase1_reproduction/<exp_name>/logs/
+#   results/phase1_reproduction/<exp_name>/figures/
 
 set -e
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-EXP_NAME="vanilla"
+EXP_NAME="vanilla_pytorch"
+EXTRA_ARGS=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --exp-name)
+            EXP_NAME="$2"; shift 2 ;;
+        *)
+            EXTRA_ARGS+=("$1"); shift ;;
+    esac
+done
+RUN_ROOT="results/phase1_reproduction/$EXP_NAME"
 
 echo "=== Starting unsteady PINN training (exp: $EXP_NAME) ==="
 echo "    Adam 10k (lr=5e-4) + L-BFGS 100k function evals"
@@ -34,7 +42,7 @@ echo "    IC: u=v=p=0"
 echo "    N_g: 100k LHS collocation points"
 echo ""
 
-mkdir -p "results/checkpoints/$EXP_NAME" "results/logs/$EXP_NAME" "results/figures/$EXP_NAME"
+mkdir -p "$RUN_ROOT/checkpoints" "$RUN_ROOT/logs" "$RUN_ROOT/figures"
 
 python3 -u src/unsteady.py \
     --exp-name "$EXP_NAME" \
@@ -43,8 +51,13 @@ python3 -u src/unsteady.py \
     --lbfgs-iters 100000 \
     --lbfgs-save-every 500 \
     --save-best \
-    "$@" \
-    2>&1 | tee "results/logs/$EXP_NAME/train.log"
+    --checkpoint "$RUN_ROOT/checkpoints/latest.pt" \
+    --best-checkpoint "$RUN_ROOT/checkpoints/best.pt" \
+    --lbfgs-checkpoint "$RUN_ROOT/checkpoints/latest_lbfgs.pt" \
+    --loss-history "$RUN_ROOT/logs/loss_history.pkl" \
+    --output-dir "$RUN_ROOT/figures" \
+    "${EXTRA_ARGS[@]}" \
+    2>&1 | tee "$RUN_ROOT/logs/train.log"
 
 echo ""
 echo "=== Training complete. Run bench: bash scripts/bench_unsteady.sh ==="

@@ -53,8 +53,8 @@ Grad-norm track concluded — all 3 variants fail at field-L2 level (see `docs/p
 **Decision (2026-05-27):** Phase 1 is closed as a baseline, not as a full paper-faithful reproduction. The reference implementation itself gives ref `L2_v = 18.47%`; our best run reaches `19.86%`, which is close enough to use as a baseline for loss-improvement work. Remaining pressure/probe mismatch is documented as a limitation of the baseline.
 
 **Saved checkpoints (local):**
-- `results/checkpoints/vanilla/` — PyTorch LBFGS, Adam 10k + L-BFGS ~63k evals; L2_u=6.8%, L2_v=20.2%
-- `results/checkpoints/strict_reproduce_5090/` — SciPy L-BFGS-B, Adam 5k + ~68k evals (converged); L2_u=5.30%, L2_v=19.86%
+- `results/phase1_reproduction/vanilla_pytorch/checkpoints/` — PyTorch LBFGS, Adam 10k + L-BFGS ~63k evals; L2_u=6.8%, L2_v=20.2%
+- `results/phase1_reproduction/strict_reproduce_scipy/checkpoints/` — SciPy L-BFGS-B, Adam 5k + ~68k evals (converged); L2_u=5.30%, L2_v=19.86%
 
 - [x] Bug fixes, eval harness, checkpoint isolation (2026-05-25/26)
 - [x] vanilla run: Adam 10k + PyTorch LBFGS ~63k evals; L2_u=6.8%, L2_v=20.2% (2026-05-26)
@@ -100,7 +100,7 @@ Completed runs (RTX 5090):
 - [x] **B `none_5090`** — Adam 10k + LBFGS 50k, final total ~3e-4, matches vanilla magnitude (2026-05-27)
 - [x] **C `grad_norm_5090`** — buggy L2-norm version: final loss_f=3.10e-3 (12× worse than vanilla); diagnosis: λ_inlet stuck at 1, inlet loss dominates (2026-05-27)
 - [x] **R1 `strict_grad_norm_adam40k_5090`** — paper-faithful with clip=1e3, Adam 40k only: all BC λ saturated 70-92%, loss_f=5.5e-2 (13× worse) (2026-05-28)
-- [x] All checkpoints + logs + figures pulled to local (results/ untouched Phase 1 preserved) (2026-05-28)
+- [x] All checkpoints + logs + figures pulled to local and organized under phase-scoped `results/` directories (2026-05-28)
 
 In progress:
 - [ ] **R3 `strict_grad_norm_uncapped_adam40k_5090`** — paper-faithful with clip removed (clip_max=1e12), Adam 40k + snapshots {10k, 20k, 30k, 40k}; early signal: loss_f=2.4e-4 at iter 9500 (18× better than vanilla Adam), but inlet stuck at 0.19 because λ_inlet → 0.13 (algorithm de-prioritizes inlet)

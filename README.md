@@ -29,44 +29,29 @@ Device selection is supported with `--device {auto,cpu,cuda,mps}`. Use `--device
 
 ## Training
 
-Run steady training:
+Run the Re=10 baseline reproduction:
 
 ```bash
-python3 train.py steady --device mps
+bash scripts/train_unsteady.sh --device mps
 ```
 
-Run transient training:
+Resume the baseline L-BFGS stage:
 
 ```bash
-python3 train.py unsteady --device mps
+bash scripts/resume_unsteady.sh --device mps
 ```
 
-Resume steady training:
+Run the Re=10 benchmark:
 
 ```bash
-python3 train.py steady \
-  --device mps \
-  --adam-iters 30000 \
-  --load-checkpoint results/steady/checkpoints/latest.pt \
-  --resume \
-  --save-every 200 \
-  --save-best \
-  --checkpoint results/steady/checkpoints/latest.pt \
-  --best-checkpoint results/steady/checkpoints/best.pt \
-  --loss-history results/steady/logs/loss_history.pkl \
-  --output-figure results/steady/figures/field_comparison.png
+bash scripts/bench_unsteady.sh --device mps
 ```
 
-Resume transient training:
+Run the loss-balancer experiments:
 
 ```bash
-python3 train.py unsteady \
-  --device mps \
-  --adam-iters 10000 \
-  --load-checkpoint results/unsteady/checkpoints/latest.pt \
-  --resume \
-  --save-every 200 \
-  --save-best
+bash scripts/train_balanced.sh --balancer none --exp-name fixed_beta_none
+bash scripts/train_balanced.sh --balancer strict_grad_norm --exp-name strict_grad_norm_test
 ```
 
 ## Checkpoints
@@ -85,32 +70,19 @@ Useful flags:
 - `--save-every N` writes a checkpoint every `N` Adam iterations.
 - `--save-best` writes the best model by total loss.
 
-## Plotting
-
-Plot steady total loss from a checkpoint:
-
-```bash
-PYTHONPATH=src python3 -m pinn_laminar_flow.plotting \
-  --input results/steady/checkpoints/latest.pt \
-  --output results/steady/figures/loss_curve.png
-```
-
 ## Results
 
-Steady artifacts:
+Artifacts are organized by project phase:
 
-- `results/steady/checkpoints/`
-- `results/steady/figures/`
-- `results/steady/logs/`
+- `results/phase1_reproduction/vanilla_pytorch/` — original PyTorch Re=10 baseline.
+- `results/phase1_reproduction/strict_reproduce_scipy/` — best SciPy L-BFGS-B reproduction baseline.
+- `results/phase3_re100_reference/` — generated Re=100 reference-data logs.
+- `results/phase4a_loss_balancing/` — fixed-beta, GradNorm, strict GradNorm, and smoke-test runs.
+- `results/reference/` — copied reference papers, analysis reports, and original-paper output figures.
 
-Transient artifacts:
+Each experiment directory uses the same internal layout when applicable:
 
-- `results/unsteady/checkpoints/`
-- `results/unsteady/figures/`
-- `results/unsteady/logs/`
-
-Representative steady outputs:
-
-![](results/steady/figures/field_comparison.png)
-
-![](results/steady/figures/loss_curve.png)
+- `checkpoints/`
+- `logs/`
+- `figures/`
+- `benchmarks/`
