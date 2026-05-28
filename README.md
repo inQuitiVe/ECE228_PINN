@@ -1,23 +1,6 @@
-# PINN Laminar Flow
+# ECE228 PINN
 
-PyTorch implementation of physics-informed neural networks (PINNs) for incompressible laminar flow around a cylinder. The project includes steady and transient training flows, checkpoint/resume support, and saved experiment artifacts.
-
-## Reference
-
-This repository follows the mixed-form PINN setup from:
-
-[Chengping Rao, Hao Sun and Yang Liu. Physics-informed deep learning for incompressible laminar flows.](https://arxiv.org/abs/2002.10558)
-
-## Repository Layout
-
-- `src/pinn_laminar_flow/`
-  - PyTorch source code for steady/transient PINN models and plotting utilities.
-- `train.py`
-  - Root training entrypoint for steady and transient experiments.
-- `data/reference/`
-  - Reference CFD data used for steady-flow comparison.
-- `results/`
-  - Checkpoints, figures, logs, and archived outputs from experiments.
+Tracked PyTorch PINN code, reference data, experiment scripts, reports, and archived results for incompressible laminar flow around a cylinder.
 
 ## Setup
 
@@ -25,64 +8,128 @@ This repository follows the mixed-form PINN setup from:
 pip install -r requirements.txt
 ```
 
-Device selection is supported with `--device {auto,cpu,cuda,mps}`. Use `--device mps` on Apple Silicon, `--device cuda` on NVIDIA GPUs, and `--device cpu` for CPU-only runs.
-
-## Training
-
-Run the Re=10 baseline reproduction:
+Or use the tracked setup script:
 
 ```bash
-bash scripts/train_unsteady.sh --device mps
+bash scripts/setup_env.sh
 ```
 
-Resume the baseline L-BFGS stage:
+Use `--device auto`, `--device cpu`, `--device cuda`, or `--device mps` on scripts that forward device selection to Python.
+
+## Tracked Entry Points
+
+### Training
+
+- `scripts/setup_env.sh`
+  - Installs tracked Python dependencies and creates the `pyDOE` shim expected by the code.
+
+- `scripts/train_unsteady.sh`
+  - Re=10 vanilla baseline training.
+  - Writes to `results/phase1_reproduction/<exp_name>/`.
 
 ```bash
-bash scripts/resume_unsteady.sh --device mps
+bash scripts/train_unsteady.sh --device cuda
 ```
 
-Run the Re=10 benchmark:
+- `scripts/resume_unsteady.sh`
+  - Resumes the Re=10 vanilla baseline from `latest_lbfgs.pt`.
 
 ```bash
-bash scripts/bench_unsteady.sh --device mps
+bash scripts/resume_unsteady.sh --device cuda
 ```
 
-Run the loss-balancer experiments:
+- `scripts/train_balanced.sh`
+  - Re=10 loss-balancer training with `none`, `grad_norm`, or `strict_grad_norm`.
+  - Writes to `results/phase4a_loss_balancing/<exp_name>/`.
 
 ```bash
-bash scripts/train_balanced.sh --balancer none --exp-name fixed_beta_none
-bash scripts/train_balanced.sh --balancer strict_grad_norm --exp-name strict_grad_norm_test
+bash scripts/train_balanced.sh --balancer strict_grad_norm --exp-name strict_grad_norm_test --device cuda
 ```
 
-## Checkpoints
+- `scripts/train_re100_vanilla.sh`
+  - Re=100 stress-test baseline.
+  - Writes to `results/phase3_re100_stress/<exp_name>/`.
 
-Both training flows save PyTorch `.pt` checkpoints with:
+```bash
+bash scripts/train_re100_vanilla.sh --device cuda
+```
 
-- model state
-- optimizer state
-- scheduler state
-- loss history
-- resume metadata (`iteration`, `best_loss`, `stale_steps`)
+### Evaluation
 
-Useful flags:
+- `scripts/bench_unsteady.sh`
+  - Evaluates a Re=10 checkpoint against `data/reference/unsteady_reference.mat`.
 
-- `--resume` continues from the checkpoint iteration.
-- `--save-every N` writes a checkpoint every `N` Adam iterations.
-- `--save-best` writes the best model by total loss.
+```bash
+bash scripts/bench_unsteady.sh --device cuda
+```
 
-## Results
+- `scripts/bench_balanced.sh`
+  - Evaluates a Phase 4A loss-balancer run against the Re=10 reference.
 
-Artifacts are organized by project phase:
+```bash
+bash scripts/bench_balanced.sh --exp-name strict_grad_norm_test --device cuda
+```
 
-- `results/phase1_reproduction/vanilla_pytorch/` — original PyTorch Re=10 baseline.
-- `results/phase1_reproduction/strict_reproduce_scipy/` — best SciPy L-BFGS-B reproduction baseline.
-- `results/phase3_re100_reference/` — generated Re=100 reference-data logs.
-- `results/phase4a_loss_balancing/` — fixed-beta, GradNorm, strict GradNorm, and smoke-test runs.
-- `results/reference/` — copied reference papers, analysis reports, and original-paper output figures.
+- `scripts/bench_re100.sh`
+  - Evaluates a Re=100 checkpoint against `data/reference/unsteady_reference_re100_t2.mat`.
 
-Each experiment directory uses the same internal layout when applicable:
+```bash
+bash scripts/bench_re100.sh --device cuda
+```
 
-- `checkpoints/`
-- `logs/`
-- `figures/`
-- `benchmarks/`
+## Tracked Source Files
+
+- `src/unsteady.py`
+  - Main Re=10/Re=100 transient mixed-form PINN trainer.
+- `src/unsteady_strict_reproduce.py`
+  - Strict reproduction trainer with SciPy-style reproduction choices.
+- `src/unsteady_balanced.py`
+  - Loss-balancer trainer using `src/loss_balancers.py`.
+- `src/loss_balancers.py`
+  - `NoneBalancer`, `GradNormBalancer`, and `StrictGradNormBalancer`.
+- `src/bench_unsteady.py`
+  - Shared benchmark harness for Re=10 and Re=100 checkpoints.
+
+## Tracked Data
+
+- `data/reference/unsteady_reference.mat`
+  - Re=10 CFD reference data.
+- `data/reference/unsteady_reference_re100_t2.mat`
+  - Re=100 CFD reference data.
+- `data/reference/figures/`
+  - Tracked reference animations and frame exports.
+- `data/reference/*.py`
+  - Scripts used to generate reference datasets and figures.
+
+See `data/reference/README.md` for dataset details.
+
+## Tracked Results
+
+Results are phase-scoped under `results/`:
+
+- `results/phase1_reproduction/`
+  - Vanilla and strict reproduction baselines.
+- `results/phase3_re100_reference/`
+  - Re=100 reference-generation logs.
+- `results/phase4a_loss_balancing/`
+  - Fixed-beta, GradNorm, strict GradNorm, and smoke-test artifacts.
+- `results/reference/`
+  - Copied papers, reference reports, and original-paper artifacts from `ref/`.
+
+See `results/README.md` for the directory convention.
+
+## Tracked Docs
+
+- `docs/plan.md`
+  - Phase plan and method roadmap.
+- `docs/todo.md`
+  - Current project status and task list.
+- `docs/user/current_status_and_postmortem.md`
+  - Current reproduction status and failure analysis.
+- `docs/user/initial_handover.pdf`
+  - Team handover PDF.
+
+## Notes
+
+- `ref/`, `remote_gpu_pull/`, `tmp/`, and other untracked local working directories are not part of this README.
+- For new ad hoc experiments, prefer `results/experiments/<exp_name>/` unless the run belongs to a named phase.
