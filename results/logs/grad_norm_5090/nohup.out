@@ -1,0 +1,1014 @@
+nohup: ignoring input
+=== Starting balanced PINN training (exp: grad_norm_5090, balancer: grad_norm) ===
+    Adam 10k (lr=5e-4) + L-BFGS 50k evals
+    Re=10: mu=0.005, tmax=0.5s, period=1.0s
+
+Using device: cuda
+Experiment: grad_norm_5090  balancer: grad_norm
+Adam 1 | total=1.042e+01 f=5.600e+00 ic=6.128e-01 wall=5.611e-01 inlet=2.458e-01 outlet=1.713e-01 lr=5.000e-04 | λ[f=1.00 ic=1.00 wall=5.00 inlet=5.00 outlet=1.00]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 100 | total=2.759e-01 f=3.522e-02 ic=7.003e-03 wall=2.890e-02 inlet=5.118e-02 outlet=2.419e-05 lr=5.000e-04 | λ[f=1.00 ic=1.85 wall=2.85 inlet=2.80 outlet=92.63]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 200 | total=1.804e-01 f=1.677e-02 ic=2.799e-03 wall=2.280e-02 inlet=5.784e-02 outlet=1.578e-05 lr=5.000e-04 | λ[f=1.00 ic=7.20 wall=1.94 inlet=1.63 outlet=323.72]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 300 | total=1.520e-01 f=1.116e-02 ic=3.348e-04 wall=1.634e-02 inlet=7.685e-02 outlet=1.598e-06 lr=5.000e-04 | λ[f=1.00 ic=50.41 wall=1.80 inlet=1.22 outlet=555.92]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 400 | total=1.329e-01 f=9.309e-03 ic=5.320e-05 wall=1.510e-02 inlet=8.237e-02 outlet=4.746e-06 lr=5.000e-04 | λ[f=1.00 ic=103.68 wall=1.81 inlet=1.08 outlet=456.03]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 500 | total=1.337e-01 f=7.206e-03 ic=2.703e-05 wall=1.179e-02 inlet=9.018e-02 outlet=1.669e-06 lr=5.000e-04 | λ[f=1.00 ic=103.11 wall=2.57 inlet=1.03 outlet=495.69]
+Adam 600 | total=1.290e-01 f=6.834e-03 ic=1.197e-05 wall=1.144e-02 inlet=8.936e-02 outlet=8.158e-07 lr=5.000e-04 | λ[f=1.00 ic=188.23 wall=2.55 inlet=1.01 outlet=684.40]
+Adam 700 | total=1.357e-01 f=5.454e-03 ic=3.980e-05 wall=9.176e-03 inlet=9.514e-02 outlet=4.737e-06 lr=5.000e-04 | λ[f=1.00 ic=172.39 wall=2.75 inlet=1.00 outlet=581.26]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 800 | total=3.188e-01 f=5.836e-03 ic=1.095e-03 wall=4.700e-03 inlet=1.172e-01 outlet=3.126e-06 lr=5.000e-04 | λ[f=1.00 ic=162.83 wall=3.20 inlet=1.00 outlet=702.40]
+Adam 900 | total=1.323e-01 f=5.484e-03 ic=3.386e-06 wall=8.358e-03 inlet=9.739e-02 outlet=2.671e-07 lr=5.000e-04 | λ[f=1.00 ic=502.77 wall=3.29 inlet=1.00 outlet=866.39]
+Adam 1000 | total=1.377e-01 f=4.470e-03 ic=4.016e-06 wall=6.539e-03 inlet=1.055e-01 outlet=2.722e-07 lr=5.000e-04 | λ[f=1.00 ic=373.72 wall=3.98 inlet=1.00 outlet=745.82]
+Adam 1100 | total=1.723e-01 f=4.867e-03 ic=6.172e-05 wall=7.942e-03 inlet=9.885e-02 outlet=2.488e-07 lr=5.000e-04 | λ[f=1.00 ic=615.62 wall=3.82 inlet=1.00 outlet=911.37]
+Adam 1200 | total=1.328e-01 f=5.085e-03 ic=2.422e-06 wall=7.505e-03 inlet=9.812e-02 outlet=1.490e-07 lr=5.000e-04 | λ[f=1.00 ic=602.27 wall=3.73 inlet=1.00 outlet=969.10]
+Adam 1300 | total=1.645e-01 f=5.157e-03 ic=6.804e-05 wall=7.501e-03 inlet=9.824e-02 outlet=5.378e-07 lr=5.000e-04 | λ[f=1.00 ic=501.17 wall=3.54 inlet=1.00 outlet=968.50]
+Adam 1400 | total=1.292e-01 f=5.615e-03 ic=2.047e-06 wall=7.888e-03 inlet=9.425e-02 outlet=1.157e-07 lr=5.000e-04 | λ[f=1.00 ic=607.81 wall=3.55 inlet=1.00 outlet=989.02]
+Adam 1500 | total=1.277e-01 f=5.552e-03 ic=2.154e-06 wall=8.164e-03 inlet=9.168e-02 outlet=1.158e-07 lr=5.000e-04 | λ[f=1.00 ic=657.93 wall=3.54 inlet=1.00 outlet=861.55]
+Adam 1600 | total=1.271e-01 f=4.747e-03 ic=2.600e-06 wall=8.052e-03 inlet=9.193e-02 outlet=1.441e-07 lr=5.000e-04 | λ[f=1.00 ic=579.39 wall=3.58 inlet=1.00 outlet=747.32]
+Adam 1700 | total=1.285e-01 f=5.223e-03 ic=2.372e-06 wall=7.578e-03 inlet=9.374e-02 outlet=9.783e-08 lr=5.000e-04 | λ[f=1.00 ic=446.57 wall=3.74 inlet=1.00 outlet=806.61]
+Adam 1800 | total=1.301e-01 f=5.230e-03 ic=4.667e-06 wall=7.719e-03 inlet=9.164e-02 outlet=8.685e-07 lr=5.000e-04 | λ[f=1.00 ic=723.97 wall=3.77 inlet=1.00 outlet=878.05]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 1900 | total=1.263e-01 f=5.164e-03 ic=2.325e-06 wall=7.882e-03 inlet=8.968e-02 outlet=1.744e-07 lr=5.000e-04 | λ[f=1.00 ic=602.48 wall=3.79 inlet=1.00 outlet=837.19]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2000 | total=1.279e-01 f=5.112e-03 ic=5.768e-06 wall=8.067e-03 inlet=8.778e-02 outlet=1.094e-06 lr=5.000e-04 | λ[f=1.00 ic=549.02 wall=3.84 inlet=1.00 outlet=757.35]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2100 | total=2.242e-01 f=5.156e-03 ic=1.799e-04 wall=9.731e-03 inlet=8.129e-02 outlet=3.664e-06 lr=5.000e-04 | λ[f=1.00 ic=545.60 wall=3.77 inlet=1.00 outlet=782.35]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2200 | total=1.235e-01 f=5.104e-03 ic=2.940e-06 wall=8.033e-03 inlet=8.580e-02 outlet=3.198e-07 lr=5.000e-04 | λ[f=1.00 ic=479.95 wall=3.86 inlet=1.00 outlet=705.40]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2300 | total=1.229e-01 f=4.943e-03 ic=2.838e-06 wall=7.964e-03 inlet=8.508e-02 outlet=1.014e-07 lr=5.000e-04 | λ[f=1.00 ic=466.21 wall=3.95 inlet=1.00 outlet=646.78]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2400 | total=1.224e-01 f=4.960e-03 ic=2.868e-06 wall=7.880e-03 inlet=8.452e-02 outlet=1.434e-07 lr=5.000e-04 | λ[f=1.00 ic=441.56 wall=4.00 inlet=1.00 outlet=695.44]
+Adam 2500 | total=1.234e-01 f=4.650e-03 ic=3.092e-06 wall=7.552e-03 inlet=8.555e-02 outlet=8.878e-08 lr=5.000e-04 | λ[f=1.00 ic=498.09 wall=4.19 inlet=1.00 outlet=693.68]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2600 | total=1.220e-01 f=4.875e-03 ic=3.366e-06 wall=7.509e-03 inlet=8.507e-02 outlet=6.821e-08 lr=5.000e-04 | λ[f=1.00 ic=354.82 wall=4.11 inlet=1.00 outlet=893.19]
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/best.pt
+Adam 2700 | total=1.857e-01 f=4.853e-03 ic=6.936e-05 wall=7.314e-03 inlet=8.475e-02 outlet=4.872e-05 lr=5.000e-04 | λ[f=1.00 ic=442.60 wall=4.30 inlet=1.00 outlet=698.39]
+Adam 2800 | total=1.231e-01 f=4.742e-03 ic=3.548e-06 wall=7.073e-03 inlet=8.497e-02 outlet=7.950e-08 lr=5.000e-04 | λ[f=1.00 ic=427.88 wall=4.50 inlet=1.00 outlet=793.23]
+Adam 2900 | total=1.352e-01 f=4.623e-03 ic=3.010e-05 wall=7.327e-03 inlet=8.340e-02 outlet=1.082e-07 lr=5.000e-04 | λ[f=1.00 ic=428.92 wall=4.66 inlet=1.00 outlet=702.68]
+Adam 3000 | total=1.265e-01 f=4.296e-03 ic=3.480e-06 wall=6.067e-03 inlet=8.938e-02 outlet=2.429e-07 lr=5.000e-04 | λ[f=1.00 ic=381.19 wall=5.16 inlet=1.00 outlet=727.90]
+Adam 3100 | total=1.272e-01 f=4.184e-03 ic=4.286e-06 wall=5.891e-03 inlet=8.968e-02 outlet=3.521e-07 lr=5.000e-04 | λ[f=1.00 ic=381.72 wall=5.35 inlet=1.00 outlet=597.41]
+Adam 3200 | total=1.283e-01 f=4.311e-03 ic=3.178e-06 wall=5.701e-03 inlet=9.198e-02 outlet=1.048e-07 lr=5.000e-04 | λ[f=1.00 ic=390.20 wall=5.38 inlet=1.00 outlet=793.81]
+Adam 3300 | total=1.293e-01 f=3.809e-03 ic=3.534e-06 wall=5.334e-03 inlet=9.333e-02 outlet=3.075e-07 lr=5.000e-04 | λ[f=1.00 ic=419.12 wall=5.72 inlet=1.00 outlet=694.38]
+Adam 3400 | total=1.290e-01 f=4.126e-03 ic=2.365e-06 wall=5.252e-03 inlet=9.303e-02 outlet=1.345e-07 lr=5.000e-04 | λ[f=1.00 ic=542.84 wall=5.79 inlet=1.00 outlet=831.93]
+Adam 3500 | total=1.296e-01 f=4.163e-03 ic=2.614e-06 wall=5.055e-03 inlet=9.307e-02 outlet=5.111e-08 lr=5.000e-04 | λ[f=1.00 ic=543.80 wall=6.11 inlet=1.00 outlet=739.65]
+Adam 3600 | total=1.305e-01 f=4.150e-03 ic=2.757e-06 wall=4.809e-03 inlet=9.381e-02 outlet=1.219e-07 lr=5.000e-04 | λ[f=1.00 ic=547.44 wall=6.43 inlet=1.00 outlet=772.79]
+Adam 3700 | total=1.325e-01 f=4.149e-03 ic=4.452e-06 wall=4.555e-03 inlet=9.462e-02 outlet=9.961e-07 lr=5.000e-04 | λ[f=1.00 ic=487.93 wall=6.77 inlet=1.00 outlet=678.42]
+Adam 3800 | total=1.324e-01 f=4.072e-03 ic=3.878e-06 wall=4.303e-03 inlet=9.566e-02 outlet=9.496e-07 lr=5.000e-04 | λ[f=1.00 ic=397.72 wall=7.12 inlet=1.00 outlet=564.67]
+Adam 3900 | total=1.322e-01 f=4.094e-03 ic=3.464e-06 wall=4.171e-03 inlet=9.590e-02 outlet=6.677e-07 lr=5.000e-04 | λ[f=1.00 ic=387.68 wall=7.29 inlet=1.00 outlet=659.91]
+Adam 4000 | total=1.332e-01 f=3.862e-03 ic=3.225e-06 wall=3.956e-03 inlet=9.743e-02 outlet=1.597e-07 lr=5.000e-04 | λ[f=1.00 ic=441.00 wall=7.68 inlet=1.00 outlet=584.09]
+Adam 4100 | total=1.329e-01 f=3.925e-03 ic=2.372e-06 wall=3.995e-03 inlet=9.918e-02 outlet=6.314e-08 lr=5.000e-04 | λ[f=1.00 ic=486.35 wall=7.15 inlet=1.00 outlet=710.03]
+Adam 4200 | total=1.376e-01 f=3.661e-03 ic=9.530e-06 wall=3.867e-03 inlet=9.903e-02 outlet=4.436e-06 lr=5.000e-04 | λ[f=1.00 ic=350.66 wall=7.59 inlet=1.00 outlet=497.28]
+Adam 4300 | total=1.362e-01 f=3.913e-03 ic=4.936e-06 wall=3.779e-03 inlet=9.856e-02 outlet=1.689e-06 lr=5.000e-04 | λ[f=1.00 ic=504.46 wall=7.98 inlet=1.00 outlet=651.51]
+Adam 4400 | total=1.376e-01 f=3.647e-03 ic=5.333e-06 wall=3.533e-03 inlet=1.006e-01 outlet=2.365e-06 lr=5.000e-04 | λ[f=1.00 ic=427.95 wall=8.42 inlet=1.00 outlet=585.88]
+Adam 4500 | total=1.361e-01 f=3.771e-03 ic=2.179e-06 wall=3.374e-03 inlet=1.011e-01 outlet=2.412e-07 lr=5.000e-04 | λ[f=1.00 ic=545.90 wall=8.84 inlet=1.00 outlet=735.45]
+Adam 4600 | total=1.366e-01 f=3.776e-03 ic=1.853e-06 wall=3.227e-03 inlet=1.018e-01 outlet=1.115e-07 lr=5.000e-04 | λ[f=1.00 ic=574.05 wall=9.26 inlet=1.00 outlet=711.13]
+Adam 4700 | total=1.372e-01 f=3.755e-03 ic=1.845e-06 wall=3.090e-03 inlet=1.025e-01 outlet=1.505e-07 lr=5.000e-04 | λ[f=1.00 ic=525.85 wall=9.65 inlet=1.00 outlet=642.12]
+Adam 4800 | total=1.509e-01 f=3.624e-03 ic=1.492e-05 wall=3.014e-03 inlet=1.032e-01 outlet=1.382e-05 lr=5.000e-04 | λ[f=1.00 ic=415.50 wall=9.69 inlet=1.00 outlet=633.45]
+Adam 4900 | total=1.494e-01 f=4.610e-03 ic=1.629e-05 wall=2.823e-03 inlet=1.113e-01 outlet=5.156e-07 lr=5.000e-04 | λ[f=1.00 ic=403.15 wall=9.43 inlet=1.00 outlet=591.84]
+Adam 5000 | total=1.386e-01 f=3.049e-03 ic=1.600e-06 wall=2.793e-03 inlet=1.073e-01 outlet=1.403e-07 lr=5.000e-04 | λ[f=1.00 ic=458.41 wall=9.83 inlet=1.00 outlet=616.81]
+Adam 5100 | total=1.399e-01 f=3.366e-03 ic=2.657e-06 wall=2.844e-03 inlet=1.054e-01 outlet=7.480e-07 lr=5.000e-04 | λ[f=1.00 ic=524.02 wall=10.27 inlet=1.00 outlet=641.09]
+Adam 5200 | total=1.394e-01 f=3.475e-03 ic=1.400e-06 wall=2.756e-03 inlet=1.055e-01 outlet=1.296e-07 lr=5.000e-04 | λ[f=1.00 ic=568.13 wall=10.71 inlet=1.00 outlet=708.48]
+Adam 5300 | total=1.442e-01 f=3.417e-03 ic=9.101e-06 wall=2.761e-03 inlet=1.051e-01 outlet=6.036e-07 lr=5.000e-04 | λ[f=1.00 ic=534.40 wall=11.01 inlet=1.00 outlet=704.58]
+Adam 5400 | total=1.584e-01 f=3.087e-03 ic=2.174e-05 wall=2.426e-03 inlet=1.092e-01 outlet=1.451e-05 lr=5.000e-04 | λ[f=1.00 ic=435.14 wall=11.80 inlet=1.00 outlet=549.67]
+Adam 5500 | total=1.478e-01 f=3.688e-03 ic=8.456e-06 wall=2.287e-03 inlet=1.114e-01 outlet=3.995e-07 lr=5.000e-04 | λ[f=1.00 ic=477.99 wall=12.42 inlet=1.00 outlet=799.66]
+Adam 5600 | total=1.432e-01 f=3.087e-03 ic=1.322e-06 wall=2.233e-03 inlet=1.108e-01 outlet=2.004e-07 lr=5.000e-04 | λ[f=1.00 ic=511.71 wall=12.74 inlet=1.00 outlet=705.56]
+Adam 5700 | total=1.435e-01 f=3.015e-03 ic=1.395e-06 wall=2.182e-03 inlet=1.110e-01 outlet=2.370e-07 lr=5.000e-04 | λ[f=1.00 ic=542.86 wall=13.11 inlet=1.00 outlet=675.06]
+Adam 5800 | total=1.439e-01 f=2.961e-03 ic=1.399e-06 wall=2.124e-03 inlet=1.114e-01 outlet=2.621e-07 lr=5.000e-04 | λ[f=1.00 ic=564.71 wall=13.48 inlet=1.00 outlet=709.37]
+Adam 5900 | total=1.460e-01 f=2.924e-03 ic=3.229e-06 wall=2.101e-03 inlet=1.113e-01 outlet=2.473e-06 lr=5.000e-04 | λ[f=1.00 ic=482.83 wall=13.64 inlet=1.00 outlet=639.16]
+Adam 6000 | total=1.439e-01 f=2.750e-03 ic=2.605e-06 wall=2.206e-03 inlet=1.116e-01 outlet=2.797e-07 lr=5.000e-04 | λ[f=1.00 ic=420.87 wall=12.79 inlet=1.00 outlet=672.38]
+Adam 6100 | total=1.426e-01 f=2.903e-03 ic=1.169e-06 wall=2.193e-03 inlet=1.102e-01 outlet=1.890e-07 lr=5.000e-04 | λ[f=1.00 ic=464.58 wall=13.15 inlet=1.00 outlet=604.81]
+Adam 6200 | total=1.434e-01 f=2.909e-03 ic=1.577e-06 wall=2.128e-03 inlet=1.106e-01 outlet=4.364e-07 lr=5.000e-04 | λ[f=1.00 ic=520.29 wall=13.55 inlet=1.00 outlet=604.56]
+Adam 6300 | total=1.482e-01 f=2.791e-03 ic=6.201e-06 wall=1.994e-03 inlet=1.122e-01 outlet=3.526e-06 lr=5.000e-04 | λ[f=1.00 ic=502.13 wall=14.08 inlet=1.00 outlet=575.04]
+Adam 6400 | total=1.429e-01 f=2.899e-03 ic=1.014e-06 wall=2.049e-03 inlet=1.110e-01 outlet=5.887e-08 lr=5.000e-04 | λ[f=1.00 ic=556.38 wall=13.88 inlet=1.00 outlet=677.88]
+Adam 6500 | total=1.440e-01 f=2.818e-03 ic=2.624e-06 wall=2.094e-03 inlet=1.100e-01 outlet=4.375e-08 lr=5.000e-04 | λ[f=1.00 ic=594.89 wall=14.11 inlet=1.00 outlet=719.13]
+Adam 6600 | total=1.443e-01 f=2.735e-03 ic=1.550e-06 wall=1.987e-03 inlet=1.114e-01 outlet=1.032e-06 lr=5.000e-04 | λ[f=1.00 ic=460.74 wall=14.54 inlet=1.00 outlet=586.98]
+Adam 6700 | total=1.436e-01 f=2.694e-03 ic=8.289e-07 wall=1.943e-03 inlet=1.117e-01 outlet=3.541e-08 lr=5.000e-04 | λ[f=1.00 ic=489.43 wall=14.82 inlet=1.00 outlet=550.72]
+Adam 6800 | total=1.453e-01 f=2.945e-03 ic=4.086e-06 wall=1.895e-03 inlet=1.128e-01 outlet=4.316e-07 lr=5.000e-04 | λ[f=1.00 ic=420.02 wall=14.54 inlet=1.00 outlet=573.60]
+Adam 6900 | total=1.440e-01 f=2.699e-03 ic=7.046e-07 wall=1.920e-03 inlet=1.122e-01 outlet=6.703e-08 lr=5.000e-04 | λ[f=1.00 ic=553.88 wall=14.92 inlet=1.00 outlet=561.70]
+Adam 7000 | total=1.466e-01 f=2.273e-03 ic=7.323e-07 wall=1.743e-03 inlet=1.161e-01 outlet=8.369e-08 lr=5.000e-04 | λ[f=1.00 ic=521.21 wall=15.96 inlet=1.00 outlet=691.32]
+Adam 7100 | total=1.464e-01 f=2.397e-03 ic=7.499e-07 wall=1.734e-03 inlet=1.153e-01 outlet=4.759e-08 lr=5.000e-04 | λ[f=1.00 ic=602.45 wall=16.25 inlet=1.00 outlet=666.63]
+Adam 7200 | total=1.466e-01 f=2.354e-03 ic=6.120e-07 wall=1.694e-03 inlet=1.158e-01 outlet=3.811e-08 lr=5.000e-04 | λ[f=1.00 ic=606.13 wall=16.60 inlet=1.00 outlet=635.87]
+Adam 7300 | total=1.520e-01 f=2.405e-03 ic=2.372e-06 wall=1.410e-03 inlet=1.228e-01 outlet=6.132e-08 lr=5.000e-04 | λ[f=1.00 ic=593.28 wall=18.01 inlet=1.00 outlet=800.25]
+Adam 7400 | total=1.501e-01 f=2.181e-03 ic=4.148e-07 wall=1.475e-03 inlet=1.205e-01 outlet=3.642e-08 lr=5.000e-04 | λ[f=1.00 ic=668.85 wall=18.38 inlet=1.00 outlet=768.47]
+Adam 7500 | total=1.502e-01 f=2.145e-03 ic=5.159e-07 wall=1.450e-03 inlet=1.204e-01 outlet=1.080e-07 lr=5.000e-04 | λ[f=1.00 ic=691.62 wall=18.80 inlet=1.00 outlet=748.53]
+Adam 7600 | total=1.503e-01 f=2.136e-03 ic=4.583e-07 wall=1.419e-03 inlet=1.205e-01 outlet=3.031e-08 lr=5.000e-04 | λ[f=1.00 ic=752.92 wall=19.21 inlet=1.00 outlet=811.64]
+Adam 7700 | total=1.506e-01 f=2.124e-03 ic=5.210e-07 wall=1.389e-03 inlet=1.207e-01 outlet=1.073e-07 lr=5.000e-04 | λ[f=1.00 ic=714.96 wall=19.69 inlet=1.00 outlet=753.65]
+Adam 7800 | total=1.508e-01 f=2.116e-03 ic=6.239e-07 wall=1.368e-03 inlet=1.209e-01 outlet=1.410e-07 lr=5.000e-04 | λ[f=1.00 ic=655.25 wall=19.94 inlet=1.00 outlet=699.48]
+Adam 7900 | total=1.524e-01 f=1.977e-03 ic=9.049e-07 wall=1.280e-03 inlet=1.231e-01 outlet=3.444e-07 lr=5.000e-04 | λ[f=1.00 ic=522.08 wall=20.83 inlet=1.00 outlet=694.15]
+Adam 8000 | total=1.712e-01 f=2.020e-03 ic=1.961e-05 wall=1.251e-03 inlet=1.232e-01 outlet=1.339e-05 lr=5.000e-04 | λ[f=1.00 ic=549.17 wall=21.25 inlet=1.00 outlet=645.34]
+Adam 8100 | total=1.522e-01 f=1.981e-03 ic=5.576e-07 wall=1.239e-03 inlet=1.232e-01 outlet=6.323e-08 lr=5.000e-04 | λ[f=1.00 ic=555.20 wall=21.59 inlet=1.00 outlet=613.26]
+Adam 8200 | total=1.524e-01 f=1.997e-03 ic=6.047e-07 wall=1.219e-03 inlet=1.233e-01 outlet=1.102e-07 lr=5.000e-04 | λ[f=1.00 ic=643.58 wall=21.90 inlet=1.00 outlet=699.78]
+Adam 8300 | total=1.531e-01 f=1.965e-03 ic=1.364e-06 wall=1.181e-03 inlet=1.244e-01 outlet=3.832e-08 lr=5.000e-04 | λ[f=1.00 ic=597.38 wall=21.92 inlet=1.00 outlet=717.61]
+Adam 8400 | total=1.560e-01 f=1.913e-03 ic=4.840e-06 wall=1.200e-03 inlet=1.239e-01 outlet=5.670e-08 lr=5.000e-04 | λ[f=1.00 ic=658.27 wall=22.46 inlet=1.00 outlet=901.54]
+Adam 8500 | total=1.533e-01 f=1.882e-03 ic=9.827e-07 wall=1.141e-03 inlet=1.248e-01 outlet=1.223e-07 lr=5.000e-04 | λ[f=1.00 ic=671.22 wall=22.63 inlet=1.00 outlet=889.17]
+Adam 8600 | total=1.550e-01 f=1.718e-03 ic=1.495e-06 wall=1.089e-03 inlet=1.262e-01 outlet=2.213e-07 lr=5.000e-04 | λ[f=1.00 ic=601.91 wall=23.80 inlet=1.00 outlet=818.02]
+Adam 8700 | total=1.546e-01 f=1.840e-03 ic=1.182e-06 wall=1.076e-03 inlet=1.259e-01 outlet=4.196e-07 lr=5.000e-04 | λ[f=1.00 ic=628.38 wall=23.96 inlet=1.00 outlet=812.49]
+Adam 8800 | total=1.544e-01 f=1.812e-03 ic=5.736e-07 wall=1.059e-03 inlet=1.263e-01 outlet=1.005e-07 lr=5.000e-04 | λ[f=1.00 ic=650.76 wall=24.33 inlet=1.00 outlet=788.82]
+Adam 8900 | total=1.570e-01 f=1.766e-03 ic=3.734e-06 wall=1.081e-03 inlet=1.255e-01 outlet=1.154e-06 lr=5.000e-04 | λ[f=1.00 ic=611.61 wall=24.60 inlet=1.00 outlet=741.26]
+Adam 9000 | total=1.561e-01 f=1.669e-03 ic=1.111e-06 wall=9.392e-04 inlet=1.289e-01 outlet=1.439e-07 lr=5.000e-04 | λ[f=1.00 ic=555.15 wall=26.45 inlet=1.00 outlet=792.80]
+Adam 9100 | total=1.762e-01 f=3.153e-03 ic=2.824e-05 wall=9.165e-04 inlet=1.319e-01 outlet=3.460e-07 lr=5.000e-04 | λ[f=1.00 ic=531.64 wall=28.22 inlet=1.00 outlet=670.74]
+Adam 9200 | total=1.720e-01 f=1.484e-03 ic=1.328e-05 wall=8.178e-04 inlet=1.324e-01 outlet=1.454e-05 lr=5.000e-04 | λ[f=1.00 ic=471.68 wall=28.81 inlet=1.00 outlet=570.47]
+Adam 9300 | total=1.580e-01 f=1.583e-03 ic=1.367e-06 wall=8.500e-04 inlet=1.309e-01 outlet=1.789e-07 lr=5.000e-04 | λ[f=1.00 ic=533.69 wall=28.99 inlet=1.00 outlet=775.79]
+Adam 9400 | total=1.579e-01 f=1.566e-03 ic=1.414e-06 wall=8.372e-04 inlet=1.309e-01 outlet=2.427e-08 lr=5.000e-04 | λ[f=1.00 ic=568.95 wall=29.36 inlet=1.00 outlet=721.37]
+Adam 9500 | total=1.572e-01 f=1.620e-03 ic=1.410e-06 wall=8.758e-04 inlet=1.293e-01 outlet=2.182e-07 lr=5.000e-04 | λ[f=1.00 ic=588.52 wall=28.91 inlet=1.00 outlet=686.11]
+Adam 9600 | total=1.686e-01 f=1.752e-03 ic=2.162e-05 wall=8.542e-04 inlet=1.313e-01 outlet=2.521e-06 lr=5.000e-04 | λ[f=1.00 ic=498.92 wall=27.40 inlet=1.00 outlet=565.70]
+Adam 9700 | total=1.547e-01 f=1.742e-03 ic=7.799e-07 wall=9.368e-04 inlet=1.270e-01 outlet=2.742e-07 lr=5.000e-04 | λ[f=1.00 ic=509.93 wall=27.10 inlet=1.00 outlet=560.40]
+Adam 9800 | total=1.582e-01 f=1.696e-03 ic=3.091e-06 wall=8.919e-04 inlet=1.279e-01 outlet=3.355e-06 lr=5.000e-04 | λ[f=1.00 ic=474.65 wall=28.22 inlet=1.00 outlet=585.17]
+Adam 9900 | total=1.606e-01 f=1.613e-03 ic=5.492e-06 wall=8.045e-04 inlet=1.303e-01 outlet=1.772e-06 lr=5.000e-04 | λ[f=1.00 ic=460.23 wall=31.16 inlet=1.00 outlet=614.00]
+Adam 10000 | total=2.807e-01 f=1.870e-02 ic=1.276e-04 wall=5.309e-04 inlet=1.674e-01 outlet=2.515e-05 lr=5.000e-04 | λ[f=1.00 ic=323.11 wall=27.37 inlet=1.16 outlet=466.86]
+LBFGS 1 | total=2.484e-01 f=1.899e-02 ic=6.238e-05 wall=5.909e-04 inlet=1.648e-01 outlet=3.312e-06
+LBFGS 100 | total=1.815e-01 f=3.136e-03 ic=2.943e-06 wall=1.092e-03 inlet=1.269e-01 outlet=1.788e-07
+LBFGS 200 | total=1.742e-01 f=3.222e-03 ic=3.032e-06 wall=1.132e-03 inlet=1.196e-01 outlet=1.634e-07
+LBFGS 300 | total=1.635e-01 f=7.067e-03 ic=6.613e-06 wall=1.111e-03 inlet=1.066e-01 outlet=2.091e-07
+LBFGS 400 | total=1.540e-01 f=1.081e-02 ic=8.001e-06 wall=1.059e-03 inlet=9.583e-02 outlet=4.887e-07
+LBFGS 500 | total=1.465e-01 f=1.048e-02 ic=4.847e-06 wall=1.080e-03 inlet=9.018e-02 outlet=2.155e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 600 | total=1.416e-01 f=9.076e-03 ic=3.902e-06 wall=1.086e-03 inlet=8.723e-02 outlet=3.741e-07
+LBFGS 700 | total=1.376e-01 f=8.320e-03 ic=3.041e-06 wall=1.125e-03 inlet=8.384e-02 outlet=2.571e-07
+LBFGS 800 | total=1.327e-01 f=8.973e-03 ic=4.282e-06 wall=1.110e-03 inlet=7.896e-02 outlet=4.193e-07
+LBFGS 900 | total=1.280e-01 f=1.119e-02 ic=4.532e-06 wall=1.071e-03 inlet=7.394e-02 outlet=2.240e-07
+LBFGS 1000 | total=1.244e-01 f=1.064e-02 ic=6.251e-06 wall=1.074e-03 inlet=7.081e-02 outlet=1.579e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 1100 | total=1.203e-01 f=1.188e-02 ic=5.938e-06 wall=1.072e-03 inlet=6.639e-02 outlet=4.815e-08
+LBFGS 1200 | total=1.170e-01 f=1.274e-02 ic=6.358e-06 wall=1.063e-03 inlet=6.288e-02 outlet=9.527e-08
+LBFGS 1300 | total=1.143e-01 f=1.246e-02 ic=5.023e-06 wall=1.090e-03 inlet=6.050e-02 outlet=1.685e-07
+LBFGS 1400 | total=1.121e-01 f=1.357e-02 ic=4.935e-06 wall=1.070e-03 inlet=5.820e-02 outlet=8.814e-08
+LBFGS 1500 | total=1.093e-01 f=1.306e-02 ic=4.574e-06 wall=1.033e-03 inlet=5.719e-02 outlet=5.848e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 1600 | total=1.070e-01 f=1.405e-02 ic=4.703e-06 wall=1.006e-03 inlet=5.495e-02 outlet=8.566e-08
+LBFGS 1700 | total=1.047e-01 f=1.566e-02 ic=5.056e-06 wall=9.684e-04 inlet=5.233e-02 outlet=1.599e-07
+LBFGS 1800 | total=1.019e-01 f=1.643e-02 ic=5.871e-06 wall=9.300e-04 inlet=4.996e-02 outlet=1.537e-07
+LBFGS 1900 | total=9.959e-02 f=1.673e-02 ic=5.753e-06 wall=9.024e-04 inlet=4.838e-02 outlet=1.725e-07
+LBFGS 2000 | total=9.706e-02 f=1.801e-02 ic=5.897e-06 wall=8.713e-04 inlet=4.578e-02 outlet=2.376e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 2100 | total=9.458e-02 f=1.918e-02 ic=5.384e-06 wall=8.467e-04 inlet=4.335e-02 outlet=2.608e-07
+LBFGS 2200 | total=9.207e-02 f=1.880e-02 ic=6.186e-06 wall=7.854e-04 inlet=4.275e-02 outlet=2.107e-07
+LBFGS 2300 | total=8.950e-02 f=1.939e-02 ic=5.986e-06 wall=7.277e-04 inlet=4.145e-02 outlet=2.352e-07
+LBFGS 2400 | total=8.690e-02 f=1.906e-02 ic=5.720e-06 wall=6.767e-04 inlet=4.078e-02 outlet=1.814e-07
+LBFGS 2500 | total=8.449e-02 f=2.072e-02 ic=7.187e-06 wall=5.956e-04 inlet=3.879e-02 outlet=1.524e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 2600 | total=8.242e-02 f=1.973e-02 ic=9.183e-06 wall=5.470e-04 inlet=3.845e-02 outlet=1.871e-07
+LBFGS 2700 | total=7.964e-02 f=2.189e-02 ic=9.684e-06 wall=5.098e-04 inlet=3.493e-02 outlet=1.724e-07
+LBFGS 2800 | total=7.720e-02 f=2.332e-02 ic=8.540e-06 wall=4.521e-04 inlet=3.327e-02 outlet=1.748e-07
+LBFGS 2900 | total=7.504e-02 f=2.301e-02 ic=8.594e-06 wall=4.167e-04 inlet=3.250e-02 outlet=1.887e-07
+LBFGS 3000 | total=7.303e-02 f=2.219e-02 ic=7.923e-06 wall=4.097e-04 inlet=3.182e-02 outlet=2.019e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 3100 | total=7.101e-02 f=2.202e-02 ic=7.727e-06 wall=3.886e-04 inlet=3.075e-02 outlet=2.907e-07
+LBFGS 3200 | total=6.812e-02 f=2.153e-02 ic=7.527e-06 wall=3.600e-04 inlet=2.940e-02 outlet=3.195e-07
+LBFGS 3300 | total=6.570e-02 f=2.260e-02 ic=7.234e-06 wall=3.299e-04 inlet=2.718e-02 outlet=3.307e-07
+LBFGS 3400 | total=6.356e-02 f=2.265e-02 ic=6.229e-06 wall=3.075e-04 inlet=2.609e-02 outlet=3.450e-07
+LBFGS 3500 | total=6.177e-02 f=2.286e-02 ic=5.106e-06 wall=2.989e-04 inlet=2.490e-02 outlet=3.341e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 3600 | total=5.996e-02 f=2.299e-02 ic=4.433e-06 wall=2.939e-04 inlet=2.356e-02 outlet=2.766e-07
+LBFGS 3700 | total=5.816e-02 f=2.303e-02 ic=4.375e-06 wall=2.845e-04 inlet=2.221e-02 outlet=2.638e-07
+LBFGS 3800 | total=5.664e-02 f=2.296e-02 ic=4.186e-06 wall=2.692e-04 inlet=2.137e-02 outlet=2.728e-07
+LBFGS 3900 | total=5.502e-02 f=2.297e-02 ic=3.920e-06 wall=2.555e-04 inlet=2.041e-02 outlet=1.847e-07
+LBFGS 4000 | total=5.352e-02 f=2.251e-02 ic=4.118e-06 wall=2.583e-04 inlet=1.942e-02 outlet=1.079e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 4100 | total=5.236e-02 f=2.207e-02 ic=4.366e-06 wall=2.512e-04 inlet=1.889e-02 outlet=1.391e-07
+LBFGS 4200 | total=5.087e-02 f=2.158e-02 ic=4.592e-06 wall=2.635e-04 inlet=1.769e-02 outlet=9.270e-08
+LBFGS 4300 | total=4.956e-02 f=2.070e-02 ic=4.421e-06 wall=2.602e-04 inlet=1.742e-02 outlet=1.603e-07
+LBFGS 4400 | total=4.849e-02 f=2.071e-02 ic=4.512e-06 wall=2.627e-04 inlet=1.639e-02 outlet=1.964e-07
+LBFGS 4500 | total=4.727e-02 f=2.050e-02 ic=3.985e-06 wall=2.548e-04 inlet=1.586e-02 outlet=1.836e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 4600 | total=4.631e-02 f=2.033e-02 ic=3.811e-06 wall=2.495e-04 inlet=1.537e-02 outlet=1.339e-07
+LBFGS 4700 | total=4.556e-02 f=2.014e-02 ic=3.522e-06 wall=2.472e-04 inlet=1.502e-02 outlet=1.352e-07
+LBFGS 4800 | total=4.496e-02 f=1.992e-02 ic=3.648e-06 wall=2.463e-04 inlet=1.467e-02 outlet=1.764e-07
+LBFGS 4900 | total=4.418e-02 f=1.978e-02 ic=3.590e-06 wall=2.405e-04 inlet=1.428e-02 outlet=1.446e-07
+LBFGS 5000 | total=4.346e-02 f=1.978e-02 ic=3.577e-06 wall=2.292e-04 inlet=1.393e-02 outlet=1.411e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 5100 | total=4.261e-02 f=2.016e-02 ic=3.176e-06 wall=2.171e-04 inlet=1.326e-02 outlet=1.628e-07
+LBFGS 5200 | total=4.192e-02 f=2.058e-02 ic=3.067e-06 wall=2.108e-04 inlet=1.248e-02 outlet=1.487e-07
+LBFGS 5300 | total=4.120e-02 f=1.988e-02 ic=2.917e-06 wall=2.136e-04 inlet=1.243e-02 outlet=1.871e-07
+LBFGS 5400 | total=4.047e-02 f=1.954e-02 ic=2.937e-06 wall=2.071e-04 inlet=1.224e-02 outlet=1.960e-07
+LBFGS 5500 | total=3.969e-02 f=1.912e-02 ic=2.832e-06 wall=2.026e-04 inlet=1.207e-02 outlet=2.089e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 5600 | total=3.889e-02 f=1.845e-02 ic=2.749e-06 wall=2.019e-04 inlet=1.200e-02 outlet=1.905e-07
+LBFGS 5700 | total=3.811e-02 f=1.841e-02 ic=2.634e-06 wall=2.016e-04 inlet=1.139e-02 outlet=2.047e-07
+LBFGS 5800 | total=3.739e-02 f=1.822e-02 ic=2.693e-06 wall=1.986e-04 inlet=1.098e-02 outlet=2.218e-07
+LBFGS 5900 | total=3.670e-02 f=1.781e-02 ic=2.855e-06 wall=1.928e-04 inlet=1.082e-02 outlet=2.487e-07
+LBFGS 6000 | total=3.603e-02 f=1.769e-02 ic=2.763e-06 wall=1.845e-04 inlet=1.055e-02 outlet=3.005e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 6100 | total=3.535e-02 f=1.757e-02 ic=2.637e-06 wall=1.815e-04 inlet=1.017e-02 outlet=3.074e-07
+LBFGS 6200 | total=3.466e-02 f=1.727e-02 ic=2.457e-06 wall=1.702e-04 inlet=1.013e-02 outlet=3.617e-07
+LBFGS 6300 | total=3.393e-02 f=1.727e-02 ic=2.765e-06 wall=1.655e-04 inlet=9.511e-03 outlet=3.834e-07
+LBFGS 6400 | total=3.325e-02 f=1.691e-02 ic=2.721e-06 wall=1.633e-04 inlet=9.287e-03 outlet=4.351e-07
+LBFGS 6500 | total=3.273e-02 f=1.692e-02 ic=2.599e-06 wall=1.562e-04 inlet=9.023e-03 outlet=4.452e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 6600 | total=3.204e-02 f=1.671e-02 ic=2.714e-06 wall=1.532e-04 inlet=8.640e-03 outlet=4.692e-07
+LBFGS 6700 | total=3.134e-02 f=1.650e-02 ic=2.586e-06 wall=1.443e-04 inlet=8.455e-03 outlet=4.844e-07
+LBFGS 6800 | total=3.068e-02 f=1.628e-02 ic=2.564e-06 wall=1.499e-04 inlet=7.944e-03 outlet=5.054e-07
+LBFGS 6900 | total=3.007e-02 f=1.590e-02 ic=2.489e-06 wall=1.450e-04 inlet=7.904e-03 outlet=4.719e-07
+LBFGS 7000 | total=2.958e-02 f=1.602e-02 ic=2.517e-06 wall=1.382e-04 inlet=7.521e-03 outlet=4.704e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 7100 | total=2.915e-02 f=1.596e-02 ic=2.448e-06 wall=1.377e-04 inlet=7.246e-03 outlet=4.532e-07
+LBFGS 7200 | total=2.866e-02 f=1.577e-02 ic=2.443e-06 wall=1.314e-04 inlet=7.160e-03 outlet=3.961e-07
+LBFGS 7300 | total=2.811e-02 f=1.525e-02 ic=2.410e-06 wall=1.307e-04 inlet=7.186e-03 outlet=3.262e-07
+LBFGS 7400 | total=2.765e-02 f=1.522e-02 ic=2.411e-06 wall=1.243e-04 inlet=6.990e-03 outlet=2.722e-07
+LBFGS 7500 | total=2.721e-02 f=1.512e-02 ic=2.290e-06 wall=1.247e-04 inlet=6.735e-03 outlet=2.394e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 7600 | total=2.675e-02 f=1.493e-02 ic=2.192e-06 wall=1.224e-04 inlet=6.582e-03 outlet=2.420e-07
+LBFGS 7700 | total=2.628e-02 f=1.497e-02 ic=2.205e-06 wall=1.204e-04 inlet=6.199e-03 outlet=2.055e-07
+LBFGS 7800 | total=2.585e-02 f=1.471e-02 ic=2.220e-06 wall=1.181e-04 inlet=6.119e-03 outlet=1.695e-07
+LBFGS 7900 | total=2.543e-02 f=1.453e-02 ic=2.031e-06 wall=1.159e-04 inlet=6.035e-03 outlet=1.431e-07
+LBFGS 8000 | total=2.501e-02 f=1.432e-02 ic=1.878e-06 wall=1.178e-04 inlet=5.848e-03 outlet=1.414e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 8100 | total=2.457e-02 f=1.414e-02 ic=1.766e-06 wall=1.163e-04 inlet=5.701e-03 outlet=1.297e-07
+LBFGS 8200 | total=2.422e-02 f=1.411e-02 ic=1.621e-06 wall=1.124e-04 inlet=5.545e-03 outlet=1.275e-07
+LBFGS 8300 | total=2.386e-02 f=1.410e-02 ic=1.492e-06 wall=1.085e-04 inlet=5.388e-03 outlet=1.039e-07
+LBFGS 8400 | total=2.345e-02 f=1.398e-02 ic=1.428e-06 wall=1.075e-04 inlet=5.178e-03 outlet=1.067e-07
+LBFGS 8500 | total=2.302e-02 f=1.374e-02 ic=1.426e-06 wall=1.091e-04 inlet=4.965e-03 outlet=1.330e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 8600 | total=2.262e-02 f=1.364e-02 ic=1.433e-06 wall=1.042e-04 inlet=4.827e-03 outlet=1.237e-07
+LBFGS 8700 | total=2.222e-02 f=1.344e-02 ic=1.387e-06 wall=1.007e-04 inlet=4.735e-03 outlet=1.543e-07
+LBFGS 8800 | total=2.188e-02 f=1.326e-02 ic=1.438e-06 wall=1.001e-04 inlet=4.596e-03 outlet=1.502e-07
+LBFGS 8900 | total=2.150e-02 f=1.308e-02 ic=1.422e-06 wall=9.997e-05 inlet=4.438e-03 outlet=1.406e-07
+LBFGS 9000 | total=2.115e-02 f=1.298e-02 ic=1.486e-06 wall=9.618e-05 inlet=4.287e-03 outlet=1.665e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 9100 | total=2.083e-02 f=1.295e-02 ic=1.463e-06 wall=9.231e-05 inlet=4.143e-03 outlet=1.402e-07
+LBFGS 9200 | total=2.053e-02 f=1.286e-02 ic=1.434e-06 wall=9.366e-05 inlet=3.938e-03 outlet=1.412e-07
+LBFGS 9300 | total=2.020e-02 f=1.274e-02 ic=1.437e-06 wall=9.033e-05 inlet=3.832e-03 outlet=1.496e-07
+LBFGS 9400 | total=1.985e-02 f=1.256e-02 ic=1.461e-06 wall=8.988e-05 inlet=3.677e-03 outlet=1.793e-07
+LBFGS 9500 | total=1.953e-02 f=1.241e-02 ic=1.512e-06 wall=8.858e-05 inlet=3.535e-03 outlet=2.153e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 9600 | total=1.914e-02 f=1.228e-02 ic=1.432e-06 wall=9.050e-05 inlet=3.282e-03 outlet=2.267e-07
+LBFGS 9700 | total=1.875e-02 f=1.198e-02 ic=1.289e-06 wall=9.065e-05 inlet=3.242e-03 outlet=2.302e-07
+LBFGS 9800 | total=1.841e-02 f=1.173e-02 ic=1.238e-06 wall=9.017e-05 inlet=3.197e-03 outlet=2.071e-07
+LBFGS 9900 | total=1.809e-02 f=1.163e-02 ic=1.286e-06 wall=8.883e-05 inlet=3.030e-03 outlet=2.015e-07
+LBFGS 10000 | total=1.780e-02 f=1.155e-02 ic=1.315e-06 wall=8.288e-05 inlet=2.975e-03 outlet=2.093e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 10100 | total=1.753e-02 f=1.140e-02 ic=1.309e-06 wall=8.236e-05 inlet=2.882e-03 outlet=2.043e-07
+LBFGS 10200 | total=1.727e-02 f=1.130e-02 ic=1.232e-06 wall=8.018e-05 inlet=2.828e-03 outlet=1.984e-07
+LBFGS 10300 | total=1.703e-02 f=1.115e-02 ic=1.197e-06 wall=7.866e-05 inlet=2.795e-03 outlet=2.051e-07
+LBFGS 10400 | total=1.676e-02 f=1.114e-02 ic=1.107e-06 wall=7.684e-05 inlet=2.632e-03 outlet=2.214e-07
+LBFGS 10500 | total=1.654e-02 f=1.106e-02 ic=1.076e-06 wall=7.424e-05 inlet=2.580e-03 outlet=2.299e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 10600 | total=1.633e-02 f=1.096e-02 ic=1.074e-06 wall=7.468e-05 inlet=2.473e-03 outlet=2.310e-07
+LBFGS 10700 | total=1.610e-02 f=1.071e-02 ic=1.054e-06 wall=7.428e-05 inlet=2.506e-03 outlet=2.155e-07
+LBFGS 10800 | total=1.586e-02 f=1.053e-02 ic=9.868e-07 wall=7.300e-05 inlet=2.501e-03 outlet=2.230e-07
+LBFGS 10900 | total=1.564e-02 f=1.042e-02 ic=9.651e-07 wall=7.361e-05 inlet=2.398e-03 outlet=2.180e-07
+LBFGS 11000 | total=1.541e-02 f=1.037e-02 ic=9.433e-07 wall=7.283e-05 inlet=2.271e-03 outlet=2.223e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 11100 | total=1.515e-02 f=1.021e-02 ic=9.255e-07 wall=7.042e-05 inlet=2.260e-03 outlet=1.950e-07
+LBFGS 11200 | total=1.491e-02 f=1.006e-02 ic=8.722e-07 wall=6.971e-05 inlet=2.218e-03 outlet=1.686e-07
+LBFGS 11300 | total=1.472e-02 f=1.001e-02 ic=8.287e-07 wall=6.808e-05 inlet=2.158e-03 outlet=1.458e-07
+LBFGS 11400 | total=1.452e-02 f=9.818e-03 ic=8.722e-07 wall=6.695e-05 inlet=2.170e-03 outlet=1.336e-07
+LBFGS 11500 | total=1.429e-02 f=9.671e-03 ic=8.793e-07 wall=6.568e-05 inlet=2.137e-03 outlet=1.183e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 11600 | total=1.409e-02 f=9.681e-03 ic=7.992e-07 wall=6.354e-05 inlet=2.035e-03 outlet=1.080e-07
+LBFGS 11700 | total=1.390e-02 f=9.583e-03 ic=7.182e-07 wall=6.033e-05 inlet=2.053e-03 outlet=1.047e-07
+LBFGS 11800 | total=1.369e-02 f=9.493e-03 ic=7.035e-07 wall=5.887e-05 inlet=1.983e-03 outlet=1.094e-07
+LBFGS 11900 | total=1.349e-02 f=9.406e-03 ic=6.940e-07 wall=5.956e-05 inlet=1.874e-03 outlet=1.055e-07
+LBFGS 12000 | total=1.330e-02 f=9.246e-03 ic=7.093e-07 wall=6.060e-05 inlet=1.822e-03 outlet=9.915e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 12100 | total=1.310e-02 f=9.214e-03 ic=7.959e-07 wall=5.676e-05 inlet=1.743e-03 outlet=9.998e-08
+LBFGS 12200 | total=1.293e-02 f=9.162e-03 ic=7.705e-07 wall=5.524e-05 inlet=1.695e-03 outlet=9.246e-08
+LBFGS 12300 | total=1.274e-02 f=9.036e-03 ic=7.231e-07 wall=5.687e-05 inlet=1.612e-03 outlet=9.881e-08
+LBFGS 12400 | total=1.258e-02 f=8.907e-03 ic=6.808e-07 wall=5.671e-05 inlet=1.597e-03 outlet=1.047e-07
+LBFGS 12500 | total=1.246e-02 f=8.798e-03 ic=6.411e-07 wall=5.537e-05 inlet=1.628e-03 outlet=1.115e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 12600 | total=1.233e-02 f=8.704e-03 ic=6.171e-07 wall=5.569e-05 inlet=1.588e-03 outlet=1.146e-07
+LBFGS 12700 | total=1.219e-02 f=8.624e-03 ic=6.045e-07 wall=5.418e-05 inlet=1.575e-03 outlet=1.169e-07
+LBFGS 12800 | total=1.205e-02 f=8.532e-03 ic=6.213e-07 wall=5.468e-05 inlet=1.519e-03 outlet=1.134e-07
+LBFGS 12900 | total=1.192e-02 f=8.436e-03 ic=6.509e-07 wall=5.294e-05 inlet=1.524e-03 outlet=1.074e-07
+LBFGS 13000 | total=1.180e-02 f=8.362e-03 ic=6.605e-07 wall=5.170e-05 inlet=1.517e-03 outlet=9.667e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 13100 | total=1.170e-02 f=8.204e-03 ic=6.474e-07 wall=5.412e-05 inlet=1.513e-03 outlet=9.479e-08
+LBFGS 13200 | total=1.157e-02 f=8.094e-03 ic=6.475e-07 wall=5.226e-05 inlet=1.538e-03 outlet=1.090e-07
+LBFGS 13300 | total=1.144e-02 f=8.044e-03 ic=6.142e-07 wall=5.215e-05 inlet=1.477e-03 outlet=1.113e-07
+LBFGS 13400 | total=1.132e-02 f=7.973e-03 ic=5.938e-07 wall=5.164e-05 inlet=1.453e-03 outlet=1.061e-07
+LBFGS 13500 | total=1.119e-02 f=7.935e-03 ic=5.674e-07 wall=4.850e-05 inlet=1.457e-03 outlet=1.097e-07
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 13600 | total=1.108e-02 f=7.868e-03 ic=5.616e-07 wall=4.828e-05 inlet=1.426e-03 outlet=1.148e-07
+LBFGS 13700 | total=1.097e-02 f=7.865e-03 ic=5.808e-07 wall=4.864e-05 inlet=1.324e-03 outlet=1.095e-07
+LBFGS 13800 | total=1.087e-02 f=7.772e-03 ic=5.628e-07 wall=4.769e-05 inlet=1.343e-03 outlet=1.053e-07
+LBFGS 13900 | total=1.078e-02 f=7.716e-03 ic=5.516e-07 wall=4.769e-05 inlet=1.319e-03 outlet=9.814e-08
+LBFGS 14000 | total=1.067e-02 f=7.665e-03 ic=5.517e-07 wall=4.725e-05 inlet=1.285e-03 outlet=9.514e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 14100 | total=1.054e-02 f=7.527e-03 ic=5.399e-07 wall=4.747e-05 inlet=1.289e-03 outlet=9.584e-08
+LBFGS 14200 | total=1.044e-02 f=7.468e-03 ic=5.419e-07 wall=4.667e-05 inlet=1.273e-03 outlet=8.514e-08
+LBFGS 14300 | total=1.034e-02 f=7.401e-03 ic=5.171e-07 wall=4.635e-05 inlet=1.260e-03 outlet=7.174e-08
+LBFGS 14400 | total=1.024e-02 f=7.370e-03 ic=5.051e-07 wall=4.609e-05 inlet=1.214e-03 outlet=6.766e-08
+LBFGS 14500 | total=1.014e-02 f=7.303e-03 ic=4.951e-07 wall=4.521e-05 inlet=1.216e-03 outlet=6.601e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 14600 | total=1.005e-02 f=7.259e-03 ic=4.701e-07 wall=4.398e-05 inlet=1.210e-03 outlet=6.082e-08
+LBFGS 14700 | total=9.952e-03 f=7.203e-03 ic=4.522e-07 wall=4.464e-05 inlet=1.169e-03 outlet=4.877e-08
+LBFGS 14800 | total=9.870e-03 f=7.177e-03 ic=4.258e-07 wall=4.453e-05 inlet=1.134e-03 outlet=4.067e-08
+LBFGS 14900 | total=9.796e-03 f=7.105e-03 ic=3.901e-07 wall=4.499e-05 inlet=1.133e-03 outlet=3.581e-08
+LBFGS 15000 | total=9.706e-03 f=7.049e-03 ic=3.837e-07 wall=4.511e-05 inlet=1.106e-03 outlet=3.038e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 15100 | total=9.631e-03 f=7.025e-03 ic=3.764e-07 wall=4.373e-05 inlet=1.096e-03 outlet=2.824e-08
+LBFGS 15200 | total=9.550e-03 f=6.994e-03 ic=3.438e-07 wall=4.328e-05 inlet=1.075e-03 outlet=2.370e-08
+LBFGS 15300 | total=9.482e-03 f=6.962e-03 ic=3.292e-07 wall=4.324e-05 inlet=1.050e-03 outlet=2.216e-08
+LBFGS 15400 | total=9.418e-03 f=6.905e-03 ic=2.981e-07 wall=4.344e-05 inlet=1.047e-03 outlet=2.409e-08
+LBFGS 15500 | total=9.342e-03 f=6.879e-03 ic=2.880e-07 wall=4.232e-05 inlet=1.032e-03 outlet=2.698e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 15600 | total=9.269e-03 f=6.857e-03 ic=2.814e-07 wall=4.214e-05 inlet=9.939e-04 outlet=2.769e-08
+LBFGS 15700 | total=9.203e-03 f=6.791e-03 ic=2.675e-07 wall=4.217e-05 inlet=9.966e-04 outlet=3.005e-08
+LBFGS 15800 | total=9.132e-03 f=6.721e-03 ic=2.739e-07 wall=4.231e-05 inlet=9.893e-04 outlet=3.345e-08
+LBFGS 15900 | total=9.059e-03 f=6.687e-03 ic=2.864e-07 wall=4.143e-05 inlet=9.723e-04 outlet=3.482e-08
+LBFGS 16000 | total=9.007e-03 f=6.669e-03 ic=2.897e-07 wall=4.072e-05 inlet=9.590e-04 outlet=3.333e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 16100 | total=8.951e-03 f=6.645e-03 ic=2.757e-07 wall=4.047e-05 inlet=9.394e-04 outlet=3.735e-08
+LBFGS 16200 | total=8.898e-03 f=6.604e-03 ic=2.870e-07 wall=4.042e-05 inlet=9.275e-04 outlet=3.730e-08
+LBFGS 16300 | total=8.840e-03 f=6.555e-03 ic=2.772e-07 wall=4.061e-05 inlet=9.191e-04 outlet=3.568e-08
+LBFGS 16400 | total=8.789e-03 f=6.526e-03 ic=2.752e-07 wall=4.042e-05 inlet=9.039e-04 outlet=3.810e-08
+LBFGS 16500 | total=8.735e-03 f=6.487e-03 ic=2.666e-07 wall=4.047e-05 inlet=8.899e-04 outlet=4.267e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 16600 | total=8.677e-03 f=6.441e-03 ic=2.719e-07 wall=4.035e-05 inlet=8.799e-04 outlet=4.601e-08
+LBFGS 16700 | total=8.624e-03 f=6.399e-03 ic=2.856e-07 wall=4.045e-05 inlet=8.663e-04 outlet=3.960e-08
+LBFGS 16800 | total=8.580e-03 f=6.372e-03 ic=2.949e-07 wall=3.962e-05 inlet=8.690e-04 outlet=3.954e-08
+LBFGS 16900 | total=8.530e-03 f=6.333e-03 ic=2.960e-07 wall=3.939e-05 inlet=8.638e-04 outlet=4.182e-08
+LBFGS 17000 | total=8.485e-03 f=6.340e-03 ic=3.062e-07 wall=3.865e-05 inlet=8.326e-04 outlet=4.505e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 17100 | total=8.429e-03 f=6.317e-03 ic=3.003e-07 wall=3.746e-05 inlet=8.344e-04 outlet=4.309e-08
+LBFGS 17200 | total=8.363e-03 f=6.254e-03 ic=3.025e-07 wall=3.748e-05 inlet=8.317e-04 outlet=3.918e-08
+LBFGS 17300 | total=8.309e-03 f=6.228e-03 ic=2.826e-07 wall=3.669e-05 inlet=8.318e-04 outlet=4.071e-08
+LBFGS 17400 | total=8.245e-03 f=6.190e-03 ic=2.727e-07 wall=3.665e-05 inlet=8.141e-04 outlet=3.695e-08
+LBFGS 17500 | total=8.189e-03 f=6.148e-03 ic=2.744e-07 wall=3.630e-05 inlet=8.097e-04 outlet=3.818e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 17600 | total=8.121e-03 f=6.091e-03 ic=2.548e-07 wall=3.671e-05 inlet=7.981e-04 outlet=3.367e-08
+LBFGS 17700 | total=8.060e-03 f=6.079e-03 ic=2.404e-07 wall=3.603e-05 inlet=7.768e-04 outlet=3.075e-08
+LBFGS 17800 | total=8.005e-03 f=6.070e-03 ic=2.334e-07 wall=3.613e-05 inlet=7.364e-04 outlet=3.131e-08
+LBFGS 17900 | total=7.961e-03 f=6.036e-03 ic=2.404e-07 wall=3.576e-05 inlet=7.340e-04 outlet=3.194e-08
+LBFGS 18000 | total=7.909e-03 f=5.995e-03 ic=2.494e-07 wall=3.475e-05 inlet=7.479e-04 outlet=3.026e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 18100 | total=7.868e-03 f=5.987e-03 ic=2.533e-07 wall=3.489e-05 inlet=7.150e-04 outlet=3.044e-08
+LBFGS 18200 | total=7.832e-03 f=5.963e-03 ic=2.505e-07 wall=3.380e-05 inlet=7.291e-04 outlet=3.354e-08
+LBFGS 18300 | total=7.795e-03 f=5.943e-03 ic=2.500e-07 wall=3.362e-05 inlet=7.176e-04 outlet=3.704e-08
+LBFGS 18400 | total=7.754e-03 f=5.914e-03 ic=2.470e-07 wall=3.333e-05 inlet=7.143e-04 outlet=3.764e-08
+LBFGS 18500 | total=7.715e-03 f=5.863e-03 ic=2.426e-07 wall=3.314e-05 inlet=7.300e-04 outlet=3.983e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 18600 | total=7.675e-03 f=5.837e-03 ic=2.494e-07 wall=3.364e-05 inlet=7.036e-04 outlet=4.079e-08
+LBFGS 18700 | total=7.635e-03 f=5.809e-03 ic=2.565e-07 wall=3.390e-05 inlet=6.869e-04 outlet=3.657e-08
+LBFGS 18800 | total=7.593e-03 f=5.784e-03 ic=2.572e-07 wall=3.359e-05 inlet=6.804e-04 outlet=3.383e-08
+LBFGS 18900 | total=7.551e-03 f=5.742e-03 ic=2.689e-07 wall=3.400e-05 inlet=6.675e-04 outlet=3.464e-08
+LBFGS 19000 | total=7.506e-03 f=5.705e-03 ic=2.700e-07 wall=3.312e-05 inlet=6.800e-04 outlet=3.660e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 19100 | total=7.464e-03 f=5.658e-03 ic=2.778e-07 wall=3.329e-05 inlet=6.777e-04 outlet=3.653e-08
+LBFGS 19200 | total=7.414e-03 f=5.651e-03 ic=2.792e-07 wall=3.221e-05 inlet=6.671e-04 outlet=3.273e-08
+LBFGS 19300 | total=7.377e-03 f=5.624e-03 ic=2.669e-07 wall=3.276e-05 inlet=6.500e-04 outlet=3.232e-08
+LBFGS 19400 | total=7.338e-03 f=5.595e-03 ic=2.628e-07 wall=3.239e-05 inlet=6.512e-04 outlet=3.322e-08
+LBFGS 19500 | total=7.294e-03 f=5.555e-03 ic=2.640e-07 wall=3.223e-05 inlet=6.497e-04 outlet=3.592e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 19600 | total=7.252e-03 f=5.541e-03 ic=2.665e-07 wall=3.208e-05 inlet=6.288e-04 outlet=3.459e-08
+LBFGS 19700 | total=7.221e-03 f=5.510e-03 ic=2.631e-07 wall=3.183e-05 inlet=6.349e-04 outlet=3.549e-08
+LBFGS 19800 | total=7.182e-03 f=5.478e-03 ic=2.628e-07 wall=3.226e-05 inlet=6.194e-04 outlet=3.455e-08
+LBFGS 19900 | total=7.139e-03 f=5.440e-03 ic=2.587e-07 wall=3.198e-05 inlet=6.231e-04 outlet=3.461e-08
+LBFGS 20000 | total=7.108e-03 f=5.421e-03 ic=2.590e-07 wall=3.182e-05 inlet=6.167e-04 outlet=3.254e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 20100 | total=7.067e-03 f=5.401e-03 ic=2.667e-07 wall=3.146e-05 inlet=6.063e-04 outlet=3.031e-08
+LBFGS 20200 | total=7.030e-03 f=5.408e-03 ic=2.585e-07 wall=3.064e-05 inlet=5.906e-04 outlet=2.911e-08
+LBFGS 20300 | total=6.994e-03 f=5.380e-03 ic=2.539e-07 wall=3.051e-05 inlet=5.878e-04 outlet=2.915e-08
+LBFGS 20400 | total=6.959e-03 f=5.357e-03 ic=2.574e-07 wall=3.015e-05 inlet=5.869e-04 outlet=2.660e-08
+LBFGS 20500 | total=6.924e-03 f=5.334e-03 ic=2.613e-07 wall=2.981e-05 inlet=5.825e-04 outlet=2.655e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 20600 | total=6.891e-03 f=5.321e-03 ic=2.612e-07 wall=2.943e-05 inlet=5.739e-04 outlet=2.725e-08
+LBFGS 20700 | total=6.858e-03 f=5.321e-03 ic=2.606e-07 wall=2.896e-05 inlet=5.555e-04 outlet=2.986e-08
+LBFGS 20800 | total=6.825e-03 f=5.303e-03 ic=2.527e-07 wall=2.868e-05 inlet=5.509e-04 outlet=3.148e-08
+LBFGS 20900 | total=6.794e-03 f=5.278e-03 ic=2.472e-07 wall=2.874e-05 inlet=5.445e-04 outlet=3.443e-08
+LBFGS 21000 | total=6.759e-03 f=5.270e-03 ic=2.411e-07 wall=2.803e-05 inlet=5.401e-04 outlet=3.600e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 21100 | total=6.731e-03 f=5.254e-03 ic=2.396e-07 wall=2.770e-05 inlet=5.386e-04 outlet=3.522e-08
+LBFGS 21200 | total=6.706e-03 f=5.217e-03 ic=2.389e-07 wall=2.776e-05 inlet=5.476e-04 outlet=3.327e-08
+LBFGS 21300 | total=6.674e-03 f=5.187e-03 ic=2.368e-07 wall=2.772e-05 inlet=5.481e-04 outlet=3.308e-08
+LBFGS 21400 | total=6.643e-03 f=5.176e-03 ic=2.323e-07 wall=2.724e-05 inlet=5.433e-04 outlet=3.270e-08
+LBFGS 21500 | total=6.615e-03 f=5.155e-03 ic=2.344e-07 wall=2.681e-05 inlet=5.468e-04 outlet=3.358e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 21600 | total=6.590e-03 f=5.139e-03 ic=2.337e-07 wall=2.688e-05 inlet=5.380e-04 outlet=3.318e-08
+LBFGS 21700 | total=6.558e-03 f=5.147e-03 ic=2.270e-07 wall=2.650e-05 inlet=5.141e-04 outlet=3.189e-08
+LBFGS 21800 | total=6.525e-03 f=5.137e-03 ic=2.235e-07 wall=2.596e-05 inlet=5.080e-04 outlet=3.090e-08
+LBFGS 21900 | total=6.495e-03 f=5.129e-03 ic=2.193e-07 wall=2.581e-05 inlet=4.938e-04 outlet=3.193e-08
+LBFGS 22000 | total=6.466e-03 f=5.109e-03 ic=2.104e-07 wall=2.582e-05 inlet=4.885e-04 outlet=2.990e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 22100 | total=6.439e-03 f=5.093e-03 ic=2.146e-07 wall=2.565e-05 inlet=4.820e-04 outlet=2.989e-08
+LBFGS 22200 | total=6.406e-03 f=5.058e-03 ic=2.058e-07 wall=2.580e-05 inlet=4.840e-04 outlet=2.887e-08
+LBFGS 22300 | total=6.381e-03 f=5.032e-03 ic=2.026e-07 wall=2.607e-05 inlet=4.784e-04 outlet=2.957e-08
+LBFGS 22400 | total=6.354e-03 f=5.007e-03 ic=2.028e-07 wall=2.604e-05 inlet=4.791e-04 outlet=2.663e-08
+LBFGS 22500 | total=6.333e-03 f=4.988e-03 ic=1.948e-07 wall=2.591e-05 inlet=4.825e-04 outlet=2.742e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 22600 | total=6.314e-03 f=4.972e-03 ic=2.016e-07 wall=2.605e-05 inlet=4.740e-04 outlet=2.867e-08
+LBFGS 22700 | total=6.290e-03 f=4.960e-03 ic=2.013e-07 wall=2.568e-05 inlet=4.725e-04 outlet=2.807e-08
+LBFGS 22800 | total=6.266e-03 f=4.952e-03 ic=1.967e-07 wall=2.522e-05 inlet=4.718e-04 outlet=2.702e-08
+LBFGS 22900 | total=6.239e-03 f=4.926e-03 ic=1.960e-07 wall=2.578e-05 inlet=4.573e-04 outlet=2.790e-08
+LBFGS 23000 | total=6.214e-03 f=4.920e-03 ic=1.841e-07 wall=2.514e-05 inlet=4.590e-04 outlet=2.822e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 23100 | total=6.189e-03 f=4.914e-03 ic=1.782e-07 wall=2.466e-05 inlet=4.556e-04 outlet=2.723e-08
+LBFGS 23200 | total=6.170e-03 f=4.906e-03 ic=1.738e-07 wall=2.465e-05 inlet=4.486e-04 outlet=2.597e-08
+LBFGS 23300 | total=6.147e-03 f=4.883e-03 ic=1.734e-07 wall=2.453e-05 inlet=4.512e-04 outlet=2.631e-08
+LBFGS 23400 | total=6.128e-03 f=4.878e-03 ic=1.697e-07 wall=2.438e-05 inlet=4.435e-04 outlet=2.600e-08
+LBFGS 23500 | total=6.106e-03 f=4.859e-03 ic=1.735e-07 wall=2.442e-05 inlet=4.393e-04 outlet=2.725e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 23600 | total=6.085e-03 f=4.831e-03 ic=1.740e-07 wall=2.442e-05 inlet=4.447e-04 outlet=2.730e-08
+LBFGS 23700 | total=6.065e-03 f=4.813e-03 ic=1.729e-07 wall=2.445e-05 inlet=4.425e-04 outlet=2.775e-08
+LBFGS 23800 | total=6.046e-03 f=4.808e-03 ic=1.754e-07 wall=2.449e-05 inlet=4.279e-04 outlet=2.816e-08
+LBFGS 23900 | total=6.023e-03 f=4.807e-03 ic=1.689e-07 wall=2.408e-05 inlet=4.225e-04 outlet=2.588e-08
+LBFGS 24000 | total=6.000e-03 f=4.795e-03 ic=1.689e-07 wall=2.424e-05 inlet=4.084e-04 outlet=2.539e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 24100 | total=5.981e-03 f=4.775e-03 ic=1.694e-07 wall=2.415e-05 inlet=4.116e-04 outlet=2.543e-08
+LBFGS 24200 | total=5.960e-03 f=4.742e-03 ic=1.729e-07 wall=2.423e-05 inlet=4.189e-04 outlet=2.548e-08
+LBFGS 24300 | total=5.935e-03 f=4.729e-03 ic=1.626e-07 wall=2.417e-05 inlet=4.145e-04 outlet=2.434e-08
+LBFGS 24400 | total=5.915e-03 f=4.719e-03 ic=1.570e-07 wall=2.367e-05 inlet=4.184e-04 outlet=2.323e-08
+LBFGS 24500 | total=5.897e-03 f=4.709e-03 ic=1.555e-07 wall=2.350e-05 inlet=4.154e-04 outlet=2.428e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 24600 | total=5.880e-03 f=4.705e-03 ic=1.557e-07 wall=2.338e-05 inlet=4.078e-04 outlet=2.432e-08
+LBFGS 24700 | total=5.862e-03 f=4.698e-03 ic=1.536e-07 wall=2.296e-05 inlet=4.082e-04 outlet=2.393e-08
+LBFGS 24800 | total=5.845e-03 f=4.692e-03 ic=1.473e-07 wall=2.305e-05 inlet=3.983e-04 outlet=2.500e-08
+LBFGS 24900 | total=5.827e-03 f=4.677e-03 ic=1.434e-07 wall=2.318e-05 inlet=3.951e-04 outlet=2.367e-08
+LBFGS 25000 | total=5.807e-03 f=4.664e-03 ic=1.411e-07 wall=2.288e-05 inlet=3.961e-04 outlet=2.332e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 25100 | total=5.789e-03 f=4.665e-03 ic=1.402e-07 wall=2.237e-05 inlet=3.933e-04 outlet=2.141e-08
+LBFGS 25200 | total=5.771e-03 f=4.643e-03 ic=1.409e-07 wall=2.238e-05 inlet=3.959e-04 outlet=2.080e-08
+LBFGS 25300 | total=5.756e-03 f=4.622e-03 ic=1.403e-07 wall=2.251e-05 inlet=3.993e-04 outlet=1.966e-08
+LBFGS 25400 | total=5.740e-03 f=4.615e-03 ic=1.434e-07 wall=2.238e-05 inlet=3.938e-04 outlet=1.946e-08
+LBFGS 25500 | total=5.725e-03 f=4.613e-03 ic=1.477e-07 wall=2.197e-05 inlet=3.908e-04 outlet=1.877e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 25600 | total=5.709e-03 f=4.605e-03 ic=1.490e-07 wall=2.184e-05 inlet=3.874e-04 outlet=1.803e-08
+LBFGS 25700 | total=5.692e-03 f=4.595e-03 ic=1.515e-07 wall=2.171e-05 inlet=3.835e-04 outlet=1.677e-08
+LBFGS 25800 | total=5.674e-03 f=4.591e-03 ic=1.487e-07 wall=2.149e-05 inlet=3.778e-04 outlet=1.562e-08
+LBFGS 25900 | total=5.657e-03 f=4.587e-03 ic=1.507e-07 wall=2.149e-05 inlet=3.665e-04 outlet=1.607e-08
+LBFGS 26000 | total=5.641e-03 f=4.573e-03 ic=1.477e-07 wall=2.146e-05 inlet=3.663e-04 outlet=1.553e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 26100 | total=5.627e-03 f=4.564e-03 ic=1.484e-07 wall=2.118e-05 inlet=3.688e-04 outlet=1.427e-08
+LBFGS 26200 | total=5.609e-03 f=4.550e-03 ic=1.541e-07 wall=2.102e-05 inlet=3.677e-04 outlet=1.411e-08
+LBFGS 26300 | total=5.593e-03 f=4.545e-03 ic=1.566e-07 wall=2.073e-05 inlet=3.648e-04 outlet=1.314e-08
+LBFGS 26400 | total=5.574e-03 f=4.536e-03 ic=1.551e-07 wall=2.091e-05 inlet=3.530e-04 outlet=1.282e-08
+LBFGS 26500 | total=5.554e-03 f=4.524e-03 ic=1.529e-07 wall=2.069e-05 inlet=3.513e-04 outlet=1.231e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 26600 | total=5.534e-03 f=4.512e-03 ic=1.487e-07 wall=2.052e-05 inlet=3.503e-04 outlet=1.228e-08
+LBFGS 26700 | total=5.518e-03 f=4.506e-03 ic=1.444e-07 wall=2.038e-05 inlet=3.453e-04 outlet=1.235e-08
+LBFGS 26800 | total=5.498e-03 f=4.501e-03 ic=1.440e-07 wall=2.015e-05 inlet=3.378e-04 outlet=1.292e-08
+LBFGS 26900 | total=5.477e-03 f=4.482e-03 ic=1.400e-07 wall=1.999e-05 inlet=3.411e-04 outlet=1.302e-08
+LBFGS 27000 | total=5.457e-03 f=4.472e-03 ic=1.349e-07 wall=1.979e-05 inlet=3.387e-04 outlet=1.249e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 27100 | total=5.441e-03 f=4.460e-03 ic=1.326e-07 wall=1.965e-05 inlet=3.402e-04 outlet=1.215e-08
+LBFGS 27200 | total=5.426e-03 f=4.446e-03 ic=1.319e-07 wall=1.970e-05 inlet=3.384e-04 outlet=1.281e-08
+LBFGS 27300 | total=5.408e-03 f=4.434e-03 ic=1.323e-07 wall=1.951e-05 inlet=3.377e-04 outlet=1.160e-08
+LBFGS 27400 | total=5.393e-03 f=4.423e-03 ic=1.318e-07 wall=1.943e-05 inlet=3.359e-04 outlet=1.113e-08
+LBFGS 27500 | total=5.378e-03 f=4.417e-03 ic=1.296e-07 wall=1.934e-05 inlet=3.305e-04 outlet=1.122e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 27600 | total=5.363e-03 f=4.409e-03 ic=1.291e-07 wall=1.909e-05 inlet=3.303e-04 outlet=1.238e-08
+LBFGS 27700 | total=5.345e-03 f=4.404e-03 ic=1.272e-07 wall=1.870e-05 inlet=3.284e-04 outlet=1.289e-08
+LBFGS 27800 | total=5.328e-03 f=4.393e-03 ic=1.274e-07 wall=1.854e-05 inlet=3.276e-04 outlet=1.366e-08
+LBFGS 27900 | total=5.314e-03 f=4.380e-03 ic=1.292e-07 wall=1.842e-05 inlet=3.281e-04 outlet=1.375e-08
+LBFGS 28000 | total=5.297e-03 f=4.362e-03 ic=1.289e-07 wall=1.836e-05 inlet=3.311e-04 outlet=1.245e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 28100 | total=5.278e-03 f=4.356e-03 ic=1.301e-07 wall=1.819e-05 inlet=3.239e-04 outlet=1.247e-08
+LBFGS 28200 | total=5.263e-03 f=4.348e-03 ic=1.307e-07 wall=1.817e-05 inlet=3.176e-04 outlet=1.274e-08
+LBFGS 28300 | total=5.245e-03 f=4.334e-03 ic=1.302e-07 wall=1.809e-05 inlet=3.171e-04 outlet=1.261e-08
+LBFGS 28400 | total=5.231e-03 f=4.322e-03 ic=1.285e-07 wall=1.794e-05 inlet=3.182e-04 outlet=1.332e-08
+LBFGS 28500 | total=5.214e-03 f=4.323e-03 ic=1.317e-07 wall=1.765e-05 inlet=3.098e-04 outlet=1.176e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 28600 | total=5.200e-03 f=4.319e-03 ic=1.353e-07 wall=1.734e-05 inlet=3.075e-04 outlet=1.229e-08
+LBFGS 28700 | total=5.184e-03 f=4.308e-03 ic=1.349e-07 wall=1.711e-05 inlet=3.086e-04 outlet=1.242e-08
+LBFGS 28800 | total=5.168e-03 f=4.295e-03 ic=1.313e-07 wall=1.712e-05 inlet=3.073e-04 outlet=1.128e-08
+LBFGS 28900 | total=5.156e-03 f=4.283e-03 ic=1.320e-07 wall=1.714e-05 inlet=3.060e-04 outlet=1.176e-08
+LBFGS 29000 | total=5.141e-03 f=4.271e-03 ic=1.334e-07 wall=1.694e-05 inlet=3.076e-04 outlet=1.251e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 29100 | total=5.129e-03 f=4.267e-03 ic=1.290e-07 wall=1.689e-05 inlet=3.027e-04 outlet=1.359e-08
+LBFGS 29200 | total=5.115e-03 f=4.251e-03 ic=1.317e-07 wall=1.673e-05 inlet=3.070e-04 outlet=1.458e-08
+LBFGS 29300 | total=5.100e-03 f=4.236e-03 ic=1.314e-07 wall=1.674e-05 inlet=3.068e-04 outlet=1.542e-08
+LBFGS 29400 | total=5.085e-03 f=4.231e-03 ic=1.335e-07 wall=1.653e-05 inlet=3.023e-04 outlet=1.500e-08
+LBFGS 29500 | total=5.069e-03 f=4.224e-03 ic=1.354e-07 wall=1.647e-05 inlet=2.959e-04 outlet=1.482e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 29600 | total=5.053e-03 f=4.203e-03 ic=1.376e-07 wall=1.643e-05 inlet=3.001e-04 outlet=1.621e-08
+LBFGS 29700 | total=5.041e-03 f=4.194e-03 ic=1.379e-07 wall=1.642e-05 inlet=2.964e-04 outlet=1.701e-08
+LBFGS 29800 | total=5.027e-03 f=4.187e-03 ic=1.389e-07 wall=1.608e-05 inlet=2.987e-04 outlet=1.745e-08
+LBFGS 29900 | total=5.015e-03 f=4.178e-03 ic=1.363e-07 wall=1.596e-05 inlet=2.998e-04 outlet=1.706e-08
+LBFGS 30000 | total=4.999e-03 f=4.168e-03 ic=1.392e-07 wall=1.590e-05 inlet=2.954e-04 outlet=1.699e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 30100 | total=4.986e-03 f=4.164e-03 ic=1.398e-07 wall=1.557e-05 inlet=2.955e-04 outlet=1.576e-08
+LBFGS 30200 | total=4.972e-03 f=4.153e-03 ic=1.401e-07 wall=1.538e-05 inlet=2.974e-04 outlet=1.607e-08
+LBFGS 30300 | total=4.957e-03 f=4.147e-03 ic=1.427e-07 wall=1.518e-05 inlet=2.934e-04 outlet=1.722e-08
+LBFGS 30400 | total=4.943e-03 f=4.142e-03 ic=1.410e-07 wall=1.520e-05 inlet=2.855e-04 outlet=1.817e-08
+LBFGS 30500 | total=4.928e-03 f=4.120e-03 ic=1.379e-07 wall=1.518e-05 inlet=2.918e-04 outlet=1.902e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 30600 | total=4.915e-03 f=4.106e-03 ic=1.352e-07 wall=1.521e-05 inlet=2.927e-04 outlet=1.928e-08
+LBFGS 30700 | total=4.902e-03 f=4.094e-03 ic=1.350e-07 wall=1.524e-05 inlet=2.911e-04 outlet=1.776e-08
+LBFGS 30800 | total=4.889e-03 f=4.092e-03 ic=1.311e-07 wall=1.506e-05 inlet=2.869e-04 outlet=1.808e-08
+LBFGS 30900 | total=4.876e-03 f=4.082e-03 ic=1.278e-07 wall=1.495e-05 inlet=2.881e-04 outlet=1.796e-08
+LBFGS 31000 | total=4.865e-03 f=4.071e-03 ic=1.262e-07 wall=1.494e-05 inlet=2.888e-04 outlet=1.850e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 31100 | total=4.854e-03 f=4.065e-03 ic=1.271e-07 wall=1.491e-05 inlet=2.856e-04 outlet=1.838e-08
+LBFGS 31200 | total=4.841e-03 f=4.054e-03 ic=1.215e-07 wall=1.475e-05 inlet=2.890e-04 outlet=1.749e-08
+LBFGS 31300 | total=4.831e-03 f=4.043e-03 ic=1.226e-07 wall=1.483e-05 inlet=2.886e-04 outlet=1.672e-08
+LBFGS 31400 | total=4.818e-03 f=4.036e-03 ic=1.195e-07 wall=1.450e-05 inlet=2.915e-04 outlet=1.532e-08
+LBFGS 31500 | total=4.807e-03 f=4.037e-03 ic=1.169e-07 wall=1.450e-05 inlet=2.827e-04 outlet=1.421e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 31600 | total=4.797e-03 f=4.024e-03 ic=1.192e-07 wall=1.446e-05 inlet=2.858e-04 outlet=1.373e-08
+LBFGS 31700 | total=4.788e-03 f=4.024e-03 ic=1.179e-07 wall=1.436e-05 inlet=2.809e-04 outlet=1.363e-08
+LBFGS 31800 | total=4.778e-03 f=4.019e-03 ic=1.171e-07 wall=1.437e-05 inlet=2.770e-04 outlet=1.269e-08
+LBFGS 31900 | total=4.766e-03 f=4.011e-03 ic=1.141e-07 wall=1.430e-05 inlet=2.758e-04 outlet=1.357e-08
+LBFGS 32000 | total=4.756e-03 f=3.998e-03 ic=1.146e-07 wall=1.426e-05 inlet=2.785e-04 outlet=1.327e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 32100 | total=4.743e-03 f=3.994e-03 ic=1.133e-07 wall=1.411e-05 inlet=2.759e-04 outlet=1.212e-08
+LBFGS 32200 | total=4.731e-03 f=3.992e-03 ic=1.129e-07 wall=1.404e-05 inlet=2.691e-04 outlet=1.229e-08
+LBFGS 32300 | total=4.718e-03 f=3.987e-03 ic=1.120e-07 wall=1.388e-05 inlet=2.663e-04 outlet=1.191e-08
+LBFGS 32400 | total=4.704e-03 f=3.976e-03 ic=1.054e-07 wall=1.386e-05 inlet=2.663e-04 outlet=1.252e-08
+LBFGS 32500 | total=4.693e-03 f=3.967e-03 ic=1.075e-07 wall=1.389e-05 inlet=2.630e-04 outlet=1.287e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 32600 | total=4.682e-03 f=3.953e-03 ic=1.024e-07 wall=1.398e-05 inlet=2.651e-04 outlet=1.254e-08
+LBFGS 32700 | total=4.671e-03 f=3.943e-03 ic=1.027e-07 wall=1.396e-05 inlet=2.641e-04 outlet=1.291e-08
+LBFGS 32800 | total=4.660e-03 f=3.927e-03 ic=1.031e-07 wall=1.390e-05 inlet=2.696e-04 outlet=1.303e-08
+LBFGS 32900 | total=4.650e-03 f=3.917e-03 ic=1.052e-07 wall=1.378e-05 inlet=2.716e-04 outlet=1.345e-08
+LBFGS 33000 | total=4.639e-03 f=3.909e-03 ic=1.055e-07 wall=1.375e-05 inlet=2.698e-04 outlet=1.441e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 33100 | total=4.628e-03 f=3.899e-03 ic=1.091e-07 wall=1.375e-05 inlet=2.681e-04 outlet=1.378e-08
+LBFGS 33200 | total=4.617e-03 f=3.883e-03 ic=1.093e-07 wall=1.356e-05 inlet=2.765e-04 outlet=1.334e-08
+LBFGS 33300 | total=4.605e-03 f=3.875e-03 ic=1.107e-07 wall=1.352e-05 inlet=2.729e-04 outlet=1.426e-08
+LBFGS 33400 | total=4.594e-03 f=3.865e-03 ic=1.130e-07 wall=1.339e-05 inlet=2.744e-04 outlet=1.436e-08
+LBFGS 33500 | total=4.583e-03 f=3.856e-03 ic=1.149e-07 wall=1.343e-05 inlet=2.709e-04 outlet=1.540e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 33600 | total=4.575e-03 f=3.842e-03 ic=1.161e-07 wall=1.338e-05 inlet=2.766e-04 outlet=1.487e-08
+LBFGS 33700 | total=4.565e-03 f=3.834e-03 ic=1.167e-07 wall=1.341e-05 inlet=2.746e-04 outlet=1.459e-08
+LBFGS 33800 | total=4.554e-03 f=3.828e-03 ic=1.170e-07 wall=1.342e-05 inlet=2.704e-04 outlet=1.430e-08
+LBFGS 33900 | total=4.546e-03 f=3.828e-03 ic=1.173e-07 wall=1.331e-05 inlet=2.660e-04 outlet=1.434e-08
+LBFGS 34000 | total=4.537e-03 f=3.826e-03 ic=1.176e-07 wall=1.320e-05 inlet=2.626e-04 outlet=1.422e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 34100 | total=4.528e-03 f=3.827e-03 ic=1.170e-07 wall=1.285e-05 inlet=2.627e-04 outlet=1.386e-08
+LBFGS 34200 | total=4.519e-03 f=3.827e-03 ic=1.170e-07 wall=1.274e-05 inlet=2.579e-04 outlet=1.383e-08
+LBFGS 34300 | total=4.510e-03 f=3.827e-03 ic=1.175e-07 wall=1.253e-05 inlet=2.543e-04 outlet=1.394e-08
+LBFGS 34400 | total=4.501e-03 f=3.819e-03 ic=1.180e-07 wall=1.248e-05 inlet=2.547e-04 outlet=1.401e-08
+LBFGS 34500 | total=4.492e-03 f=3.809e-03 ic=1.177e-07 wall=1.242e-05 inlet=2.568e-04 outlet=1.386e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 34600 | total=4.484e-03 f=3.808e-03 ic=1.152e-07 wall=1.238e-05 inlet=2.529e-04 outlet=1.380e-08
+LBFGS 34700 | total=4.477e-03 f=3.803e-03 ic=1.147e-07 wall=1.224e-05 inlet=2.545e-04 outlet=1.331e-08
+LBFGS 34800 | total=4.467e-03 f=3.798e-03 ic=1.138e-07 wall=1.218e-05 inlet=2.527e-04 outlet=1.295e-08
+LBFGS 34900 | total=4.458e-03 f=3.794e-03 ic=1.103e-07 wall=1.216e-05 inlet=2.495e-04 outlet=1.277e-08
+LBFGS 35000 | total=4.450e-03 f=3.785e-03 ic=1.073e-07 wall=1.215e-05 inlet=2.512e-04 outlet=1.280e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 35100 | total=4.444e-03 f=3.778e-03 ic=1.043e-07 wall=1.218e-05 inlet=2.521e-04 outlet=1.279e-08
+LBFGS 35200 | total=4.436e-03 f=3.771e-03 ic=1.027e-07 wall=1.236e-05 inlet=2.472e-04 outlet=1.244e-08
+LBFGS 35300 | total=4.426e-03 f=3.761e-03 ic=1.022e-07 wall=1.219e-05 inlet=2.517e-04 outlet=1.274e-08
+LBFGS 35400 | total=4.418e-03 f=3.757e-03 ic=1.010e-07 wall=1.202e-05 inlet=2.524e-04 outlet=1.310e-08
+LBFGS 35500 | total=4.410e-03 f=3.759e-03 ic=9.919e-08 wall=1.185e-05 inlet=2.487e-04 outlet=1.308e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 35600 | total=4.404e-03 f=3.753e-03 ic=9.786e-08 wall=1.190e-05 inlet=2.470e-04 outlet=1.366e-08
+LBFGS 35700 | total=4.396e-03 f=3.749e-03 ic=9.915e-08 wall=1.191e-05 inlet=2.430e-04 outlet=1.381e-08
+LBFGS 35800 | total=4.388e-03 f=3.743e-03 ic=1.008e-07 wall=1.187e-05 inlet=2.424e-04 outlet=1.309e-08
+LBFGS 35900 | total=4.382e-03 f=3.744e-03 ic=9.958e-08 wall=1.177e-05 inlet=2.393e-04 outlet=1.247e-08
+LBFGS 36000 | total=4.375e-03 f=3.735e-03 ic=9.942e-08 wall=1.172e-05 inlet=2.426e-04 outlet=1.272e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 36100 | total=4.368e-03 f=3.731e-03 ic=1.005e-07 wall=1.173e-05 inlet=2.386e-04 outlet=1.208e-08
+LBFGS 36200 | total=4.360e-03 f=3.727e-03 ic=1.002e-07 wall=1.157e-05 inlet=2.392e-04 outlet=1.190e-08
+LBFGS 36300 | total=4.352e-03 f=3.721e-03 ic=1.010e-07 wall=1.151e-05 inlet=2.391e-04 outlet=1.273e-08
+LBFGS 36400 | total=4.344e-03 f=3.715e-03 ic=9.942e-08 wall=1.143e-05 inlet=2.393e-04 outlet=1.215e-08
+LBFGS 36500 | total=4.335e-03 f=3.709e-03 ic=1.006e-07 wall=1.134e-05 inlet=2.391e-04 outlet=1.252e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 36600 | total=4.326e-03 f=3.703e-03 ic=1.012e-07 wall=1.119e-05 inlet=2.395e-04 outlet=1.309e-08
+LBFGS 36700 | total=4.317e-03 f=3.701e-03 ic=1.009e-07 wall=1.110e-05 inlet=2.352e-04 outlet=1.307e-08
+LBFGS 36800 | total=4.308e-03 f=3.696e-03 ic=9.967e-08 wall=1.105e-05 inlet=2.339e-04 outlet=1.310e-08
+LBFGS 36900 | total=4.299e-03 f=3.688e-03 ic=9.743e-08 wall=1.104e-05 inlet=2.341e-04 outlet=1.326e-08
+LBFGS 37000 | total=4.291e-03 f=3.682e-03 ic=9.662e-08 wall=1.091e-05 inlet=2.344e-04 outlet=1.361e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 37100 | total=4.284e-03 f=3.680e-03 ic=9.655e-08 wall=1.080e-05 inlet=2.329e-04 outlet=1.383e-08
+LBFGS 37200 | total=4.277e-03 f=3.670e-03 ic=9.777e-08 wall=1.083e-05 inlet=2.342e-04 outlet=1.455e-08
+LBFGS 37300 | total=4.270e-03 f=3.661e-03 ic=9.680e-08 wall=1.091e-05 inlet=2.338e-04 outlet=1.466e-08
+LBFGS 37400 | total=4.262e-03 f=3.659e-03 ic=9.675e-08 wall=1.076e-05 inlet=2.324e-04 outlet=1.567e-08
+LBFGS 37500 | total=4.256e-03 f=3.656e-03 ic=9.530e-08 wall=1.062e-05 inlet=2.335e-04 outlet=1.581e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 37600 | total=4.247e-03 f=3.644e-03 ic=9.489e-08 wall=1.087e-05 inlet=2.302e-04 outlet=1.621e-08
+LBFGS 37700 | total=4.238e-03 f=3.638e-03 ic=9.525e-08 wall=1.085e-05 inlet=2.282e-04 outlet=1.617e-08
+LBFGS 37800 | total=4.229e-03 f=3.631e-03 ic=9.479e-08 wall=1.080e-05 inlet=2.268e-04 outlet=1.664e-08
+LBFGS 37900 | total=4.220e-03 f=3.627e-03 ic=9.577e-08 wall=1.068e-05 inlet=2.247e-04 outlet=1.722e-08
+LBFGS 38000 | total=4.210e-03 f=3.617e-03 ic=9.753e-08 wall=1.067e-05 inlet=2.244e-04 outlet=1.801e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 38100 | total=4.201e-03 f=3.610e-03 ic=9.608e-08 wall=1.067e-05 inlet=2.238e-04 outlet=1.837e-08
+LBFGS 38200 | total=4.191e-03 f=3.608e-03 ic=9.577e-08 wall=1.058e-05 inlet=2.186e-04 outlet=1.793e-08
+LBFGS 38300 | total=4.183e-03 f=3.597e-03 ic=9.630e-08 wall=1.059e-05 inlet=2.204e-04 outlet=1.820e-08
+LBFGS 38400 | total=4.174e-03 f=3.584e-03 ic=9.400e-08 wall=1.059e-05 inlet=2.247e-04 outlet=1.733e-08
+LBFGS 38500 | total=4.165e-03 f=3.577e-03 ic=9.222e-08 wall=1.049e-05 inlet=2.271e-04 outlet=1.675e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 38600 | total=4.158e-03 f=3.567e-03 ic=9.026e-08 wall=1.056e-05 inlet=2.279e-04 outlet=1.688e-08
+LBFGS 38700 | total=4.150e-03 f=3.564e-03 ic=9.044e-08 wall=1.050e-05 inlet=2.250e-04 outlet=1.624e-08
+LBFGS 38800 | total=4.142e-03 f=3.557e-03 ic=9.219e-08 wall=1.039e-05 inlet=2.272e-04 outlet=1.642e-08
+LBFGS 38900 | total=4.134e-03 f=3.551e-03 ic=9.379e-08 wall=1.038e-05 inlet=2.243e-04 outlet=1.623e-08
+LBFGS 39000 | total=4.125e-03 f=3.542e-03 ic=9.296e-08 wall=1.044e-05 inlet=2.228e-04 outlet=1.691e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 39100 | total=4.117e-03 f=3.541e-03 ic=9.201e-08 wall=1.033e-05 inlet=2.197e-04 outlet=1.740e-08
+LBFGS 39200 | total=4.108e-03 f=3.534e-03 ic=9.174e-08 wall=1.034e-05 inlet=2.185e-04 outlet=1.757e-08
+LBFGS 39300 | total=4.101e-03 f=3.527e-03 ic=9.186e-08 wall=1.025e-05 inlet=2.190e-04 outlet=1.837e-08
+LBFGS 39400 | total=4.093e-03 f=3.516e-03 ic=9.206e-08 wall=1.033e-05 inlet=2.200e-04 outlet=1.830e-08
+LBFGS 39500 | total=4.084e-03 f=3.506e-03 ic=9.250e-08 wall=1.025e-05 inlet=2.230e-04 outlet=1.904e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 39600 | total=4.076e-03 f=3.503e-03 ic=9.315e-08 wall=1.033e-05 inlet=2.160e-04 outlet=2.027e-08
+LBFGS 39700 | total=4.069e-03 f=3.495e-03 ic=9.219e-08 wall=1.042e-05 inlet=2.140e-04 outlet=2.154e-08
+LBFGS 39800 | total=4.060e-03 f=3.485e-03 ic=9.268e-08 wall=1.052e-05 inlet=2.119e-04 outlet=2.281e-08
+LBFGS 39900 | total=4.051e-03 f=3.481e-03 ic=9.381e-08 wall=1.041e-05 inlet=2.107e-04 outlet=2.252e-08
+LBFGS 40000 | total=4.043e-03 f=3.482e-03 ic=9.463e-08 wall=1.020e-05 inlet=2.072e-04 outlet=2.248e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 40100 | total=4.036e-03 f=3.473e-03 ic=9.406e-08 wall=1.024e-05 inlet=2.078e-04 outlet=2.344e-08
+LBFGS 40200 | total=4.030e-03 f=3.468e-03 ic=9.395e-08 wall=1.024e-05 inlet=2.070e-04 outlet=2.356e-08
+LBFGS 40300 | total=4.023e-03 f=3.464e-03 ic=9.186e-08 wall=1.036e-05 inlet=2.031e-04 outlet=2.271e-08
+LBFGS 40400 | total=4.017e-03 f=3.462e-03 ic=9.089e-08 wall=1.017e-05 inlet=2.042e-04 outlet=2.220e-08
+LBFGS 40500 | total=4.010e-03 f=3.461e-03 ic=9.104e-08 wall=1.006e-05 inlet=2.012e-04 outlet=2.170e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 40600 | total=4.004e-03 f=3.457e-03 ic=9.146e-08 wall=1.011e-05 inlet=1.980e-04 outlet=2.147e-08
+LBFGS 40700 | total=3.997e-03 f=3.453e-03 ic=9.034e-08 wall=1.012e-05 inlet=1.967e-04 outlet=2.129e-08
+LBFGS 40800 | total=3.991e-03 f=3.452e-03 ic=8.911e-08 wall=1.002e-05 inlet=1.944e-04 outlet=2.176e-08
+LBFGS 40900 | total=3.985e-03 f=3.450e-03 ic=8.933e-08 wall=1.000e-05 inlet=1.910e-04 outlet=2.180e-08
+LBFGS 41000 | total=3.978e-03 f=3.441e-03 ic=8.953e-08 wall=9.998e-06 inlet=1.932e-04 outlet=2.136e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 41100 | total=3.972e-03 f=3.434e-03 ic=8.980e-08 wall=1.008e-05 inlet=1.923e-04 outlet=2.211e-08
+LBFGS 41200 | total=3.963e-03 f=3.427e-03 ic=8.778e-08 wall=9.948e-06 inlet=1.936e-04 outlet=2.123e-08
+LBFGS 41300 | total=3.956e-03 f=3.421e-03 ic=8.739e-08 wall=9.860e-06 inlet=1.956e-04 outlet=2.119e-08
+LBFGS 41400 | total=3.949e-03 f=3.416e-03 ic=8.886e-08 wall=9.937e-06 inlet=1.909e-04 outlet=2.165e-08
+LBFGS 41500 | total=3.942e-03 f=3.408e-03 ic=9.009e-08 wall=9.956e-06 inlet=1.912e-04 outlet=2.098e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 41600 | total=3.936e-03 f=3.404e-03 ic=8.929e-08 wall=1.000e-05 inlet=1.893e-04 outlet=2.070e-08
+LBFGS 41700 | total=3.930e-03 f=3.399e-03 ic=9.066e-08 wall=9.866e-06 inlet=1.915e-04 outlet=2.033e-08
+LBFGS 41800 | total=3.924e-03 f=3.390e-03 ic=9.120e-08 wall=9.818e-06 inlet=1.944e-04 outlet=2.032e-08
+LBFGS 41900 | total=3.918e-03 f=3.383e-03 ic=9.175e-08 wall=9.854e-06 inlet=1.943e-04 outlet=2.029e-08
+LBFGS 42000 | total=3.912e-03 f=3.379e-03 ic=9.154e-08 wall=9.850e-06 inlet=1.936e-04 outlet=1.999e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 42100 | total=3.906e-03 f=3.375e-03 ic=9.340e-08 wall=9.847e-06 inlet=1.914e-04 outlet=1.966e-08
+LBFGS 42200 | total=3.901e-03 f=3.370e-03 ic=9.321e-08 wall=9.835e-06 inlet=1.912e-04 outlet=1.964e-08
+LBFGS 42300 | total=3.896e-03 f=3.368e-03 ic=9.276e-08 wall=9.814e-06 inlet=1.895e-04 outlet=1.940e-08
+LBFGS 42400 | total=3.890e-03 f=3.360e-03 ic=9.229e-08 wall=9.750e-06 inlet=1.928e-04 outlet=1.911e-08
+LBFGS 42500 | total=3.883e-03 f=3.356e-03 ic=8.779e-08 wall=9.819e-06 inlet=1.907e-04 outlet=1.857e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 42600 | total=3.877e-03 f=3.354e-03 ic=8.848e-08 wall=9.838e-06 inlet=1.865e-04 outlet=1.813e-08
+LBFGS 42700 | total=3.871e-03 f=3.354e-03 ic=8.635e-08 wall=9.812e-06 inlet=1.832e-04 outlet=1.797e-08
+LBFGS 42800 | total=3.866e-03 f=3.350e-03 ic=8.532e-08 wall=9.779e-06 inlet=1.831e-04 outlet=1.770e-08
+LBFGS 42900 | total=3.861e-03 f=3.346e-03 ic=8.434e-08 wall=9.752e-06 inlet=1.830e-04 outlet=1.747e-08
+LBFGS 43000 | total=3.855e-03 f=3.343e-03 ic=8.405e-08 wall=9.732e-06 inlet=1.808e-04 outlet=1.713e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 43100 | total=3.850e-03 f=3.339e-03 ic=8.203e-08 wall=9.650e-06 inlet=1.825e-04 outlet=1.753e-08
+LBFGS 43200 | total=3.845e-03 f=3.334e-03 ic=8.229e-08 wall=9.618e-06 inlet=1.831e-04 outlet=1.744e-08
+LBFGS 43300 | total=3.840e-03 f=3.337e-03 ic=8.196e-08 wall=9.531e-06 inlet=1.792e-04 outlet=1.741e-08
+LBFGS 43400 | total=3.834e-03 f=3.335e-03 ic=8.144e-08 wall=9.511e-06 inlet=1.759e-04 outlet=1.738e-08
+LBFGS 43500 | total=3.828e-03 f=3.330e-03 ic=8.075e-08 wall=9.445e-06 inlet=1.773e-04 outlet=1.703e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 43600 | total=3.822e-03 f=3.329e-03 ic=7.939e-08 wall=9.365e-06 inlet=1.751e-04 outlet=1.692e-08
+LBFGS 43700 | total=3.817e-03 f=3.327e-03 ic=8.041e-08 wall=9.334e-06 inlet=1.725e-04 outlet=1.656e-08
+LBFGS 43800 | total=3.811e-03 f=3.324e-03 ic=7.995e-08 wall=9.296e-06 inlet=1.714e-04 outlet=1.627e-08
+LBFGS 43900 | total=3.805e-03 f=3.319e-03 ic=8.011e-08 wall=9.215e-06 inlet=1.726e-04 outlet=1.618e-08
+LBFGS 44000 | total=3.800e-03 f=3.315e-03 ic=8.032e-08 wall=9.090e-06 inlet=1.743e-04 outlet=1.548e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 44100 | total=3.795e-03 f=3.314e-03 ic=8.036e-08 wall=9.002e-06 inlet=1.732e-04 outlet=1.506e-08
+LBFGS 44200 | total=3.789e-03 f=3.312e-03 ic=7.990e-08 wall=8.953e-06 inlet=1.722e-04 outlet=1.491e-08
+LBFGS 44300 | total=3.784e-03 f=3.308e-03 ic=8.044e-08 wall=8.984e-06 inlet=1.697e-04 outlet=1.444e-08
+LBFGS 44400 | total=3.778e-03 f=3.298e-03 ic=8.018e-08 wall=9.036e-06 inlet=1.716e-04 outlet=1.439e-08
+LBFGS 44500 | total=3.772e-03 f=3.295e-03 ic=7.992e-08 wall=8.884e-06 inlet=1.732e-04 outlet=1.430e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 44600 | total=3.768e-03 f=3.293e-03 ic=8.102e-08 wall=8.911e-06 inlet=1.704e-04 outlet=1.426e-08
+LBFGS 44700 | total=3.764e-03 f=3.287e-03 ic=8.103e-08 wall=8.946e-06 inlet=1.713e-04 outlet=1.463e-08
+LBFGS 44800 | total=3.759e-03 f=3.282e-03 ic=8.076e-08 wall=8.954e-06 inlet=1.714e-04 outlet=1.440e-08
+LBFGS 44900 | total=3.753e-03 f=3.279e-03 ic=7.991e-08 wall=8.899e-06 inlet=1.709e-04 outlet=1.432e-08
+LBFGS 45000 | total=3.748e-03 f=3.276e-03 ic=7.959e-08 wall=8.832e-06 inlet=1.704e-04 outlet=1.404e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 45100 | total=3.743e-03 f=3.276e-03 ic=7.979e-08 wall=8.770e-06 inlet=1.679e-04 outlet=1.390e-08
+LBFGS 45200 | total=3.738e-03 f=3.271e-03 ic=8.140e-08 wall=8.764e-06 inlet=1.678e-04 outlet=1.400e-08
+LBFGS 45300 | total=3.733e-03 f=3.267e-03 ic=8.067e-08 wall=8.795e-06 inlet=1.660e-04 outlet=1.418e-08
+LBFGS 45400 | total=3.728e-03 f=3.264e-03 ic=8.042e-08 wall=8.768e-06 inlet=1.651e-04 outlet=1.413e-08
+LBFGS 45500 | total=3.723e-03 f=3.256e-03 ic=8.015e-08 wall=8.811e-06 inlet=1.668e-04 outlet=1.392e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 45600 | total=3.719e-03 f=3.249e-03 ic=8.143e-08 wall=8.798e-06 inlet=1.690e-04 outlet=1.399e-08
+LBFGS 45700 | total=3.713e-03 f=3.244e-03 ic=8.100e-08 wall=8.872e-06 inlet=1.669e-04 outlet=1.379e-08
+LBFGS 45800 | total=3.707e-03 f=3.238e-03 ic=8.082e-08 wall=8.804e-06 inlet=1.680e-04 outlet=1.392e-08
+LBFGS 45900 | total=3.702e-03 f=3.231e-03 ic=7.912e-08 wall=8.860e-06 inlet=1.693e-04 outlet=1.377e-08
+LBFGS 46000 | total=3.696e-03 f=3.227e-03 ic=7.796e-08 wall=8.839e-06 inlet=1.687e-04 outlet=1.345e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 46100 | total=3.692e-03 f=3.225e-03 ic=7.657e-08 wall=8.793e-06 inlet=1.673e-04 outlet=1.381e-08
+LBFGS 46200 | total=3.686e-03 f=3.225e-03 ic=7.580e-08 wall=8.793e-06 inlet=1.635e-04 outlet=1.367e-08
+LBFGS 46300 | total=3.681e-03 f=3.222e-03 ic=7.504e-08 wall=8.836e-06 inlet=1.601e-04 outlet=1.349e-08
+LBFGS 46400 | total=3.675e-03 f=3.221e-03 ic=7.464e-08 wall=8.729e-06 inlet=1.594e-04 outlet=1.362e-08
+LBFGS 46500 | total=3.669e-03 f=3.215e-03 ic=7.451e-08 wall=8.649e-06 inlet=1.608e-04 outlet=1.334e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 46600 | total=3.663e-03 f=3.211e-03 ic=7.320e-08 wall=8.586e-06 inlet=1.609e-04 outlet=1.348e-08
+LBFGS 46700 | total=3.658e-03 f=3.209e-03 ic=7.291e-08 wall=8.632e-06 inlet=1.576e-04 outlet=1.369e-08
+LBFGS 46800 | total=3.655e-03 f=3.202e-03 ic=7.441e-08 wall=8.615e-06 inlet=1.600e-04 outlet=1.509e-08
+LBFGS 46900 | total=3.648e-03 f=3.199e-03 ic=7.353e-08 wall=8.625e-06 inlet=1.570e-04 outlet=1.387e-08
+LBFGS 47000 | total=3.642e-03 f=3.195e-03 ic=7.396e-08 wall=8.657e-06 inlet=1.542e-04 outlet=1.410e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 47100 | total=3.636e-03 f=3.190e-03 ic=7.353e-08 wall=8.665e-06 inlet=1.534e-04 outlet=1.409e-08
+LBFGS 47200 | total=3.630e-03 f=3.186e-03 ic=7.363e-08 wall=8.688e-06 inlet=1.512e-04 outlet=1.369e-08
+LBFGS 47300 | total=3.625e-03 f=3.184e-03 ic=7.302e-08 wall=8.670e-06 inlet=1.494e-04 outlet=1.328e-08
+LBFGS 47400 | total=3.621e-03 f=3.180e-03 ic=7.327e-08 wall=8.652e-06 inlet=1.500e-04 outlet=1.301e-08
+LBFGS 47500 | total=3.616e-03 f=3.175e-03 ic=7.275e-08 wall=8.643e-06 inlet=1.507e-04 outlet=1.263e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 47600 | total=3.611e-03 f=3.172e-03 ic=7.299e-08 wall=8.600e-06 inlet=1.496e-04 outlet=1.260e-08
+LBFGS 47700 | total=3.605e-03 f=3.168e-03 ic=7.164e-08 wall=8.548e-06 inlet=1.498e-04 outlet=1.235e-08
+LBFGS 47800 | total=3.601e-03 f=3.167e-03 ic=7.135e-08 wall=8.500e-06 inlet=1.479e-04 outlet=1.190e-08
+LBFGS 47900 | total=3.596e-03 f=3.163e-03 ic=7.262e-08 wall=8.482e-06 inlet=1.480e-04 outlet=1.170e-08
+LBFGS 48000 | total=3.591e-03 f=3.161e-03 ic=7.381e-08 wall=8.416e-06 inlet=1.473e-04 outlet=1.138e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 48100 | total=3.587e-03 f=3.159e-03 ic=7.395e-08 wall=8.373e-06 inlet=1.458e-04 outlet=1.111e-08
+LBFGS 48200 | total=3.582e-03 f=3.154e-03 ic=7.401e-08 wall=8.345e-06 inlet=1.463e-04 outlet=1.073e-08
+LBFGS 48300 | total=3.576e-03 f=3.154e-03 ic=7.480e-08 wall=8.260e-06 inlet=1.443e-04 outlet=1.051e-08
+LBFGS 48400 | total=3.572e-03 f=3.148e-03 ic=7.342e-08 wall=8.261e-06 inlet=1.454e-04 outlet=1.036e-08
+LBFGS 48500 | total=3.567e-03 f=3.144e-03 ic=7.295e-08 wall=8.233e-06 inlet=1.463e-04 outlet=1.023e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 48600 | total=3.562e-03 f=3.138e-03 ic=7.279e-08 wall=8.278e-06 inlet=1.461e-04 outlet=1.020e-08
+LBFGS 48700 | total=3.558e-03 f=3.135e-03 ic=7.324e-08 wall=8.283e-06 inlet=1.444e-04 outlet=1.030e-08
+LBFGS 48800 | total=3.553e-03 f=3.131e-03 ic=7.274e-08 wall=8.268e-06 inlet=1.446e-04 outlet=1.032e-08
+LBFGS 48900 | total=3.548e-03 f=3.127e-03 ic=7.271e-08 wall=8.278e-06 inlet=1.432e-04 outlet=1.077e-08
+LBFGS 49000 | total=3.544e-03 f=3.125e-03 ic=7.210e-08 wall=8.310e-06 inlet=1.405e-04 outlet=1.065e-08
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 49100 | total=3.539e-03 f=3.121e-03 ic=7.196e-08 wall=8.235e-06 inlet=1.415e-04 outlet=1.084e-08
+LBFGS 49200 | total=3.535e-03 f=3.120e-03 ic=7.195e-08 wall=8.240e-06 inlet=1.390e-04 outlet=1.063e-08
+LBFGS 49300 | total=3.530e-03 f=3.119e-03 ic=7.252e-08 wall=8.157e-06 inlet=1.374e-04 outlet=1.041e-08
+LBFGS 49400 | total=3.524e-03 f=3.113e-03 ic=7.310e-08 wall=8.123e-06 inlet=1.379e-04 outlet=1.003e-08
+LBFGS 49500 | total=3.520e-03 f=3.109e-03 ic=7.313e-08 wall=8.123e-06 inlet=1.383e-04 outlet=9.764e-09
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+LBFGS 49600 | total=3.515e-03 f=3.107e-03 ic=7.342e-08 wall=8.088e-06 inlet=1.365e-04 outlet=9.645e-09
+LBFGS 49700 | total=3.510e-03 f=3.104e-03 ic=7.428e-08 wall=8.046e-06 inlet=1.358e-04 outlet=9.357e-09
+LBFGS 49800 | total=3.506e-03 f=3.103e-03 ic=7.435e-08 wall=7.967e-06 inlet=1.342e-04 outlet=9.343e-09
+LBFGS 49900 | total=3.502e-03 f=3.100e-03 ic=7.390e-08 wall=7.886e-06 inlet=1.357e-04 outlet=9.037e-09
+LBFGS 50000 | total=3.497e-03 f=3.096e-03 ic=7.233e-08 wall=7.872e-06 inlet=1.360e-04 outlet=8.731e-09
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest_lbfgs.pt
+--- 5574.45 seconds ---
+Saved PyTorch checkpoint to results/checkpoints/grad_norm_5090/latest.pt
+Lambda curve saved to results/figures/grad_norm_5090/lambda_curve.png
+
+=== Training complete. Run bench: bash scripts/bench_balanced.sh --exp-name grad_norm_5090 ===
