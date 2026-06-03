@@ -23,3 +23,14 @@ __pycache__/
 /.codegrapg/
 /docs/
 /CLAUDE.md
+
+# --- Track only lightweight evidence under results/ (logs / CSVs / *_history pickles) ---
+# Heavy artifacts (checkpoints, plots, animations, papers) stay untracked.
+results/**/*.pt
+results/**/*.png
+results/**/*.gif
+results/**/*.pdf
+*.pid
+# Reference media under data/ is not tracked (keep .mat / .py only)
+data/**/*.png
+data/**/*.gif
