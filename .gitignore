@@ -49,3 +49,10 @@ data/reference/unsteady_reference_human_rot90left_re100.mat
 
 # Stray local artifacts
 /Screenshot*.png
+**/logs/pid
+
+# Report figures: track only the three referenced by final.tex
+final_report/figures/*.png
+!final_report/figures/causal_weight_curve_both.png
+!final_report/figures/field_comparison_eps30_uniform_t0p50.png
+!final_report/figures/loss_curves.png
