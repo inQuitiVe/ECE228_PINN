@@ -57,6 +57,16 @@ from unsteady import (
 )
 
 
+def _fmt_hms(seconds):
+    """Compact h/m/s for progress + ETA lines."""
+    seconds = int(max(0, seconds))
+    h, rem = divmod(seconds, 3600)
+    m, s = divmod(rem, 60)
+    if h:
+        return f"{h}h{m:02d}m{s:02d}s"
+    return f"{m}m{s:02d}s"
+
+
 def compute_bins(t_c, M, tmax, mode, device):
     """Assign each collocation point to one of M temporal bins.
 
@@ -92,7 +102,9 @@ def causal_loss_f(model, data, binspec, eps, fixed_w=None):
     fixed_w (length-M tensor) overrides the dynamic weights — used to FREEZE
     the Adam-final weights during L-BFGS so the objective stays static, and to
     supply all-ones for the 'uniform' (true-loss) L-BFGS mode.
-    Returns (loss_f, per_bin_loss[detached], weights[detached]).
+    Returns (loss_f_weighted, loss_f_true, per_bin_loss[detached], weights[detached]).
+    loss_f_true is the unweighted mean residual (eps=0 equivalent), for
+    monitoring early-stop / the LR scheduler on a stationary signal.
     """
     bin_idx, safe_cnt, n_total, M = binspec
     f_u, f_v, f_s11, f_s22, f_s12, f_p = model.net_f(data["x_c"], data["y_c"], data["t_c"])
@@ -107,12 +119,18 @@ def causal_loss_f(model, data, binspec, eps, fixed_w=None):
             cum_prev = torch.cumsum(per_bin_loss, dim=0) - per_bin_loss
             weights = torch.exp(-(eps / M) * cum_prev)
     loss_f = (weights * sum_per_bin).sum() / n_total
-    return loss_f, per_bin_loss.detach(), weights.detach()
+    loss_f_true = (sum_per_bin.sum() / n_total).detach()
+    return loss_f, loss_f_true, per_bin_loss.detach(), weights.detach()
 
 
 def build_causal_loss(model, data, binspec, eps, fixed_w=None):
-    """build_loss clone whose loss_f is causally weighted (beta weights unchanged)."""
-    loss_f, per_bin_loss, weights = causal_loss_f(model, data, binspec, eps, fixed_w)
+    """build_loss clone whose loss_f is causally weighted (beta weights unchanged).
+
+    Returns both the weighted "loss" (backprop target) and the unweighted
+    "loss_true" (= loss with the eps=0 residual), which early-stop and the LR
+    scheduler monitor as a stationary convergence signal.
+    """
+    loss_f, loss_f_true, per_bin_loss, weights = causal_loss_f(model, data, binspec, eps, fixed_w)
 
     u_ic, v_ic, p_ic, _, _, _ = model.net_uv(data["x_ic"], data["y_ic"], data["t_ic"])
     u_wall, v_wall, _, _, _, _ = model.net_uv(data["x_wall"], data["y_wall"], data["t_wall"])
@@ -124,10 +142,15 @@ def build_causal_loss(model, data, binspec, eps, fixed_w=None):
     loss_inlet = (torch.mean((u_inlet - data["u_inlet"]).square())
                   + torch.mean((v_inlet - data["v_inlet"]).square()))
     loss_outlet = mse_zero(p_outlet)
-    loss = loss_f + 5.0 * loss_wall + 5.0 * loss_inlet + loss_outlet + loss_ic
+    bc = 5.0 * loss_wall + 5.0 * loss_inlet + loss_outlet + loss_ic
+    loss = loss_f + bc
+    # Unweighted true loss: BC/IC terms identical, only loss_f swapped for the eps=0 residual.
+    loss_true = float(loss_f_true) + float(bc.detach())
     return {
         "loss": loss,
         "loss_f": loss_f,
+        "loss_f_true": float(loss_f_true),
+        "loss_true": loss_true,
         "loss_ic": loss_ic,
         "loss_wall": loss_wall,
         "loss_inlet": loss_inlet,
@@ -164,6 +187,17 @@ def parse_args():
     parser.add_argument("--num-frames", type=int, default=51)
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda", "mps"])
     parser.add_argument("--print-every", type=int, default=100)
+    # ---- scheduler + early-stop (monitor the unweighted true loss) ----
+    parser.add_argument("--scheduler", default="none", choices=["none", "cosine", "step", "plateau"])
+    parser.add_argument("--scheduler-step-size", type=int, default=1000)
+    parser.add_argument("--scheduler-gamma", type=float, default=0.5)
+    parser.add_argument("--scheduler-min-lr", type=float, default=1e-6)
+    parser.add_argument("--scheduler-plateau-patience", type=int, default=500)
+    parser.add_argument("--early-stop-patience", type=int, default=0,
+                        help="Stop after N stale steps on the true loss (0 = off). "
+                             "Only fires once min_w > --causality-delta.")
+    parser.add_argument("--early-stop-min-delta", type=float, default=0.0)
+    parser.add_argument("--early-stop-warmup", type=int, default=0)
     # ---- causal-specific ----
     parser.add_argument("--causal-eps", type=float, default=1.0,
                         help="Causality strength eps (exponent normalized by M). "
@@ -177,6 +211,16 @@ def parse_args():
                         help="L-BFGS residual weighting: 'uniform' (true loss, default), "
                              "'frozen' (Adam-final weights as static constants, L-BFGS-safe), "
                              "'dynamic' (recompute each closure — may break line search).")
+    parser.add_argument("--causality-delta", type=float, default=0.9,
+                        help="Early-stop only allowed once min_w exceeds this "
+                             "(Wang 2024 'causality satisfied' gate).")
+    parser.add_argument("--freeze-weight-checkpoint", default="",
+                        help="For --causal-lbfgs frozen: compute the frozen bin weights "
+                             "from THIS checkpoint's model (e.g. the Adam-best / "
+                             "snapshot_iter20000), while optimising from --load-checkpoint's "
+                             "model. Decouples the freeze point from the L-BFGS start, so a "
+                             "continued run keeps the ORIGINAL Adam-end frozen weights instead "
+                             "of re-freezing at the already-converged state.")
     args = parser.parse_args()
     if args.causal_bins < 1:
         parser.error("--causal-bins must be >= 1")
@@ -188,11 +232,16 @@ def parse_args():
 def train_causal(
     model, data, binspec, eps,
     adam_iters, learning_rate, lbfgs_steps, print_every, lbfgs_mode,
+    scheduler_type="none", scheduler_step_size=1000, scheduler_gamma=0.5,
+    scheduler_min_lr=1e-6, scheduler_plateau_patience=500,
+    early_stop_patience=0, early_stop_min_delta=0.0, early_stop_warmup=0,
+    causality_delta=0.9,
     start_iter=1, checkpoint_path=None, save_every=0, snapshot_iters=None,
     save_best=False, best_checkpoint_path=None,
     lbfgs_checkpoint_path=None, lbfgs_save_every=0,
-    optimizer_state_dict=None, existing_history=None, weight_history=None,
-    initial_best_loss=None,
+    optimizer_state_dict=None, scheduler_state_dict=None,
+    existing_history=None, weight_history=None, initial_best_loss=None,
+    freeze_weight_state=None,
 ):
     M = binspec[3]
     device = data["x_c"].device
@@ -200,13 +249,34 @@ def train_causal(
     weight_history = list(weight_history) if weight_history else []
 
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    if scheduler_type == "cosine":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=max(1, adam_iters), eta_min=scheduler_min_lr)
+    elif scheduler_type == "step":
+        scheduler = torch.optim.lr_scheduler.StepLR(
+            optimizer, step_size=max(1, scheduler_step_size), gamma=scheduler_gamma)
+    elif scheduler_type == "plateau":
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode="min", factor=scheduler_gamma,
+            patience=max(1, scheduler_plateau_patience), min_lr=scheduler_min_lr)
+    else:
+        scheduler = None
     if optimizer_state_dict is not None:
         optimizer.load_state_dict(optimizer_state_dict)
+    if scheduler is not None and scheduler_state_dict is not None:
+        scheduler.load_state_dict(scheduler_state_dict)
 
     start_time = time.time()
     model.train()
-    best_loss = float(initial_best_loss) if initial_best_loss is not None else float("inf")
-    best_record = {"loss": best_loss, "iter": 0}
+    # Early-stop / best tracked on the UNWEIGHTED true loss (stationary signal).
+    best_true = float(initial_best_loss) if initial_best_loss is not None else float("inf")
+    best_record = {"loss": best_true, "iter": 0}
+    stale_steps = 0
+    causality_satisfied = False
+
+    print("=== Adam phase | %d iters | lr=%.2e | sched=%s | early-stop: patience=%d "
+          "warmup=%d gate(min_w>%.2f) ===" % (adam_iters, learning_rate, scheduler_type,
+          early_stop_patience, early_stop_warmup, causality_delta), flush=True)
 
     for iteration in range(start_iter, adam_iters + 1):
         optimizer.zero_grad(set_to_none=True)
@@ -214,45 +284,80 @@ def train_causal(
         losses["loss"].backward()
         optimizer.step()
 
+        loss_true = losses["loss_true"]
+        min_w = losses["min_w"]
+        # The defining causal-training milestone: the curriculum has reached the
+        # final temporal bin (all w_i > delta). Log once; early-stop arms here.
+        if not causality_satisfied and min_w > causality_delta and iteration > 1:
+            causality_satisfied = True
+            print("[causality] SATISFIED @ Adam %d: min_w=%.3f > %.2f — all %d bins "
+                  "unlocked; early-stop now armed." % (iteration, min_w, causality_delta, M),
+                  flush=True)
+        if scheduler is not None:
+            if scheduler_type == "plateau":
+                scheduler.step(loss_true)   # monitor the stationary true loss
+            else:
+                scheduler.step()
+
         snapshot = {k: losses[k].detach().cpu().item()
                     for k in ("loss", "loss_f", "loss_ic", "loss_wall", "loss_inlet", "loss_outlet")}
         snapshot["iter"] = iteration
-        snapshot["min_w"] = losses["min_w"]
+        snapshot["min_w"] = min_w
+        snapshot["loss_true"] = loss_true
+        snapshot["loss_f_true"] = losses["loss_f_true"]
+        snapshot["lr"] = optimizer.param_groups[0]["lr"]
         history.append(snapshot)
 
         if iteration == 1 or iteration % print_every == 0:
+            w = losses["causal_weights"]
+            unlocked = int((w > causality_delta).sum().item())
+            elapsed = time.time() - start_time
+            done = max(1, iteration - start_iter + 1)
+            rate = done / elapsed if elapsed > 0 else 0.0
+            eta = _fmt_hms((adam_iters - iteration) / rate) if rate > 0 else "?"
             weight_history.append({
                 "iter": iteration,
-                "weights": losses["causal_weights"].cpu().tolist(),
+                "weights": w.cpu().tolist(),
                 "per_bin_loss": losses["per_bin_loss"].cpu().tolist(),
-                "min_w": losses["min_w"],
+                "min_w": min_w,
             })
             print(
-                "Adam %d | total=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e min_w=%.3e"
-                % (iteration, snapshot["loss"], snapshot["loss_f"], snapshot["loss_ic"],
-                   snapshot["loss_wall"], snapshot["loss_inlet"], snapshot["loss_outlet"],
-                   snapshot["min_w"]),
+                "Adam %d/%d | total=%.3e true=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e "
+                "| min_w=%.3e unlocked=%d/%d | best=%.3e@%d stale=%d | lr=%.2e | %.1f it/s ETA %s"
+                % (iteration, adam_iters, snapshot["loss"], loss_true, snapshot["loss_f"],
+                   snapshot["loss_ic"], snapshot["loss_wall"], snapshot["loss_inlet"],
+                   snapshot["loss_outlet"], min_w, unlocked, M, best_true, best_record["iter"],
+                   stale_steps, snapshot["lr"], rate, eta),
                 flush=True,
             )
 
-        loss_value = snapshot["loss"]
-        if loss_value < best_loss:
-            best_loss = loss_value
-            best_record = {"loss": loss_value, "iter": iteration}
+        # Best + early-stop on the true loss, gated by causality (min_w > delta).
+        if loss_true < (best_true - early_stop_min_delta):
+            best_true = loss_true
+            stale_steps = 0
+            best_record = {"loss": loss_true, "iter": iteration}
             if save_best and best_checkpoint_path:
                 save_checkpoint(
                     model, best_checkpoint_path, history,
-                    {"best_iter": iteration, "best_loss": loss_value},
-                    optimizer=optimizer,
-                    extra_state={"iteration": iteration, "best_loss": loss_value,
+                    {"best_iter": iteration, "best_loss": loss_true},
+                    optimizer=optimizer, scheduler=scheduler,
+                    extra_state={"iteration": iteration, "best_loss": loss_true,
                                  "causal_eps": eps, "causal_bins": M},
                 )
+        elif iteration > early_stop_warmup:
+            stale_steps += 1
+            if (early_stop_patience > 0 and stale_steps >= early_stop_patience
+                    and min_w > causality_delta):
+                print("Early stop @ Adam %d (true-loss stale %d steps, causality satisfied "
+                      "min_w=%.3f > %.2f)" % (iteration, stale_steps, min_w, causality_delta),
+                      flush=True)
+                break
 
         if save_every > 0 and checkpoint_path and iteration % save_every == 0:
             save_checkpoint(
                 model, checkpoint_path, history, {"last_iter": iteration},
-                optimizer=optimizer,
-                extra_state={"iteration": iteration, "best_loss": best_loss,
+                optimizer=optimizer, scheduler=scheduler,
+                extra_state={"iteration": iteration, "best_loss": best_true,
                              "causal_eps": eps, "causal_bins": M},
             )
 
@@ -262,8 +367,8 @@ def train_causal(
             save_checkpoint(
                 model, snap_path, history,
                 {"snapshot_iter": iteration, "phase": "adam"},
-                optimizer=optimizer,
-                extra_state={"iteration": iteration, "best_loss": best_loss,
+                optimizer=optimizer, scheduler=scheduler,
+                extra_state={"iteration": iteration, "best_loss": best_true,
                              "causal_eps": eps, "causal_bins": M},
             )
             print(f"[snapshot] iter {iteration} → {snap_path}", flush=True)
@@ -277,7 +382,19 @@ def train_causal(
         elif lbfgs_mode == "frozen":
             # net_f needs autograd to derive u,v from psi, so this cannot run under
             # no_grad; the returned weights are already detached by causal_loss_f.
-            _, _, w_end = causal_loss_f(model, data, binspec, eps, fixed_w=None)
+            if freeze_weight_state is not None:
+                # Frozen weights are a deterministic function of the model state, so to
+                # reproduce the ORIGINAL Adam-end weights on a continued run we temporarily
+                # load the freeze-source model (e.g. Adam-best), read the weights off, then
+                # restore the current (e.g. resumed latest_lbfgs) model to keep optimising.
+                saved = {k: v.detach().clone() for k, v in model.state_dict().items()}
+                model.load_state_dict(freeze_weight_state)
+                _, _, _, w_end = causal_loss_f(model, data, binspec, eps, fixed_w=None)
+                model.load_state_dict(saved)
+                print("[lbfgs] frozen weights taken from --freeze-weight-checkpoint "
+                      "(decoupled from the L-BFGS start).", flush=True)
+            else:
+                _, _, _, w_end = causal_loss_f(model, data, binspec, eps, fixed_w=None)
             lbfgs_fixed_w = w_end
             print("[lbfgs] frozen: continuing Adam-final causal weights as constants "
                   "(min_w=%.3e, max_w=%.3e)." % (float(w_end.min()), float(w_end.max())), flush=True)
@@ -287,9 +404,17 @@ def train_causal(
                   "this violates L-BFGS's static-objective assumption and may cause "
                   "line-search failure / early termination.", flush=True)
 
+        print("=== L-BFGS phase | max_iter=%d | mode=%s ===" % (lbfgs_steps, lbfgs_mode),
+              flush=True)
+        lbfgs_start = time.time()
+        lbfgs_best = {"loss": float("inf"), "iter": 0}
+
+        # Standard PINN L-BFGS: real tolerances, single step(), natural convergence.
         lbfgs = torch.optim.LBFGS(
-            model.parameters(), lr=1.0, max_iter=lbfgs_steps, max_eval=lbfgs_steps,
-            history_size=50, tolerance_change=0, tolerance_grad=0,
+            model.parameters(), lr=1.0,
+            max_iter=lbfgs_steps, max_eval=int(lbfgs_steps * 1.25),
+            history_size=50,
+            tolerance_grad=1e-7, tolerance_change=1.0 * np.finfo(float).eps,
             line_search_fn="strong_wolfe",
         )
         step_counter = {"count": 0}
@@ -302,6 +427,8 @@ def train_causal(
             snap["phase"] = "lbfgs"
             snap["lbfgs_iter"] = lbfgs_iter
             snap["min_w"] = losses_dict["min_w"]
+            snap["loss_true"] = losses_dict["loss_true"]
+            snap["loss_f_true"] = losses_dict["loss_f_true"]
             return snap
 
         def save_lbfgs_ckpt(losses_dict, lbfgs_iter, final=False):
@@ -323,40 +450,52 @@ def train_causal(
             losses_dict["loss"].backward()
             step_counter["count"] += 1
             li = step_counter["count"]
+            cur_true = losses_dict["loss_true"]
+            if cur_true < lbfgs_best["loss"]:
+                lbfgs_best["loss"] = cur_true
+                lbfgs_best["iter"] = li
             if li == 1 or li % print_every == 0:
+                el = time.time() - lbfgs_start
+                rate = li / el if el > 0 else 0.0
                 print(
-                    "LBFGS %d | total=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e outlet=%.3e"
-                    % (li, losses_dict["loss"].detach().cpu().item(),
+                    "LBFGS %d/%d | total=%.3e true=%.3e f=%.3e ic=%.3e wall=%.3e inlet=%.3e "
+                    "outlet=%.3e | min_w=%.3e | best=%.3e@%d | %.1f it/s"
+                    % (li, lbfgs_steps, losses_dict["loss"].detach().cpu().item(), cur_true,
                        losses_dict["loss_f"].detach().cpu().item(),
                        losses_dict["loss_ic"].detach().cpu().item(),
                        losses_dict["loss_wall"].detach().cpu().item(),
                        losses_dict["loss_inlet"].detach().cpu().item(),
-                       losses_dict["loss_outlet"].detach().cpu().item()),
+                       losses_dict["loss_outlet"].detach().cpu().item(),
+                       losses_dict["min_w"], lbfgs_best["loss"], lbfgs_best["iter"], rate),
                     flush=True,
                 )
+                history.append(make_snapshot(losses_dict, li))  # persist for the loss curve
             if lbfgs_save_every > 0 and li % lbfgs_save_every == 0:
                 save_lbfgs_ckpt(losses_dict, li)
             return losses_dict["loss"]
 
-        while step_counter["count"] < lbfgs_steps:
-            remaining = lbfgs_steps - step_counter["count"]
-            lbfgs.param_groups[0]["max_iter"] = remaining
-            lbfgs.param_groups[0]["max_eval"] = remaining
-            lbfgs.step(closure)
-            if step_counter["count"] < lbfgs_steps:
-                for pg_state in lbfgs.state.values():
-                    pg_state.clear()
+        # Single call: L-BFGS iterates internally and stops on its own tolerance
+        # (gtd/change) or at max_iter — no manual restart, no state clearing.
+        lbfgs.step(closure)
 
         final_losses = build_causal_loss(model, data, binspec, eps, fixed_w=lbfgs_fixed_w)
         final_snap = make_snapshot(final_losses, step_counter["count"])
         history.append(final_snap)
-        if final_snap["loss"] < best_record["loss"]:
-            best_record = {"loss": final_snap["loss"], "iter": final_snap["iter"]}
+        if final_snap["loss_true"] < best_record["loss"]:
+            best_record = {"loss": final_snap["loss_true"], "iter": final_snap["iter"]}
         save_lbfgs_ckpt(final_losses, step_counter["count"], final=True)
+        print("[lbfgs] converged after %d closure evals (max_iter=%d)"
+              % (step_counter["count"], lbfgs_steps), flush=True)
 
+    last_logged = int(history[-1].get("iter", 0)) if history else 0
+    print("=== Run summary | best true-loss=%.3e @ iter %d | last iter=%d | causality %s | "
+          "wall=%s ===" % (best_record["loss"], best_record["iter"], last_logged,
+          "satisfied" if causality_satisfied else "NOT reached",
+          _fmt_hms(time.time() - start_time)), flush=True)
     print("--- %.2f seconds ---" % (time.time() - start_time), flush=True)
     final_opt_state = optimizer.state_dict()
-    return history, best_record, weight_history, final_opt_state
+    final_sched_state = scheduler.state_dict() if scheduler is not None else None
+    return history, best_record, weight_history, final_opt_state, final_sched_state
 
 
 def main():
@@ -406,6 +545,7 @@ def main():
             print(f"[snapshot] will save at Adam iters: {sorted(snapshot_iters)}", flush=True)
 
     optimizer_state = None
+    scheduler_state = None
     start_iter = 1
     existing_history = []
     existing_weight_history = []
@@ -424,6 +564,7 @@ def main():
         if raw_opt is not None and "lbfgs_iter" not in extra_state:
             optimizer_state = raw_opt
         if args.resume:
+            scheduler_state = ckpt.get("scheduler_state_dict")
             if os.path.exists(weight_history_path):
                 with open(weight_history_path, "rb") as f:
                     existing_weight_history = pickle.load(f)
@@ -434,17 +575,33 @@ def main():
             best_loss_resume = extra_state.get("best_loss")
             print("Resuming from iteration %d" % start_iter, flush=True)
 
-    history, best_record, weight_history, final_opt_state = train_causal(
+    freeze_weight_state = None
+    if args.freeze_weight_checkpoint:
+        fck = torch.load(args.freeze_weight_checkpoint, map_location=device, weights_only=False)
+        freeze_weight_state = fck["model_state_dict"]
+        print("[lbfgs] frozen weights will be computed from %s"
+              % args.freeze_weight_checkpoint, flush=True)
+
+    history, best_record, weight_history, final_opt_state, final_sched_state = train_causal(
         model=model, data=data, binspec=binspec, eps=args.causal_eps,
         adam_iters=args.adam_iters, learning_rate=args.learning_rate,
         lbfgs_steps=args.lbfgs_iters, print_every=args.print_every,
         lbfgs_mode=args.causal_lbfgs,
+        scheduler_type=args.scheduler, scheduler_step_size=args.scheduler_step_size,
+        scheduler_gamma=args.scheduler_gamma, scheduler_min_lr=args.scheduler_min_lr,
+        scheduler_plateau_patience=args.scheduler_plateau_patience,
+        early_stop_patience=args.early_stop_patience,
+        early_stop_min_delta=args.early_stop_min_delta,
+        early_stop_warmup=args.early_stop_warmup,
+        causality_delta=args.causality_delta,
         start_iter=start_iter, checkpoint_path=args.checkpoint,
         save_every=args.save_every, snapshot_iters=snapshot_iters,
         save_best=args.save_best, best_checkpoint_path=args.best_checkpoint,
         lbfgs_checkpoint_path=args.lbfgs_checkpoint, lbfgs_save_every=args.lbfgs_save_every,
-        optimizer_state_dict=optimizer_state, existing_history=existing_history,
+        optimizer_state_dict=optimizer_state, scheduler_state_dict=scheduler_state,
+        existing_history=existing_history,
         weight_history=existing_weight_history, initial_best_loss=best_loss_resume,
+        freeze_weight_state=freeze_weight_state,
     )
 
     last_iter = int(history[-1].get("iter", len(history))) if history else (start_iter - 1)
@@ -456,11 +613,13 @@ def main():
             "learning_rate": args.learning_rate, "tmax": args.tmax, "mu": args.mu,
             "causal_eps": args.causal_eps, "causal_bins": M,
             "causal_bin_mode": args.causal_bin_mode, "causal_lbfgs": args.causal_lbfgs,
+            "scheduler": args.scheduler,
             "best_iter": best_record["iter"], "best_loss": best_record["loss"],
         },
         extra_state={"iteration": last_iter, "best_loss": best_record["loss"],
                      "causal_eps": args.causal_eps, "causal_bins": M},
         optimizer_state_dict=final_opt_state,
+        scheduler_state_dict=final_sched_state,
     )
 
     log_dir = os.path.dirname(os.path.abspath(args.loss_history))

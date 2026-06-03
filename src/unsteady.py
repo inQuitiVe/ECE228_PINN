@@ -513,7 +513,10 @@ def save_checkpoint(model, path, history, config, optimizer=None, scheduler=None
 
 
 def load_checkpoint(model, path, map_location):
-    checkpoint = torch.load(path, map_location=map_location)
+    # weights_only=False: our checkpoints store history/optimizer state containing
+    # numpy scalars; torch>=2.6 defaults weights_only=True and would reject them.
+    # We trust our own checkpoints. (Kwarg accepted by torch>=1.13, so safe locally.)
+    checkpoint = torch.load(path, map_location=map_location, weights_only=False)
     model.load_state_dict(checkpoint["model_state_dict"])
     print("Loaded PyTorch checkpoint from %s" % path, flush=True)
     return checkpoint
