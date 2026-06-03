@@ -1,0 +1,24 @@
+Using device: cuda
+Experiment: causal_eps50_adam20k_lbfgscont  eps=50.0  bins=32 (duration)  lbfgs=frozen
+[bins] mode=duration M=32 N=136276 per-bin count: min=4089 max=4483
+Loaded PyTorch checkpoint from results/checkpoints/causal_eps50_adam20k/latest_lbfgs.pt
+[lbfgs] frozen weights will be computed from results/checkpoints/causal_eps50_adam20k/best.pt
+=== Adam phase | 0 iters | lr=5.00e-04 | sched=none | early-stop: patience=0 warmup=0 gate(min_w>0.90) ===
+[lbfgs] frozen weights taken from --freeze-weight-checkpoint (decoupled from the L-BFGS start).
+[lbfgs] frozen: continuing Adam-final causal weights as constants (min_w=7.723e-01, max_w=1.000e+00).
+=== L-BFGS phase | max_iter=100000 | mode=frozen ===
+LBFGS 1/100000 | total=1.952e-04 true=2.180e-04 f=1.661e-04 ic=5.064e-06 wall=3.906e-06 inlet=8.575e-07 outlet=2.052e-07 | min_w=7.723e-01 | best=2.180e-04@1 | 5.6 it/s
+LBFGS 200/100000 | total=1.937e-04 true=2.162e-04 f=1.647e-04 ic=5.045e-06 wall=3.879e-06 inlet=8.611e-07 outlet=2.024e-07 | min_w=7.723e-01 | best=2.162e-04@200 | 4.7 it/s
+LBFGS 400/100000 | total=1.928e-04 true=2.152e-04 f=1.638e-04 ic=5.011e-06 wall=3.889e-06 inlet=8.600e-07 outlet=2.105e-07 | min_w=7.723e-01 | best=2.152e-04@400 | 4.7 it/s
+LBFGS 600/100000 | total=1.921e-04 true=2.144e-04 f=1.633e-04 ic=4.992e-06 wall=3.881e-06 inlet=8.401e-07 outlet=2.055e-07 | min_w=7.723e-01 | best=2.144e-04@600 | 4.7 it/s
+LBFGS 800/100000 | total=1.915e-04 true=2.137e-04 f=1.629e-04 ic=4.956e-06 wall=3.863e-06 inlet=8.269e-07 outlet=1.999e-07 | min_w=7.723e-01 | best=2.137e-04@800 | 4.7 it/s
+LBFGS 1000/100000 | total=1.909e-04 true=2.131e-04 f=1.624e-04 ic=4.968e-06 wall=3.851e-06 inlet=8.276e-07 outlet=1.985e-07 | min_w=7.723e-01 | best=2.131e-04@1000 | 4.7 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_adam20k_lbfgscont/latest_lbfgs.pt
+LBFGS 1200/100000 | total=1.905e-04 true=2.126e-04 f=1.621e-04 ic=4.913e-06 wall=3.838e-06 inlet=8.218e-07 outlet=1.948e-07 | min_w=7.723e-01 | best=2.126e-04@1200 | 4.7 it/s
+LBFGS 1400/100000 | total=1.900e-04 true=2.120e-04 f=1.616e-04 ic=4.816e-06 wall=3.852e-06 inlet=8.126e-07 outlet=1.909e-07 | min_w=7.723e-01 | best=2.120e-04@1400 | 4.7 it/s
+LBFGS 1600/100000 | total=1.894e-04 true=2.114e-04 f=1.611e-04 ic=4.774e-06 wall=3.849e-06 inlet=8.237e-07 outlet=1.904e-07 | min_w=7.723e-01 | best=2.114e-04@1600 | 4.7 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_adam20k_lbfgscont/latest_lbfgs.pt
+[lbfgs] converged after 1770 closure evals (max_iter=100000)
+=== Run summary | best true-loss=2.110e-04 @ iter 76103 | last iter=76103 | causality NOT reached | wall=6m17s ===
+--- 377.15 seconds ---
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_adam20k_lbfgscont/latest.pt

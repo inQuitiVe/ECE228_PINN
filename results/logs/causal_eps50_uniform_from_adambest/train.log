@@ -1,0 +1,411 @@
+Using device: cuda
+Experiment: causal_eps50_uniform_from_adambest  eps=50.0  bins=32 (duration)  lbfgs=uniform
+[bins] mode=duration M=32 N=136368 per-bin count: min=4093 max=4483
+Loaded PyTorch checkpoint from results/checkpoints/causal_eps50_adam20k/best.pt
+=== Adam phase | 0 iters | lr=5.00e-04 | sched=none | early-stop: patience=0 warmup=0 gate(min_w>0.90) ===
+[lbfgs] uniform: optimizing the true unweighted loss.
+=== L-BFGS phase | max_iter=100000 | mode=uniform ===
+LBFGS 1/100000 | total=7.650e-03 true=7.650e-03 f=5.634e-03 ic=1.286e-04 wall=3.193e-04 inlet=4.811e-05 outlet=5.017e-05 | min_w=1.000e+00 | best=7.650e-03@1 | 2.6 it/s
+LBFGS 200/100000 | total=7.260e-03 true=7.260e-03 f=5.093e-03 ic=1.341e-04 wall=3.402e-04 inlet=5.840e-05 outlet=3.928e-05 | min_w=1.000e+00 | best=7.260e-03@200 | 5.4 it/s
+LBFGS 400/100000 | total=6.644e-03 true=6.644e-03 f=4.872e-03 ic=1.238e-04 wall=2.798e-04 inlet=4.336e-05 outlet=3.265e-05 | min_w=1.000e+00 | best=6.644e-03@400 | 5.4 it/s
+LBFGS 600/100000 | total=6.270e-03 true=6.270e-03 f=4.676e-03 ic=1.148e-04 wall=2.511e-04 inlet=3.897e-05 outlet=2.867e-05 | min_w=1.000e+00 | best=6.270e-03@600 | 5.5 it/s
+LBFGS 800/100000 | total=5.938e-03 true=5.938e-03 f=4.467e-03 ic=8.959e-05 wall=2.394e-04 inlet=3.260e-05 outlet=2.200e-05 | min_w=1.000e+00 | best=5.938e-03@800 | 5.5 it/s
+LBFGS 1000/100000 | total=5.662e-03 true=5.662e-03 f=4.276e-03 ic=8.178e-05 wall=2.280e-04 inlet=2.918e-05 outlet=1.841e-05 | min_w=1.000e+00 | best=5.662e-03@1000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 1200/100000 | total=5.420e-03 true=5.420e-03 f=4.160e-03 ic=7.235e-05 wall=2.083e-04 inlet=2.571e-05 outlet=1.852e-05 | min_w=1.000e+00 | best=5.420e-03@1200 | 5.5 it/s
+LBFGS 1400/100000 | total=5.233e-03 true=5.233e-03 f=4.041e-03 ic=6.036e-05 wall=1.980e-04 inlet=2.460e-05 outlet=1.872e-05 | min_w=1.000e+00 | best=5.233e-03@1400 | 5.5 it/s
+LBFGS 1600/100000 | total=5.042e-03 true=5.042e-03 f=3.930e-03 ic=5.524e-05 wall=1.845e-04 inlet=2.332e-05 outlet=1.792e-05 | min_w=1.000e+00 | best=5.042e-03@1600 | 5.5 it/s
+LBFGS 1800/100000 | total=4.886e-03 true=4.886e-03 f=3.871e-03 ic=5.559e-05 wall=1.666e-04 inlet=2.141e-05 outlet=1.910e-05 | min_w=1.000e+00 | best=4.886e-03@1800 | 5.5 it/s
+LBFGS 2000/100000 | total=4.751e-03 true=4.751e-03 f=3.775e-03 ic=4.531e-05 wall=1.647e-04 inlet=1.825e-05 outlet=1.625e-05 | min_w=1.000e+00 | best=4.751e-03@2000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 2200/100000 | total=4.623e-03 true=4.623e-03 f=3.705e-03 ic=4.323e-05 wall=1.549e-04 inlet=1.698e-05 outlet=1.481e-05 | min_w=1.000e+00 | best=4.623e-03@2200 | 5.5 it/s
+LBFGS 2400/100000 | total=4.504e-03 true=4.504e-03 f=3.644e-03 ic=3.970e-05 wall=1.450e-04 inlet=1.636e-05 outlet=1.406e-05 | min_w=1.000e+00 | best=4.504e-03@2400 | 5.5 it/s
+LBFGS 2600/100000 | total=4.400e-03 true=4.400e-03 f=3.583e-03 ic=4.042e-05 wall=1.384e-04 inlet=1.431e-05 outlet=1.299e-05 | min_w=1.000e+00 | best=4.400e-03@2600 | 5.5 it/s
+LBFGS 2800/100000 | total=4.298e-03 true=4.298e-03 f=3.529e-03 ic=3.697e-05 wall=1.306e-04 inlet=1.361e-05 outlet=1.081e-05 | min_w=1.000e+00 | best=4.298e-03@2800 | 5.5 it/s
+LBFGS 3000/100000 | total=4.213e-03 true=4.213e-03 f=3.479e-03 ic=2.989e-05 wall=1.257e-04 inlet=1.293e-05 outlet=1.071e-05 | min_w=1.000e+00 | best=4.213e-03@3000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 3200/100000 | total=4.135e-03 true=4.135e-03 f=3.412e-03 ic=2.797e-05 wall=1.237e-04 inlet=1.334e-05 outlet=1.047e-05 | min_w=1.000e+00 | best=4.135e-03@3200 | 5.5 it/s
+LBFGS 3400/100000 | total=4.060e-03 true=4.060e-03 f=3.379e-03 ic=2.491e-05 wall=1.166e-04 inlet=1.279e-05 outlet=8.995e-06 | min_w=1.000e+00 | best=4.060e-03@3400 | 5.5 it/s
+LBFGS 3600/100000 | total=3.987e-03 true=3.987e-03 f=3.344e-03 ic=2.345e-05 wall=1.103e-04 inlet=1.194e-05 outlet=7.859e-06 | min_w=1.000e+00 | best=3.987e-03@3600 | 5.5 it/s
+LBFGS 3800/100000 | total=3.919e-03 true=3.919e-03 f=3.301e-03 ic=2.301e-05 wall=1.061e-04 inlet=1.143e-05 outlet=7.336e-06 | min_w=1.000e+00 | best=3.919e-03@3800 | 5.5 it/s
+LBFGS 4000/100000 | total=3.861e-03 true=3.861e-03 f=3.244e-03 ic=2.266e-05 wall=1.065e-04 inlet=1.092e-05 outlet=6.944e-06 | min_w=1.000e+00 | best=3.861e-03@4000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 4200/100000 | total=3.808e-03 true=3.808e-03 f=3.203e-03 ic=2.041e-05 wall=1.047e-04 inlet=1.080e-05 outlet=6.798e-06 | min_w=1.000e+00 | best=3.808e-03@4200 | 5.5 it/s
+LBFGS 4400/100000 | total=3.755e-03 true=3.755e-03 f=3.180e-03 ic=1.937e-05 wall=1.004e-04 inlet=9.663e-06 outlet=5.975e-06 | min_w=1.000e+00 | best=3.755e-03@4400 | 5.5 it/s
+LBFGS 4600/100000 | total=3.711e-03 true=3.711e-03 f=3.158e-03 ic=1.828e-05 wall=9.607e-05 inlet=9.868e-06 outlet=4.590e-06 | min_w=1.000e+00 | best=3.711e-03@4600 | 5.5 it/s
+LBFGS 4800/100000 | total=3.662e-03 true=3.662e-03 f=3.123e-03 ic=1.848e-05 wall=9.325e-05 inlet=1.011e-05 outlet=4.091e-06 | min_w=1.000e+00 | best=3.662e-03@4800 | 5.5 it/s
+LBFGS 5000/100000 | total=3.616e-03 true=3.616e-03 f=3.088e-03 ic=1.747e-05 wall=9.236e-05 inlet=8.996e-06 outlet=4.089e-06 | min_w=1.000e+00 | best=3.616e-03@5000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 5200/100000 | total=3.575e-03 true=3.575e-03 f=3.053e-03 ic=1.691e-05 wall=9.138e-05 inlet=8.986e-06 outlet=3.732e-06 | min_w=1.000e+00 | best=3.575e-03@5200 | 5.5 it/s
+LBFGS 5400/100000 | total=3.534e-03 true=3.534e-03 f=3.023e-03 ic=1.649e-05 wall=8.960e-05 inlet=8.707e-06 outlet=3.512e-06 | min_w=1.000e+00 | best=3.534e-03@5400 | 5.5 it/s
+LBFGS 5600/100000 | total=3.493e-03 true=3.493e-03 f=3.006e-03 ic=1.587e-05 wall=8.522e-05 inlet=8.395e-06 outlet=2.935e-06 | min_w=1.000e+00 | best=3.493e-03@5600 | 5.5 it/s
+LBFGS 5800/100000 | total=3.456e-03 true=3.456e-03 f=2.984e-03 ic=1.510e-05 wall=8.256e-05 inlet=8.259e-06 outlet=2.527e-06 | min_w=1.000e+00 | best=3.456e-03@5800 | 5.5 it/s
+LBFGS 6000/100000 | total=3.420e-03 true=3.420e-03 f=2.965e-03 ic=1.460e-05 wall=7.946e-05 inlet=8.050e-06 outlet=2.736e-06 | min_w=1.000e+00 | best=3.420e-03@6000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 6200/100000 | total=3.381e-03 true=3.381e-03 f=2.931e-03 ic=1.445e-05 wall=7.883e-05 inlet=7.656e-06 outlet=2.975e-06 | min_w=1.000e+00 | best=3.381e-03@6200 | 5.5 it/s
+LBFGS 6400/100000 | total=3.346e-03 true=3.346e-03 f=2.914e-03 ic=1.367e-05 wall=7.570e-05 inlet=7.338e-06 outlet=2.535e-06 | min_w=1.000e+00 | best=3.346e-03@6400 | 5.5 it/s
+LBFGS 6600/100000 | total=3.310e-03 true=3.310e-03 f=2.890e-03 ic=1.355e-05 wall=7.330e-05 inlet=7.468e-06 outlet=2.168e-06 | min_w=1.000e+00 | best=3.310e-03@6600 | 5.5 it/s
+LBFGS 6800/100000 | total=3.275e-03 true=3.275e-03 f=2.868e-03 ic=1.365e-05 wall=7.119e-05 inlet=6.950e-06 outlet=2.285e-06 | min_w=1.000e+00 | best=3.275e-03@6800 | 5.5 it/s
+LBFGS 7000/100000 | total=3.237e-03 true=3.237e-03 f=2.855e-03 ic=1.262e-05 wall=6.693e-05 inlet=6.559e-06 outlet=2.133e-06 | min_w=1.000e+00 | best=3.237e-03@7000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 7200/100000 | total=3.203e-03 true=3.203e-03 f=2.816e-03 ic=1.212e-05 wall=6.796e-05 inlet=6.656e-06 outlet=2.284e-06 | min_w=1.000e+00 | best=3.203e-03@7200 | 5.5 it/s
+LBFGS 7400/100000 | total=3.172e-03 true=3.172e-03 f=2.791e-03 ic=1.240e-05 wall=6.632e-05 inlet=6.811e-06 outlet=2.462e-06 | min_w=1.000e+00 | best=3.172e-03@7400 | 5.5 it/s
+LBFGS 7600/100000 | total=3.136e-03 true=3.136e-03 f=2.772e-03 ic=1.228e-05 wall=6.363e-05 inlet=6.450e-06 outlet=1.873e-06 | min_w=1.000e+00 | best=3.136e-03@7600 | 5.5 it/s
+LBFGS 7800/100000 | total=3.102e-03 true=3.102e-03 f=2.745e-03 ic=1.103e-05 wall=6.223e-05 inlet=6.589e-06 outlet=1.773e-06 | min_w=1.000e+00 | best=3.102e-03@7800 | 5.5 it/s
+LBFGS 8000/100000 | total=3.065e-03 true=3.065e-03 f=2.719e-03 ic=1.102e-05 wall=6.036e-05 inlet=6.339e-06 outlet=1.654e-06 | min_w=1.000e+00 | best=3.065e-03@8000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 8200/100000 | total=3.031e-03 true=3.031e-03 f=2.694e-03 ic=1.086e-05 wall=5.846e-05 inlet=6.558e-06 outlet=1.536e-06 | min_w=1.000e+00 | best=3.031e-03@8200 | 5.5 it/s
+LBFGS 8400/100000 | total=3.001e-03 true=3.001e-03 f=2.669e-03 ic=1.132e-05 wall=5.758e-05 inlet=6.137e-06 outlet=1.549e-06 | min_w=1.000e+00 | best=3.001e-03@8400 | 5.5 it/s
+LBFGS 8600/100000 | total=2.970e-03 true=2.970e-03 f=2.648e-03 ic=1.182e-05 wall=5.616e-05 inlet=5.580e-06 outlet=1.653e-06 | min_w=1.000e+00 | best=2.970e-03@8600 | 5.5 it/s
+LBFGS 8800/100000 | total=2.944e-03 true=2.944e-03 f=2.632e-03 ic=1.179e-05 wall=5.365e-05 inlet=5.979e-06 outlet=1.506e-06 | min_w=1.000e+00 | best=2.944e-03@8800 | 5.5 it/s
+LBFGS 9000/100000 | total=2.916e-03 true=2.916e-03 f=2.611e-03 ic=1.186e-05 wall=5.269e-05 inlet=5.696e-06 outlet=1.765e-06 | min_w=1.000e+00 | best=2.916e-03@9000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 9200/100000 | total=2.893e-03 true=2.893e-03 f=2.590e-03 ic=1.185e-05 wall=5.257e-05 inlet=5.310e-06 outlet=1.940e-06 | min_w=1.000e+00 | best=2.893e-03@9200 | 5.5 it/s
+LBFGS 9400/100000 | total=2.870e-03 true=2.870e-03 f=2.568e-03 ic=1.129e-05 wall=5.202e-05 inlet=5.653e-06 outlet=1.794e-06 | min_w=1.000e+00 | best=2.870e-03@9400 | 5.5 it/s
+LBFGS 9600/100000 | total=2.845e-03 true=2.845e-03 f=2.553e-03 ic=1.138e-05 wall=5.083e-05 inlet=4.958e-06 outlet=1.743e-06 | min_w=1.000e+00 | best=2.845e-03@9600 | 5.5 it/s
+LBFGS 9800/100000 | total=2.822e-03 true=2.822e-03 f=2.527e-03 ic=1.135e-05 wall=5.100e-05 inlet=5.304e-06 outlet=1.661e-06 | min_w=1.000e+00 | best=2.822e-03@9800 | 5.5 it/s
+LBFGS 10000/100000 | total=2.800e-03 true=2.800e-03 f=2.512e-03 ic=1.120e-05 wall=5.032e-05 inlet=4.738e-06 outlet=1.662e-06 | min_w=1.000e+00 | best=2.800e-03@10000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 10200/100000 | total=2.778e-03 true=2.778e-03 f=2.493e-03 ic=1.143e-05 wall=4.924e-05 inlet=5.000e-06 outlet=1.909e-06 | min_w=1.000e+00 | best=2.778e-03@10200 | 5.5 it/s
+LBFGS 10400/100000 | total=2.752e-03 true=2.752e-03 f=2.473e-03 ic=1.178e-05 wall=4.819e-05 inlet=4.923e-06 outlet=2.101e-06 | min_w=1.000e+00 | best=2.752e-03@10400 | 5.5 it/s
+LBFGS 10600/100000 | total=2.728e-03 true=2.728e-03 f=2.452e-03 ic=1.222e-05 wall=4.759e-05 inlet=4.867e-06 outlet=1.966e-06 | min_w=1.000e+00 | best=2.728e-03@10600 | 5.5 it/s
+LBFGS 10800/100000 | total=2.706e-03 true=2.706e-03 f=2.437e-03 ic=1.242e-05 wall=4.605e-05 inlet=4.890e-06 outlet=2.077e-06 | min_w=1.000e+00 | best=2.706e-03@10800 | 5.5 it/s
+LBFGS 11000/100000 | total=2.683e-03 true=2.683e-03 f=2.419e-03 ic=1.237e-05 wall=4.516e-05 inlet=4.848e-06 outlet=2.110e-06 | min_w=1.000e+00 | best=2.683e-03@11000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 11200/100000 | total=2.665e-03 true=2.665e-03 f=2.404e-03 ic=1.231e-05 wall=4.447e-05 inlet=4.871e-06 outlet=1.943e-06 | min_w=1.000e+00 | best=2.665e-03@11200 | 5.5 it/s
+LBFGS 11400/100000 | total=2.646e-03 true=2.646e-03 f=2.397e-03 ic=1.200e-05 wall=4.229e-05 inlet=4.872e-06 outlet=1.287e-06 | min_w=1.000e+00 | best=2.646e-03@11400 | 5.5 it/s
+LBFGS 11600/100000 | total=2.628e-03 true=2.628e-03 f=2.384e-03 ic=1.150e-05 wall=4.139e-05 inlet=4.909e-06 outlet=1.102e-06 | min_w=1.000e+00 | best=2.628e-03@11600 | 5.5 it/s
+LBFGS 11800/100000 | total=2.607e-03 true=2.607e-03 f=2.368e-03 ic=1.210e-05 wall=4.045e-05 inlet=4.643e-06 outlet=1.180e-06 | min_w=1.000e+00 | best=2.607e-03@11800 | 5.5 it/s
+LBFGS 12000/100000 | total=2.590e-03 true=2.590e-03 f=2.357e-03 ic=1.226e-05 wall=3.977e-05 inlet=4.349e-06 outlet=9.897e-07 | min_w=1.000e+00 | best=2.590e-03@12000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 12200/100000 | total=2.572e-03 true=2.572e-03 f=2.346e-03 ic=1.183e-05 wall=3.856e-05 inlet=4.210e-06 outlet=1.143e-06 | min_w=1.000e+00 | best=2.572e-03@12200 | 5.5 it/s
+LBFGS 12400/100000 | total=2.554e-03 true=2.554e-03 f=2.334e-03 ic=1.131e-05 wall=3.714e-05 inlet=4.362e-06 outlet=1.036e-06 | min_w=1.000e+00 | best=2.554e-03@12400 | 5.5 it/s
+LBFGS 12600/100000 | total=2.538e-03 true=2.538e-03 f=2.318e-03 ic=1.149e-05 wall=3.710e-05 inlet=4.289e-06 outlet=9.018e-07 | min_w=1.000e+00 | best=2.538e-03@12600 | 5.5 it/s
+LBFGS 12800/100000 | total=2.520e-03 true=2.520e-03 f=2.307e-03 ic=1.134e-05 wall=3.581e-05 inlet=4.223e-06 outlet=8.470e-07 | min_w=1.000e+00 | best=2.520e-03@12800 | 5.5 it/s
+LBFGS 13000/100000 | total=2.502e-03 true=2.502e-03 f=2.292e-03 ic=1.139e-05 wall=3.558e-05 inlet=4.050e-06 outlet=9.107e-07 | min_w=1.000e+00 | best=2.502e-03@13000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 13200/100000 | total=2.484e-03 true=2.484e-03 f=2.278e-03 ic=1.104e-05 wall=3.485e-05 inlet=3.979e-06 outlet=1.010e-06 | min_w=1.000e+00 | best=2.484e-03@13200 | 5.5 it/s
+LBFGS 13400/100000 | total=2.468e-03 true=2.468e-03 f=2.264e-03 ic=1.090e-05 wall=3.443e-05 inlet=4.138e-06 outlet=1.108e-06 | min_w=1.000e+00 | best=2.468e-03@13400 | 5.5 it/s
+LBFGS 13600/100000 | total=2.452e-03 true=2.452e-03 f=2.249e-03 ic=1.070e-05 wall=3.418e-05 inlet=4.077e-06 outlet=1.059e-06 | min_w=1.000e+00 | best=2.452e-03@13600 | 5.5 it/s
+LBFGS 13800/100000 | total=2.437e-03 true=2.437e-03 f=2.238e-03 ic=1.046e-05 wall=3.359e-05 inlet=3.887e-06 outlet=8.881e-07 | min_w=1.000e+00 | best=2.437e-03@13800 | 5.5 it/s
+LBFGS 14000/100000 | total=2.422e-03 true=2.422e-03 f=2.221e-03 ic=1.099e-05 wall=3.382e-05 inlet=3.881e-06 outlet=6.862e-07 | min_w=1.000e+00 | best=2.422e-03@14000 | 5.5 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 14200/100000 | total=2.404e-03 true=2.404e-03 f=2.211e-03 ic=1.101e-05 wall=3.241e-05 inlet=3.857e-06 outlet=6.677e-07 | min_w=1.000e+00 | best=2.404e-03@14200 | 5.5 it/s
+LBFGS 14400/100000 | total=2.389e-03 true=2.389e-03 f=2.199e-03 ic=1.036e-05 wall=3.185e-05 inlet=3.976e-06 outlet=7.974e-07 | min_w=1.000e+00 | best=2.389e-03@14400 | 5.5 it/s
+LBFGS 14600/100000 | total=2.374e-03 true=2.374e-03 f=2.179e-03 ic=9.789e-06 wall=3.266e-05 inlet=3.947e-06 outlet=1.175e-06 | min_w=1.000e+00 | best=2.374e-03@14600 | 5.5 it/s
+LBFGS 14800/100000 | total=2.358e-03 true=2.358e-03 f=2.173e-03 ic=8.891e-06 wall=3.122e-05 inlet=3.819e-06 outlet=8.065e-07 | min_w=1.000e+00 | best=2.358e-03@14800 | 5.4 it/s
+LBFGS 15000/100000 | total=2.342e-03 true=2.342e-03 f=2.159e-03 ic=8.830e-06 wall=3.068e-05 inlet=3.985e-06 outlet=8.039e-07 | min_w=1.000e+00 | best=2.342e-03@15000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 15200/100000 | total=2.327e-03 true=2.327e-03 f=2.147e-03 ic=8.801e-06 wall=3.021e-05 inlet=3.870e-06 outlet=9.029e-07 | min_w=1.000e+00 | best=2.327e-03@15200 | 5.4 it/s
+LBFGS 15400/100000 | total=2.310e-03 true=2.310e-03 f=2.132e-03 ic=9.136e-06 wall=2.967e-05 inlet=3.956e-06 outlet=7.780e-07 | min_w=1.000e+00 | best=2.310e-03@15400 | 5.4 it/s
+LBFGS 15600/100000 | total=2.291e-03 true=2.291e-03 f=2.118e-03 ic=9.595e-06 wall=2.866e-05 inlet=3.854e-06 outlet=1.033e-06 | min_w=1.000e+00 | best=2.291e-03@15600 | 5.4 it/s
+LBFGS 15800/100000 | total=2.269e-03 true=2.269e-03 f=2.096e-03 ic=9.726e-06 wall=2.864e-05 inlet=3.925e-06 outlet=9.683e-07 | min_w=1.000e+00 | best=2.269e-03@15800 | 5.4 it/s
+LBFGS 16000/100000 | total=2.246e-03 true=2.246e-03 f=2.078e-03 ic=9.552e-06 wall=2.781e-05 inlet=3.623e-06 outlet=8.128e-07 | min_w=1.000e+00 | best=2.246e-03@16000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 16200/100000 | total=2.222e-03 true=2.222e-03 f=2.062e-03 ic=9.618e-06 wall=2.630e-05 inlet=3.587e-06 outlet=7.638e-07 | min_w=1.000e+00 | best=2.222e-03@16200 | 5.4 it/s
+LBFGS 16400/100000 | total=2.200e-03 true=2.200e-03 f=2.040e-03 ic=9.258e-06 wall=2.598e-05 inlet=4.038e-06 outlet=7.565e-07 | min_w=1.000e+00 | best=2.200e-03@16399 | 5.4 it/s
+LBFGS 16600/100000 | total=2.174e-03 true=2.174e-03 f=2.020e-03 ic=9.111e-06 wall=2.511e-05 inlet=3.795e-06 outlet=1.244e-06 | min_w=1.000e+00 | best=2.174e-03@16600 | 5.4 it/s
+LBFGS 16800/100000 | total=2.145e-03 true=2.145e-03 f=1.990e-03 ic=9.332e-06 wall=2.525e-05 inlet=3.607e-06 outlet=1.615e-06 | min_w=1.000e+00 | best=2.145e-03@16800 | 5.4 it/s
+LBFGS 17000/100000 | total=2.112e-03 true=2.112e-03 f=1.962e-03 ic=9.651e-06 wall=2.444e-05 inlet=3.389e-06 outlet=1.265e-06 | min_w=1.000e+00 | best=2.112e-03@17000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 17200/100000 | total=2.077e-03 true=2.077e-03 f=1.930e-03 ic=9.079e-06 wall=2.391e-05 inlet=3.430e-06 outlet=8.694e-07 | min_w=1.000e+00 | best=2.077e-03@17200 | 5.4 it/s
+LBFGS 17400/100000 | total=2.044e-03 true=2.044e-03 f=1.899e-03 ic=9.202e-06 wall=2.366e-05 inlet=3.320e-06 outlet=7.404e-07 | min_w=1.000e+00 | best=2.044e-03@17400 | 5.4 it/s
+LBFGS 17600/100000 | total=2.011e-03 true=2.011e-03 f=1.875e-03 ic=9.313e-06 wall=2.168e-05 inlet=3.384e-06 outlet=8.742e-07 | min_w=1.000e+00 | best=2.011e-03@17600 | 5.4 it/s
+LBFGS 17800/100000 | total=1.974e-03 true=1.974e-03 f=1.835e-03 ic=9.633e-06 wall=2.236e-05 inlet=3.307e-06 outlet=9.360e-07 | min_w=1.000e+00 | best=1.974e-03@17800 | 5.4 it/s
+LBFGS 18000/100000 | total=1.938e-03 true=1.938e-03 f=1.797e-03 ic=1.003e-05 wall=2.244e-05 inlet=3.599e-06 outlet=7.032e-07 | min_w=1.000e+00 | best=1.938e-03@18000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 18200/100000 | total=1.902e-03 true=1.902e-03 f=1.767e-03 ic=9.647e-06 wall=2.112e-05 inlet=3.675e-06 outlet=6.818e-07 | min_w=1.000e+00 | best=1.902e-03@18200 | 5.4 it/s
+LBFGS 18400/100000 | total=1.864e-03 true=1.864e-03 f=1.734e-03 ic=9.060e-06 wall=2.041e-05 inlet=3.623e-06 outlet=8.809e-07 | min_w=1.000e+00 | best=1.864e-03@18399 | 5.4 it/s
+LBFGS 18600/100000 | total=1.827e-03 true=1.827e-03 f=1.701e-03 ic=9.244e-06 wall=1.951e-05 inlet=3.567e-06 outlet=1.146e-06 | min_w=1.000e+00 | best=1.827e-03@18600 | 5.4 it/s
+LBFGS 18800/100000 | total=1.792e-03 true=1.792e-03 f=1.667e-03 ic=9.559e-06 wall=1.930e-05 inlet=3.689e-06 outlet=1.474e-06 | min_w=1.000e+00 | best=1.792e-03@18800 | 5.4 it/s
+LBFGS 19000/100000 | total=1.756e-03 true=1.756e-03 f=1.630e-03 ic=9.423e-06 wall=1.922e-05 inlet=3.866e-06 outlet=1.646e-06 | min_w=1.000e+00 | best=1.756e-03@19000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 19200/100000 | total=1.719e-03 true=1.719e-03 f=1.600e-03 ic=8.873e-06 wall=1.807e-05 inlet=3.614e-06 outlet=1.671e-06 | min_w=1.000e+00 | best=1.719e-03@19200 | 5.4 it/s
+LBFGS 19400/100000 | total=1.686e-03 true=1.686e-03 f=1.570e-03 ic=8.279e-06 wall=1.754e-05 inlet=3.641e-06 outlet=2.046e-06 | min_w=1.000e+00 | best=1.686e-03@19400 | 5.4 it/s
+LBFGS 19600/100000 | total=1.652e-03 true=1.652e-03 f=1.536e-03 ic=7.970e-06 wall=1.750e-05 inlet=3.752e-06 outlet=2.067e-06 | min_w=1.000e+00 | best=1.652e-03@19600 | 5.4 it/s
+LBFGS 19800/100000 | total=1.627e-03 true=1.627e-03 f=1.510e-03 ic=8.028e-06 wall=1.750e-05 inlet=3.735e-06 outlet=2.173e-06 | min_w=1.000e+00 | best=1.627e-03@19800 | 5.4 it/s
+LBFGS 20000/100000 | total=1.598e-03 true=1.598e-03 f=1.484e-03 ic=7.556e-06 wall=1.722e-05 inlet=3.794e-06 outlet=2.314e-06 | min_w=1.000e+00 | best=1.598e-03@20000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 20200/100000 | total=1.571e-03 true=1.571e-03 f=1.460e-03 ic=7.425e-06 wall=1.671e-05 inlet=3.559e-06 outlet=2.103e-06 | min_w=1.000e+00 | best=1.571e-03@20200 | 5.4 it/s
+LBFGS 20400/100000 | total=1.544e-03 true=1.544e-03 f=1.438e-03 ic=7.834e-06 wall=1.583e-05 inlet=3.413e-06 outlet=1.957e-06 | min_w=1.000e+00 | best=1.544e-03@20400 | 5.4 it/s
+LBFGS 20600/100000 | total=1.520e-03 true=1.520e-03 f=1.415e-03 ic=7.792e-06 wall=1.545e-05 inlet=3.671e-06 outlet=1.583e-06 | min_w=1.000e+00 | best=1.520e-03@20600 | 5.4 it/s
+LBFGS 20800/100000 | total=1.494e-03 true=1.494e-03 f=1.391e-03 ic=8.053e-06 wall=1.511e-05 inlet=3.481e-06 outlet=1.693e-06 | min_w=1.000e+00 | best=1.494e-03@20800 | 5.4 it/s
+LBFGS 21000/100000 | total=1.470e-03 true=1.470e-03 f=1.366e-03 ic=8.273e-06 wall=1.505e-05 inlet=3.678e-06 outlet=1.698e-06 | min_w=1.000e+00 | best=1.470e-03@21000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 21200/100000 | total=1.444e-03 true=1.444e-03 f=1.340e-03 ic=8.545e-06 wall=1.517e-05 inlet=3.707e-06 outlet=1.407e-06 | min_w=1.000e+00 | best=1.444e-03@21200 | 5.4 it/s
+LBFGS 21400/100000 | total=1.419e-03 true=1.419e-03 f=1.316e-03 ic=8.466e-06 wall=1.531e-05 inlet=3.361e-06 outlet=1.461e-06 | min_w=1.000e+00 | best=1.419e-03@21400 | 5.4 it/s
+LBFGS 21600/100000 | total=1.397e-03 true=1.397e-03 f=1.294e-03 ic=8.629e-06 wall=1.493e-05 inlet=3.631e-06 outlet=1.245e-06 | min_w=1.000e+00 | best=1.395e-03@21599 | 5.4 it/s
+LBFGS 21800/100000 | total=1.372e-03 true=1.372e-03 f=1.269e-03 ic=9.216e-06 wall=1.500e-05 inlet=3.447e-06 outlet=1.454e-06 | min_w=1.000e+00 | best=1.372e-03@21800 | 5.4 it/s
+LBFGS 22000/100000 | total=1.348e-03 true=1.348e-03 f=1.245e-03 ic=9.262e-06 wall=1.494e-05 inlet=3.452e-06 outlet=1.637e-06 | min_w=1.000e+00 | best=1.348e-03@22000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 22200/100000 | total=1.326e-03 true=1.326e-03 f=1.224e-03 ic=8.448e-06 wall=1.496e-05 inlet=3.488e-06 outlet=1.973e-06 | min_w=1.000e+00 | best=1.326e-03@22200 | 5.4 it/s
+LBFGS 22400/100000 | total=1.306e-03 true=1.306e-03 f=1.202e-03 ic=8.583e-06 wall=1.528e-05 inlet=3.508e-06 outlet=1.464e-06 | min_w=1.000e+00 | best=1.306e-03@22400 | 5.4 it/s
+LBFGS 22600/100000 | total=1.287e-03 true=1.287e-03 f=1.184e-03 ic=8.797e-06 wall=1.506e-05 inlet=3.625e-06 outlet=1.369e-06 | min_w=1.000e+00 | best=1.287e-03@22600 | 5.4 it/s
+LBFGS 22800/100000 | total=1.270e-03 true=1.270e-03 f=1.166e-03 ic=9.083e-06 wall=1.511e-05 inlet=3.526e-06 outlet=1.207e-06 | min_w=1.000e+00 | best=1.270e-03@22800 | 5.4 it/s
+LBFGS 23000/100000 | total=1.252e-03 true=1.252e-03 f=1.150e-03 ic=9.261e-06 wall=1.469e-05 inlet=3.484e-06 outlet=1.083e-06 | min_w=1.000e+00 | best=1.252e-03@23000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 23200/100000 | total=1.231e-03 true=1.231e-03 f=1.131e-03 ic=9.489e-06 wall=1.442e-05 inlet=3.499e-06 outlet=9.472e-07 | min_w=1.000e+00 | best=1.231e-03@23200 | 5.4 it/s
+LBFGS 23400/100000 | total=1.212e-03 true=1.212e-03 f=1.117e-03 ic=9.404e-06 wall=1.377e-05 inlet=3.333e-06 outlet=8.096e-07 | min_w=1.000e+00 | best=1.212e-03@23400 | 5.4 it/s
+LBFGS 23600/100000 | total=1.194e-03 true=1.194e-03 f=1.096e-03 ic=9.745e-06 wall=1.402e-05 inlet=3.384e-06 outlet=8.964e-07 | min_w=1.000e+00 | best=1.194e-03@23600 | 5.4 it/s
+LBFGS 23800/100000 | total=1.176e-03 true=1.176e-03 f=1.080e-03 ic=9.438e-06 wall=1.398e-05 inlet=3.134e-06 outlet=8.984e-07 | min_w=1.000e+00 | best=1.176e-03@23800 | 5.4 it/s
+LBFGS 24000/100000 | total=1.158e-03 true=1.158e-03 f=1.064e-03 ic=9.709e-06 wall=1.350e-05 inlet=3.195e-06 outlet=1.092e-06 | min_w=1.000e+00 | best=1.158e-03@24000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 24200/100000 | total=1.138e-03 true=1.138e-03 f=1.047e-03 ic=1.055e-05 wall=1.291e-05 inlet=3.101e-06 outlet=1.125e-06 | min_w=1.000e+00 | best=1.138e-03@24200 | 5.4 it/s
+LBFGS 24400/100000 | total=1.121e-03 true=1.121e-03 f=1.027e-03 ic=1.064e-05 wall=1.342e-05 inlet=3.095e-06 outlet=9.120e-07 | min_w=1.000e+00 | best=1.121e-03@24400 | 5.4 it/s
+LBFGS 24600/100000 | total=1.104e-03 true=1.104e-03 f=1.010e-03 ic=1.054e-05 wall=1.344e-05 inlet=2.944e-06 outlet=9.916e-07 | min_w=1.000e+00 | best=1.104e-03@24600 | 5.4 it/s
+LBFGS 24800/100000 | total=1.086e-03 true=1.086e-03 f=9.926e-04 ic=1.039e-05 wall=1.346e-05 inlet=2.882e-06 outlet=1.047e-06 | min_w=1.000e+00 | best=1.086e-03@24800 | 5.4 it/s
+LBFGS 25000/100000 | total=1.068e-03 true=1.068e-03 f=9.725e-04 ic=1.035e-05 wall=1.366e-05 inlet=3.152e-06 outlet=1.190e-06 | min_w=1.000e+00 | best=1.068e-03@25000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 25200/100000 | total=1.054e-03 true=1.054e-03 f=9.587e-04 ic=1.022e-05 wall=1.358e-05 inlet=3.105e-06 outlet=1.401e-06 | min_w=1.000e+00 | best=1.054e-03@25200 | 5.4 it/s
+LBFGS 25400/100000 | total=1.038e-03 true=1.038e-03 f=9.450e-04 ic=1.039e-05 wall=1.301e-05 inlet=3.193e-06 outlet=1.420e-06 | min_w=1.000e+00 | best=1.038e-03@25400 | 5.4 it/s
+LBFGS 25600/100000 | total=1.023e-03 true=1.023e-03 f=9.328e-04 ic=9.982e-06 wall=1.255e-05 inlet=3.180e-06 outlet=1.505e-06 | min_w=1.000e+00 | best=1.023e-03@25600 | 5.4 it/s
+LBFGS 25800/100000 | total=1.009e-03 true=1.009e-03 f=9.201e-04 ic=9.340e-06 wall=1.252e-05 inlet=3.052e-06 outlet=1.654e-06 | min_w=1.000e+00 | best=1.009e-03@25800 | 5.4 it/s
+LBFGS 26000/100000 | total=9.938e-04 true=9.938e-04 f=9.060e-04 ic=9.509e-06 wall=1.247e-05 inlet=2.785e-06 outlet=1.971e-06 | min_w=1.000e+00 | best=9.938e-04@26000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 26200/100000 | total=9.787e-04 true=9.787e-04 f=8.911e-04 ic=9.648e-06 wall=1.223e-05 inlet=2.923e-06 outlet=2.164e-06 | min_w=1.000e+00 | best=9.787e-04@26200 | 5.4 it/s
+LBFGS 26400/100000 | total=9.648e-04 true=9.648e-04 f=8.775e-04 ic=9.758e-06 wall=1.197e-05 inlet=3.123e-06 outlet=2.078e-06 | min_w=1.000e+00 | best=9.648e-04@26400 | 5.4 it/s
+LBFGS 26600/100000 | total=9.510e-04 true=9.510e-04 f=8.656e-04 ic=9.937e-06 wall=1.172e-05 inlet=2.965e-06 outlet=2.037e-06 | min_w=1.000e+00 | best=9.510e-04@26600 | 5.4 it/s
+LBFGS 26800/100000 | total=9.385e-04 true=9.385e-04 f=8.551e-04 ic=9.269e-06 wall=1.145e-05 inlet=3.009e-06 outlet=1.793e-06 | min_w=1.000e+00 | best=9.385e-04@26800 | 5.4 it/s
+LBFGS 27000/100000 | total=9.262e-04 true=9.262e-04 f=8.442e-04 ic=9.479e-06 wall=1.135e-05 inlet=2.817e-06 outlet=1.633e-06 | min_w=1.000e+00 | best=9.262e-04@27000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 27200/100000 | total=9.132e-04 true=9.132e-04 f=8.323e-04 ic=9.352e-06 wall=1.118e-05 inlet=2.833e-06 outlet=1.453e-06 | min_w=1.000e+00 | best=9.132e-04@27200 | 5.4 it/s
+LBFGS 27400/100000 | total=9.008e-04 true=9.008e-04 f=8.217e-04 ic=9.222e-06 wall=1.099e-05 inlet=2.723e-06 outlet=1.333e-06 | min_w=1.000e+00 | best=9.008e-04@27400 | 5.4 it/s
+LBFGS 27600/100000 | total=8.864e-04 true=8.864e-04 f=8.092e-04 ic=9.224e-06 wall=1.070e-05 inlet=2.630e-06 outlet=1.286e-06 | min_w=1.000e+00 | best=8.864e-04@27600 | 5.4 it/s
+LBFGS 27800/100000 | total=8.727e-04 true=8.727e-04 f=7.982e-04 ic=8.810e-06 wall=1.031e-05 inlet=2.564e-06 outlet=1.212e-06 | min_w=1.000e+00 | best=8.727e-04@27800 | 5.4 it/s
+LBFGS 28000/100000 | total=8.591e-04 true=8.591e-04 f=7.852e-04 ic=8.742e-06 wall=1.030e-05 inlet=2.517e-06 outlet=1.116e-06 | min_w=1.000e+00 | best=8.591e-04@28000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 28200/100000 | total=8.469e-04 true=8.469e-04 f=7.725e-04 ic=8.571e-06 wall=1.052e-05 inlet=2.422e-06 outlet=1.183e-06 | min_w=1.000e+00 | best=8.469e-04@28200 | 5.4 it/s
+LBFGS 28400/100000 | total=8.342e-04 true=8.342e-04 f=7.596e-04 ic=8.315e-06 wall=1.061e-05 inlet=2.403e-06 outlet=1.213e-06 | min_w=1.000e+00 | best=8.342e-04@28400 | 5.4 it/s
+LBFGS 28600/100000 | total=8.213e-04 true=8.213e-04 f=7.469e-04 ic=8.292e-06 wall=1.070e-05 inlet=2.272e-06 outlet=1.259e-06 | min_w=1.000e+00 | best=8.213e-04@28600 | 5.4 it/s
+LBFGS 28800/100000 | total=8.088e-04 true=8.088e-04 f=7.346e-04 ic=8.484e-06 wall=1.057e-05 inlet=2.371e-06 outlet=1.066e-06 | min_w=1.000e+00 | best=8.088e-04@28800 | 5.4 it/s
+LBFGS 29000/100000 | total=7.964e-04 true=7.964e-04 f=7.221e-04 ic=8.632e-06 wall=1.053e-05 inlet=2.389e-06 outlet=1.092e-06 | min_w=1.000e+00 | best=7.964e-04@29000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 29200/100000 | total=7.861e-04 true=7.861e-04 f=7.130e-04 ic=8.555e-06 wall=1.041e-05 inlet=2.323e-06 outlet=9.416e-07 | min_w=1.000e+00 | best=7.861e-04@29200 | 5.4 it/s
+LBFGS 29400/100000 | total=7.754e-04 true=7.754e-04 f=7.027e-04 ic=8.506e-06 wall=1.041e-05 inlet=2.248e-06 outlet=8.561e-07 | min_w=1.000e+00 | best=7.754e-04@29400 | 5.4 it/s
+LBFGS 29600/100000 | total=7.648e-04 true=7.648e-04 f=6.938e-04 ic=8.078e-06 wall=1.027e-05 inlet=2.162e-06 outlet=7.778e-07 | min_w=1.000e+00 | best=7.648e-04@29600 | 5.4 it/s
+LBFGS 29800/100000 | total=7.556e-04 true=7.556e-04 f=6.841e-04 ic=8.109e-06 wall=1.020e-05 inlet=2.324e-06 outlet=7.478e-07 | min_w=1.000e+00 | best=7.556e-04@29800 | 5.4 it/s
+LBFGS 30000/100000 | total=7.456e-04 true=7.456e-04 f=6.756e-04 ic=8.243e-06 wall=9.978e-06 inlet=2.214e-06 outlet=7.040e-07 | min_w=1.000e+00 | best=7.456e-04@30000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 30200/100000 | total=7.364e-04 true=7.364e-04 f=6.663e-04 ic=8.731e-06 wall=9.934e-06 inlet=2.210e-06 outlet=6.974e-07 | min_w=1.000e+00 | best=7.364e-04@30200 | 5.4 it/s
+LBFGS 30400/100000 | total=7.265e-04 true=7.265e-04 f=6.567e-04 ic=8.987e-06 wall=9.885e-06 inlet=2.139e-06 outlet=6.688e-07 | min_w=1.000e+00 | best=7.265e-04@30400 | 5.4 it/s
+LBFGS 30600/100000 | total=7.171e-04 true=7.171e-04 f=6.481e-04 ic=9.143e-06 wall=9.590e-06 inlet=2.213e-06 outlet=8.191e-07 | min_w=1.000e+00 | best=7.171e-04@30600 | 5.4 it/s
+LBFGS 30800/100000 | total=7.068e-04 true=7.068e-04 f=6.385e-04 ic=8.824e-06 wall=9.462e-06 inlet=2.246e-06 outlet=9.379e-07 | min_w=1.000e+00 | best=7.068e-04@30800 | 5.4 it/s
+LBFGS 31000/100000 | total=6.984e-04 true=6.984e-04 f=6.296e-04 ic=8.739e-06 wall=9.455e-06 inlet=2.371e-06 outlet=9.569e-07 | min_w=1.000e+00 | best=6.984e-04@31000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 31200/100000 | total=6.892e-04 true=6.892e-04 f=6.195e-04 ic=8.657e-06 wall=9.658e-06 inlet=2.336e-06 outlet=1.024e-06 | min_w=1.000e+00 | best=6.892e-04@31200 | 5.4 it/s
+LBFGS 31400/100000 | total=6.798e-04 true=6.798e-04 f=6.112e-04 ic=8.794e-06 wall=9.455e-06 inlet=2.295e-06 outlet=1.087e-06 | min_w=1.000e+00 | best=6.798e-04@31400 | 5.4 it/s
+LBFGS 31600/100000 | total=6.709e-04 true=6.709e-04 f=6.022e-04 ic=8.957e-06 wall=9.488e-06 inlet=2.233e-06 outlet=1.139e-06 | min_w=1.000e+00 | best=6.709e-04@31600 | 5.4 it/s
+LBFGS 31800/100000 | total=6.606e-04 true=6.606e-04 f=5.936e-04 ic=8.777e-06 wall=9.303e-06 inlet=2.159e-06 outlet=9.319e-07 | min_w=1.000e+00 | best=6.606e-04@31800 | 5.4 it/s
+LBFGS 32000/100000 | total=6.501e-04 true=6.501e-04 f=5.843e-04 ic=8.553e-06 wall=9.211e-06 inlet=2.086e-06 outlet=8.046e-07 | min_w=1.000e+00 | best=6.501e-04@32000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 32200/100000 | total=6.411e-04 true=6.411e-04 f=5.749e-04 ic=8.445e-06 wall=9.183e-06 inlet=2.190e-06 outlet=9.277e-07 | min_w=1.000e+00 | best=6.411e-04@32200 | 5.4 it/s
+LBFGS 32400/100000 | total=6.310e-04 true=6.310e-04 f=5.651e-04 ic=8.487e-06 wall=9.006e-06 inlet=2.282e-06 outlet=9.580e-07 | min_w=1.000e+00 | best=6.310e-04@32400 | 5.4 it/s
+LBFGS 32600/100000 | total=6.219e-04 true=6.219e-04 f=5.564e-04 ic=8.434e-06 wall=8.992e-06 inlet=2.266e-06 outlet=8.107e-07 | min_w=1.000e+00 | best=6.219e-04@32600 | 5.4 it/s
+LBFGS 32800/100000 | total=6.127e-04 true=6.127e-04 f=5.469e-04 ic=8.664e-06 wall=8.880e-06 inlet=2.398e-06 outlet=7.526e-07 | min_w=1.000e+00 | best=6.127e-04@32800 | 5.4 it/s
+LBFGS 33000/100000 | total=6.054e-04 true=6.054e-04 f=5.401e-04 ic=8.710e-06 wall=8.891e-06 inlet=2.319e-06 outlet=5.595e-07 | min_w=1.000e+00 | best=6.054e-04@33000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 33200/100000 | total=5.963e-04 true=5.963e-04 f=5.306e-04 ic=8.821e-06 wall=8.926e-06 inlet=2.354e-06 outlet=5.612e-07 | min_w=1.000e+00 | best=5.963e-04@33200 | 5.4 it/s
+LBFGS 33400/100000 | total=5.878e-04 true=5.878e-04 f=5.213e-04 ic=8.785e-06 wall=9.107e-06 inlet=2.321e-06 outlet=5.262e-07 | min_w=1.000e+00 | best=5.878e-04@33400 | 5.4 it/s
+LBFGS 33600/100000 | total=5.792e-04 true=5.792e-04 f=5.127e-04 ic=8.633e-06 wall=9.092e-06 inlet=2.373e-06 outlet=5.130e-07 | min_w=1.000e+00 | best=5.792e-04@33600 | 5.4 it/s
+LBFGS 33800/100000 | total=5.709e-04 true=5.709e-04 f=5.042e-04 ic=8.498e-06 wall=8.996e-06 inlet=2.525e-06 outlet=5.867e-07 | min_w=1.000e+00 | best=5.709e-04@33800 | 5.4 it/s
+LBFGS 34000/100000 | total=5.629e-04 true=5.629e-04 f=4.963e-04 ic=8.335e-06 wall=8.968e-06 inlet=2.558e-06 outlet=6.254e-07 | min_w=1.000e+00 | best=5.629e-04@34000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 34200/100000 | total=5.554e-04 true=5.554e-04 f=4.897e-04 ic=8.312e-06 wall=8.833e-06 inlet=2.522e-06 outlet=5.833e-07 | min_w=1.000e+00 | best=5.554e-04@34200 | 5.4 it/s
+LBFGS 34400/100000 | total=5.473e-04 true=5.473e-04 f=4.819e-04 ic=8.161e-06 wall=8.823e-06 inlet=2.520e-06 outlet=5.060e-07 | min_w=1.000e+00 | best=5.473e-04@34400 | 5.4 it/s
+LBFGS 34600/100000 | total=5.398e-04 true=5.398e-04 f=4.738e-04 ic=8.200e-06 wall=8.881e-06 inlet=2.593e-06 outlet=5.141e-07 | min_w=1.000e+00 | best=5.398e-04@34600 | 5.4 it/s
+LBFGS 34800/100000 | total=5.328e-04 true=5.328e-04 f=4.678e-04 ic=8.079e-06 wall=8.764e-06 inlet=2.530e-06 outlet=4.803e-07 | min_w=1.000e+00 | best=5.328e-04@34800 | 5.4 it/s
+LBFGS 35000/100000 | total=5.261e-04 true=5.261e-04 f=4.623e-04 ic=7.947e-06 wall=8.609e-06 inlet=2.473e-06 outlet=4.468e-07 | min_w=1.000e+00 | best=5.261e-04@35000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 35200/100000 | total=5.180e-04 true=5.180e-04 f=4.553e-04 ic=7.846e-06 wall=8.452e-06 inlet=2.421e-06 outlet=5.015e-07 | min_w=1.000e+00 | best=5.180e-04@35200 | 5.4 it/s
+LBFGS 35400/100000 | total=5.112e-04 true=5.112e-04 f=4.489e-04 ic=7.694e-06 wall=8.384e-06 inlet=2.428e-06 outlet=5.458e-07 | min_w=1.000e+00 | best=5.112e-04@35400 | 5.4 it/s
+LBFGS 35600/100000 | total=5.042e-04 true=5.042e-04 f=4.425e-04 ic=7.619e-06 wall=8.360e-06 inlet=2.321e-06 outlet=6.441e-07 | min_w=1.000e+00 | best=5.042e-04@35600 | 5.4 it/s
+LBFGS 35800/100000 | total=4.977e-04 true=4.977e-04 f=4.370e-04 ic=7.455e-06 wall=8.277e-06 inlet=2.240e-06 outlet=6.660e-07 | min_w=1.000e+00 | best=4.977e-04@35800 | 5.4 it/s
+LBFGS 36000/100000 | total=4.916e-04 true=4.916e-04 f=4.312e-04 ic=7.318e-06 wall=8.260e-06 inlet=2.229e-06 outlet=6.494e-07 | min_w=1.000e+00 | best=4.916e-04@36000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 36200/100000 | total=4.848e-04 true=4.848e-04 f=4.249e-04 ic=7.295e-06 wall=8.227e-06 inlet=2.147e-06 outlet=7.533e-07 | min_w=1.000e+00 | best=4.848e-04@36200 | 5.4 it/s
+LBFGS 36400/100000 | total=4.772e-04 true=4.772e-04 f=4.182e-04 ic=7.083e-06 wall=8.128e-06 inlet=2.116e-06 outlet=7.431e-07 | min_w=1.000e+00 | best=4.772e-04@36400 | 5.4 it/s
+LBFGS 36600/100000 | total=4.701e-04 true=4.701e-04 f=4.116e-04 ic=6.845e-06 wall=8.098e-06 inlet=2.078e-06 outlet=7.663e-07 | min_w=1.000e+00 | best=4.701e-04@36600 | 5.4 it/s
+LBFGS 36800/100000 | total=4.632e-04 true=4.632e-04 f=4.052e-04 ic=6.628e-06 wall=8.052e-06 inlet=2.060e-06 outlet=8.224e-07 | min_w=1.000e+00 | best=4.631e-04@36799 | 5.4 it/s
+LBFGS 37000/100000 | total=4.565e-04 true=4.565e-04 f=3.985e-04 ic=6.476e-06 wall=8.062e-06 inlet=2.095e-06 outlet=7.493e-07 | min_w=1.000e+00 | best=4.565e-04@37000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 37200/100000 | total=4.502e-04 true=4.502e-04 f=3.926e-04 ic=6.281e-06 wall=8.041e-06 inlet=2.091e-06 outlet=6.829e-07 | min_w=1.000e+00 | best=4.502e-04@37199 | 5.4 it/s
+LBFGS 37400/100000 | total=4.442e-04 true=4.442e-04 f=3.872e-04 ic=6.018e-06 wall=8.031e-06 inlet=2.040e-06 outlet=6.711e-07 | min_w=1.000e+00 | best=4.442e-04@37400 | 5.4 it/s
+LBFGS 37600/100000 | total=4.382e-04 true=4.382e-04 f=3.818e-04 ic=6.129e-06 wall=7.875e-06 inlet=2.053e-06 outlet=6.877e-07 | min_w=1.000e+00 | best=4.382e-04@37599 | 5.4 it/s
+LBFGS 37800/100000 | total=4.323e-04 true=4.323e-04 f=3.763e-04 ic=6.087e-06 wall=7.846e-06 inlet=2.023e-06 outlet=5.819e-07 | min_w=1.000e+00 | best=4.323e-04@37800 | 5.4 it/s
+LBFGS 38000/100000 | total=4.268e-04 true=4.268e-04 f=3.714e-04 ic=5.997e-06 wall=7.760e-06 inlet=2.012e-06 outlet=5.383e-07 | min_w=1.000e+00 | best=4.268e-04@38000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 38200/100000 | total=4.219e-04 true=4.219e-04 f=3.665e-04 ic=6.209e-06 wall=7.724e-06 inlet=2.005e-06 outlet=5.631e-07 | min_w=1.000e+00 | best=4.219e-04@38200 | 5.4 it/s
+LBFGS 38400/100000 | total=4.162e-04 true=4.162e-04 f=3.610e-04 ic=6.284e-06 wall=7.660e-06 inlet=1.988e-06 outlet=6.286e-07 | min_w=1.000e+00 | best=4.162e-04@38400 | 5.4 it/s
+LBFGS 38600/100000 | total=4.123e-04 true=4.123e-04 f=3.576e-04 ic=6.421e-06 wall=7.608e-06 inlet=1.920e-06 outlet=5.877e-07 | min_w=1.000e+00 | best=4.123e-04@38600 | 5.4 it/s
+LBFGS 38800/100000 | total=4.073e-04 true=4.073e-04 f=3.535e-04 ic=6.389e-06 wall=7.487e-06 inlet=1.881e-06 outlet=5.124e-07 | min_w=1.000e+00 | best=4.073e-04@38800 | 5.4 it/s
+LBFGS 39000/100000 | total=4.026e-04 true=4.026e-04 f=3.492e-04 ic=6.354e-06 wall=7.441e-06 inlet=1.856e-06 outlet=5.081e-07 | min_w=1.000e+00 | best=4.026e-04@39000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 39200/100000 | total=3.978e-04 true=3.978e-04 f=3.447e-04 ic=6.448e-06 wall=7.354e-06 inlet=1.864e-06 outlet=5.468e-07 | min_w=1.000e+00 | best=3.978e-04@39200 | 5.4 it/s
+LBFGS 39400/100000 | total=3.934e-04 true=3.934e-04 f=3.407e-04 ic=6.327e-06 wall=7.279e-06 inlet=1.906e-06 outlet=5.204e-07 | min_w=1.000e+00 | best=3.934e-04@39400 | 5.4 it/s
+LBFGS 39600/100000 | total=3.890e-04 true=3.890e-04 f=3.370e-04 ic=6.095e-06 wall=7.151e-06 inlet=1.927e-06 outlet=5.403e-07 | min_w=1.000e+00 | best=3.890e-04@39600 | 5.4 it/s
+LBFGS 39800/100000 | total=3.852e-04 true=3.852e-04 f=3.338e-04 ic=6.020e-06 wall=7.129e-06 inlet=1.844e-06 outlet=5.280e-07 | min_w=1.000e+00 | best=3.852e-04@39800 | 5.4 it/s
+LBFGS 40000/100000 | total=3.809e-04 true=3.809e-04 f=3.299e-04 ic=5.751e-06 wall=7.103e-06 inlet=1.832e-06 outlet=5.142e-07 | min_w=1.000e+00 | best=3.809e-04@40000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 40200/100000 | total=3.767e-04 true=3.767e-04 f=3.263e-04 ic=5.539e-06 wall=7.060e-06 inlet=1.819e-06 outlet=4.455e-07 | min_w=1.000e+00 | best=3.767e-04@40200 | 5.4 it/s
+LBFGS 40400/100000 | total=3.728e-04 true=3.728e-04 f=3.228e-04 ic=5.363e-06 wall=7.068e-06 inlet=1.773e-06 outlet=4.425e-07 | min_w=1.000e+00 | best=3.728e-04@40400 | 5.4 it/s
+LBFGS 40600/100000 | total=3.695e-04 true=3.695e-04 f=3.202e-04 ic=5.375e-06 wall=7.009e-06 inlet=1.690e-06 outlet=4.441e-07 | min_w=1.000e+00 | best=3.695e-04@40600 | 5.4 it/s
+LBFGS 40800/100000 | total=3.655e-04 true=3.655e-04 f=3.166e-04 ic=5.343e-06 wall=6.951e-06 inlet=1.680e-06 outlet=4.613e-07 | min_w=1.000e+00 | best=3.655e-04@40800 | 5.4 it/s
+LBFGS 41000/100000 | total=3.615e-04 true=3.615e-04 f=3.130e-04 ic=5.338e-06 wall=6.880e-06 inlet=1.664e-06 outlet=4.630e-07 | min_w=1.000e+00 | best=3.615e-04@41000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 41200/100000 | total=3.577e-04 true=3.577e-04 f=3.089e-04 ic=5.277e-06 wall=6.928e-06 inlet=1.694e-06 outlet=4.509e-07 | min_w=1.000e+00 | best=3.577e-04@41200 | 5.4 it/s
+LBFGS 41400/100000 | total=3.545e-04 true=3.545e-04 f=3.059e-04 ic=5.173e-06 wall=6.943e-06 inlet=1.670e-06 outlet=4.019e-07 | min_w=1.000e+00 | best=3.545e-04@41400 | 5.4 it/s
+LBFGS 41600/100000 | total=3.509e-04 true=3.509e-04 f=3.032e-04 ic=5.051e-06 wall=6.862e-06 inlet=1.602e-06 outlet=3.915e-07 | min_w=1.000e+00 | best=3.509e-04@41600 | 5.4 it/s
+LBFGS 41800/100000 | total=3.475e-04 true=3.475e-04 f=3.000e-04 ic=4.906e-06 wall=6.866e-06 inlet=1.564e-06 outlet=3.591e-07 | min_w=1.000e+00 | best=3.475e-04@41800 | 5.4 it/s
+LBFGS 42000/100000 | total=3.433e-04 true=3.433e-04 f=2.966e-04 ic=4.786e-06 wall=6.761e-06 inlet=1.549e-06 outlet=3.623e-07 | min_w=1.000e+00 | best=3.433e-04@42000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 42200/100000 | total=3.398e-04 true=3.398e-04 f=2.933e-04 ic=4.885e-06 wall=6.694e-06 inlet=1.553e-06 outlet=3.628e-07 | min_w=1.000e+00 | best=3.398e-04@42200 | 5.4 it/s
+LBFGS 42400/100000 | total=3.368e-04 true=3.368e-04 f=2.904e-04 ic=4.873e-06 wall=6.686e-06 inlet=1.553e-06 outlet=3.502e-07 | min_w=1.000e+00 | best=3.368e-04@42400 | 5.4 it/s
+LBFGS 42600/100000 | total=3.334e-04 true=3.334e-04 f=2.872e-04 ic=4.716e-06 wall=6.665e-06 inlet=1.571e-06 outlet=3.294e-07 | min_w=1.000e+00 | best=3.334e-04@42600 | 5.4 it/s
+LBFGS 42800/100000 | total=3.305e-04 true=3.305e-04 f=2.847e-04 ic=4.777e-06 wall=6.594e-06 inlet=1.539e-06 outlet=3.580e-07 | min_w=1.000e+00 | best=3.305e-04@42800 | 5.4 it/s
+LBFGS 43000/100000 | total=3.274e-04 true=3.274e-04 f=2.821e-04 ic=4.798e-06 wall=6.506e-06 inlet=1.530e-06 outlet=3.750e-07 | min_w=1.000e+00 | best=3.274e-04@43000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 43200/100000 | total=3.248e-04 true=3.248e-04 f=2.793e-04 ic=4.751e-06 wall=6.538e-06 inlet=1.545e-06 outlet=3.414e-07 | min_w=1.000e+00 | best=3.248e-04@43200 | 5.4 it/s
+LBFGS 43400/100000 | total=3.216e-04 true=3.216e-04 f=2.761e-04 ic=4.669e-06 wall=6.515e-06 inlet=1.576e-06 outlet=3.384e-07 | min_w=1.000e+00 | best=3.216e-04@43400 | 5.4 it/s
+LBFGS 43600/100000 | total=3.189e-04 true=3.189e-04 f=2.741e-04 ic=4.718e-06 wall=6.440e-06 inlet=1.513e-06 outlet=3.253e-07 | min_w=1.000e+00 | best=3.189e-04@43599 | 5.4 it/s
+LBFGS 43800/100000 | total=3.158e-04 true=3.158e-04 f=2.715e-04 ic=4.885e-06 wall=6.317e-06 inlet=1.499e-06 outlet=3.327e-07 | min_w=1.000e+00 | best=3.158e-04@43800 | 5.4 it/s
+LBFGS 44000/100000 | total=3.130e-04 true=3.130e-04 f=2.690e-04 ic=4.805e-06 wall=6.311e-06 inlet=1.454e-06 outlet=3.528e-07 | min_w=1.000e+00 | best=3.130e-04@44000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 44200/100000 | total=3.104e-04 true=3.104e-04 f=2.667e-04 ic=4.896e-06 wall=6.243e-06 inlet=1.435e-06 outlet=3.845e-07 | min_w=1.000e+00 | best=3.104e-04@44200 | 5.4 it/s
+LBFGS 44400/100000 | total=3.078e-04 true=3.078e-04 f=2.644e-04 ic=4.939e-06 wall=6.152e-06 inlet=1.464e-06 outlet=3.816e-07 | min_w=1.000e+00 | best=3.078e-04@44400 | 5.4 it/s
+LBFGS 44600/100000 | total=3.048e-04 true=3.048e-04 f=2.616e-04 ic=4.850e-06 wall=6.179e-06 inlet=1.424e-06 outlet=3.613e-07 | min_w=1.000e+00 | best=3.048e-04@44600 | 5.4 it/s
+LBFGS 44800/100000 | total=3.018e-04 true=3.018e-04 f=2.588e-04 ic=4.926e-06 wall=6.133e-06 inlet=1.409e-06 outlet=3.639e-07 | min_w=1.000e+00 | best=3.018e-04@44800 | 5.4 it/s
+LBFGS 45000/100000 | total=2.993e-04 true=2.993e-04 f=2.568e-04 ic=4.908e-06 wall=6.077e-06 inlet=1.382e-06 outlet=3.488e-07 | min_w=1.000e+00 | best=2.993e-04@45000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 45200/100000 | total=2.966e-04 true=2.966e-04 f=2.541e-04 ic=4.910e-06 wall=6.060e-06 inlet=1.377e-06 outlet=3.924e-07 | min_w=1.000e+00 | best=2.966e-04@45199 | 5.4 it/s
+LBFGS 45400/100000 | total=2.942e-04 true=2.942e-04 f=2.517e-04 ic=4.861e-06 wall=6.055e-06 inlet=1.387e-06 outlet=3.668e-07 | min_w=1.000e+00 | best=2.942e-04@45400 | 5.4 it/s
+LBFGS 45600/100000 | total=2.918e-04 true=2.918e-04 f=2.494e-04 ic=4.942e-06 wall=6.037e-06 inlet=1.377e-06 outlet=4.038e-07 | min_w=1.000e+00 | best=2.918e-04@45600 | 5.4 it/s
+LBFGS 45800/100000 | total=2.897e-04 true=2.897e-04 f=2.474e-04 ic=4.992e-06 wall=6.022e-06 inlet=1.363e-06 outlet=4.155e-07 | min_w=1.000e+00 | best=2.897e-04@45800 | 5.4 it/s
+LBFGS 46000/100000 | total=2.877e-04 true=2.877e-04 f=2.456e-04 ic=5.021e-06 wall=6.005e-06 inlet=1.324e-06 outlet=3.997e-07 | min_w=1.000e+00 | best=2.877e-04@46000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 46200/100000 | total=2.856e-04 true=2.856e-04 f=2.435e-04 ic=5.056e-06 wall=6.016e-06 inlet=1.321e-06 outlet=3.974e-07 | min_w=1.000e+00 | best=2.856e-04@46200 | 5.4 it/s
+LBFGS 46400/100000 | total=2.835e-04 true=2.835e-04 f=2.413e-04 ic=4.994e-06 wall=6.053e-06 inlet=1.313e-06 outlet=3.732e-07 | min_w=1.000e+00 | best=2.835e-04@46400 | 5.4 it/s
+LBFGS 46600/100000 | total=2.813e-04 true=2.813e-04 f=2.395e-04 ic=5.068e-06 wall=5.969e-06 inlet=1.318e-06 outlet=3.664e-07 | min_w=1.000e+00 | best=2.813e-04@46600 | 5.4 it/s
+LBFGS 46800/100000 | total=2.793e-04 true=2.793e-04 f=2.377e-04 ic=5.143e-06 wall=5.941e-06 inlet=1.282e-06 outlet=3.658e-07 | min_w=1.000e+00 | best=2.793e-04@46800 | 5.4 it/s
+LBFGS 47000/100000 | total=2.772e-04 true=2.772e-04 f=2.357e-04 ic=5.103e-06 wall=5.903e-06 inlet=1.309e-06 outlet=3.715e-07 | min_w=1.000e+00 | best=2.772e-04@47000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 47200/100000 | total=2.752e-04 true=2.752e-04 f=2.337e-04 ic=5.100e-06 wall=5.901e-06 inlet=1.293e-06 outlet=3.539e-07 | min_w=1.000e+00 | best=2.752e-04@47200 | 5.4 it/s
+LBFGS 47400/100000 | total=2.729e-04 true=2.729e-04 f=2.318e-04 ic=4.986e-06 wall=5.892e-06 inlet=1.267e-06 outlet=3.567e-07 | min_w=1.000e+00 | best=2.729e-04@47400 | 5.4 it/s
+LBFGS 47600/100000 | total=2.709e-04 true=2.709e-04 f=2.299e-04 ic=4.929e-06 wall=5.881e-06 inlet=1.261e-06 outlet=3.607e-07 | min_w=1.000e+00 | best=2.709e-04@47600 | 5.4 it/s
+LBFGS 47800/100000 | total=2.690e-04 true=2.690e-04 f=2.283e-04 ic=4.983e-06 wall=5.815e-06 inlet=1.260e-06 outlet=3.728e-07 | min_w=1.000e+00 | best=2.690e-04@47800 | 5.4 it/s
+LBFGS 48000/100000 | total=2.669e-04 true=2.669e-04 f=2.265e-04 ic=4.964e-06 wall=5.718e-06 inlet=1.288e-06 outlet=3.868e-07 | min_w=1.000e+00 | best=2.669e-04@48000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 48200/100000 | total=2.648e-04 true=2.648e-04 f=2.247e-04 ic=4.894e-06 wall=5.686e-06 inlet=1.267e-06 outlet=3.968e-07 | min_w=1.000e+00 | best=2.648e-04@48200 | 5.4 it/s
+LBFGS 48400/100000 | total=2.629e-04 true=2.629e-04 f=2.230e-04 ic=4.863e-06 wall=5.686e-06 inlet=1.251e-06 outlet=3.607e-07 | min_w=1.000e+00 | best=2.629e-04@48400 | 5.4 it/s
+LBFGS 48600/100000 | total=2.605e-04 true=2.605e-04 f=2.209e-04 ic=4.710e-06 wall=5.660e-06 inlet=1.262e-06 outlet=3.708e-07 | min_w=1.000e+00 | best=2.605e-04@48600 | 5.4 it/s
+LBFGS 48800/100000 | total=2.584e-04 true=2.584e-04 f=2.190e-04 ic=4.658e-06 wall=5.621e-06 inlet=1.250e-06 outlet=3.476e-07 | min_w=1.000e+00 | best=2.584e-04@48800 | 5.4 it/s
+LBFGS 49000/100000 | total=2.566e-04 true=2.566e-04 f=2.175e-04 ic=4.739e-06 wall=5.547e-06 inlet=1.248e-06 outlet=3.346e-07 | min_w=1.000e+00 | best=2.566e-04@48999 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 49200/100000 | total=2.547e-04 true=2.547e-04 f=2.157e-04 ic=4.750e-06 wall=5.549e-06 inlet=1.248e-06 outlet=3.285e-07 | min_w=1.000e+00 | best=2.547e-04@49200 | 5.4 it/s
+LBFGS 49400/100000 | total=2.529e-04 true=2.529e-04 f=2.140e-04 ic=4.715e-06 wall=5.543e-06 inlet=1.234e-06 outlet=3.278e-07 | min_w=1.000e+00 | best=2.529e-04@49400 | 5.4 it/s
+LBFGS 49600/100000 | total=2.512e-04 true=2.512e-04 f=2.124e-04 ic=4.774e-06 wall=5.532e-06 inlet=1.209e-06 outlet=3.214e-07 | min_w=1.000e+00 | best=2.511e-04@49599 | 5.4 it/s
+LBFGS 49800/100000 | total=2.494e-04 true=2.494e-04 f=2.107e-04 ic=4.797e-06 wall=5.500e-06 inlet=1.199e-06 outlet=3.296e-07 | min_w=1.000e+00 | best=2.494e-04@49800 | 5.4 it/s
+LBFGS 50000/100000 | total=2.476e-04 true=2.476e-04 f=2.090e-04 ic=4.822e-06 wall=5.491e-06 inlet=1.199e-06 outlet=3.198e-07 | min_w=1.000e+00 | best=2.476e-04@49999 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 50200/100000 | total=2.459e-04 true=2.459e-04 f=2.075e-04 ic=4.790e-06 wall=5.465e-06 inlet=1.199e-06 outlet=3.201e-07 | min_w=1.000e+00 | best=2.459e-04@50200 | 5.4 it/s
+LBFGS 50400/100000 | total=2.440e-04 true=2.440e-04 f=2.058e-04 ic=4.699e-06 wall=5.435e-06 inlet=1.183e-06 outlet=3.218e-07 | min_w=1.000e+00 | best=2.440e-04@50400 | 5.4 it/s
+LBFGS 50600/100000 | total=2.424e-04 true=2.424e-04 f=2.045e-04 ic=4.692e-06 wall=5.400e-06 inlet=1.185e-06 outlet=3.058e-07 | min_w=1.000e+00 | best=2.424e-04@50600 | 5.4 it/s
+LBFGS 50800/100000 | total=2.409e-04 true=2.409e-04 f=2.034e-04 ic=4.726e-06 wall=5.363e-06 inlet=1.139e-06 outlet=2.924e-07 | min_w=1.000e+00 | best=2.409e-04@50800 | 5.4 it/s
+LBFGS 51000/100000 | total=2.394e-04 true=2.394e-04 f=2.021e-04 ic=4.672e-06 wall=5.307e-06 inlet=1.151e-06 outlet=2.967e-07 | min_w=1.000e+00 | best=2.394e-04@51000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 51200/100000 | total=2.379e-04 true=2.379e-04 f=2.007e-04 ic=4.639e-06 wall=5.278e-06 inlet=1.175e-06 outlet=2.946e-07 | min_w=1.000e+00 | best=2.379e-04@51200 | 5.4 it/s
+LBFGS 51400/100000 | total=2.364e-04 true=2.364e-04 f=1.993e-04 ic=4.614e-06 wall=5.236e-06 inlet=1.196e-06 outlet=2.998e-07 | min_w=1.000e+00 | best=2.364e-04@51400 | 5.4 it/s
+LBFGS 51600/100000 | total=2.347e-04 true=2.347e-04 f=1.979e-04 ic=4.659e-06 wall=5.195e-06 inlet=1.186e-06 outlet=3.129e-07 | min_w=1.000e+00 | best=2.347e-04@51600 | 5.4 it/s
+LBFGS 51800/100000 | total=2.332e-04 true=2.332e-04 f=1.965e-04 ic=4.605e-06 wall=5.181e-06 inlet=1.159e-06 outlet=3.362e-07 | min_w=1.000e+00 | best=2.332e-04@51800 | 5.4 it/s
+LBFGS 52000/100000 | total=2.316e-04 true=2.316e-04 f=1.950e-04 ic=4.641e-06 wall=5.154e-06 inlet=1.166e-06 outlet=3.433e-07 | min_w=1.000e+00 | best=2.316e-04@52000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 52200/100000 | total=2.302e-04 true=2.302e-04 f=1.936e-04 ic=4.582e-06 wall=5.183e-06 inlet=1.143e-06 outlet=3.415e-07 | min_w=1.000e+00 | best=2.302e-04@52200 | 5.4 it/s
+LBFGS 52400/100000 | total=2.288e-04 true=2.288e-04 f=1.924e-04 ic=4.518e-06 wall=5.160e-06 inlet=1.148e-06 outlet=3.419e-07 | min_w=1.000e+00 | best=2.288e-04@52400 | 5.4 it/s
+LBFGS 52600/100000 | total=2.273e-04 true=2.273e-04 f=1.910e-04 ic=4.423e-06 wall=5.149e-06 inlet=1.159e-06 outlet=3.403e-07 | min_w=1.000e+00 | best=2.273e-04@52600 | 5.4 it/s
+LBFGS 52800/100000 | total=2.259e-04 true=2.259e-04 f=1.898e-04 ic=4.365e-06 wall=5.145e-06 inlet=1.129e-06 outlet=3.464e-07 | min_w=1.000e+00 | best=2.259e-04@52800 | 5.4 it/s
+LBFGS 53000/100000 | total=2.245e-04 true=2.245e-04 f=1.887e-04 ic=4.410e-06 wall=5.079e-06 inlet=1.131e-06 outlet=3.319e-07 | min_w=1.000e+00 | best=2.245e-04@53000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 53200/100000 | total=2.231e-04 true=2.231e-04 f=1.876e-04 ic=4.337e-06 wall=5.057e-06 inlet=1.101e-06 outlet=3.298e-07 | min_w=1.000e+00 | best=2.231e-04@53199 | 5.4 it/s
+LBFGS 53400/100000 | total=2.216e-04 true=2.216e-04 f=1.863e-04 ic=4.275e-06 wall=5.026e-06 inlet=1.100e-06 outlet=3.230e-07 | min_w=1.000e+00 | best=2.216e-04@53400 | 5.4 it/s
+LBFGS 53600/100000 | total=2.200e-04 true=2.200e-04 f=1.852e-04 ic=4.257e-06 wall=4.964e-06 inlet=1.088e-06 outlet=3.239e-07 | min_w=1.000e+00 | best=2.200e-04@53600 | 5.4 it/s
+LBFGS 53800/100000 | total=2.187e-04 true=2.187e-04 f=1.840e-04 ic=4.273e-06 wall=4.944e-06 inlet=1.072e-06 outlet=3.349e-07 | min_w=1.000e+00 | best=2.187e-04@53800 | 5.4 it/s
+LBFGS 54000/100000 | total=2.173e-04 true=2.173e-04 f=1.830e-04 ic=4.282e-06 wall=4.906e-06 inlet=1.042e-06 outlet=3.269e-07 | min_w=1.000e+00 | best=2.173e-04@54000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 54200/100000 | total=2.160e-04 true=2.160e-04 f=1.820e-04 ic=4.263e-06 wall=4.842e-06 inlet=1.054e-06 outlet=3.203e-07 | min_w=1.000e+00 | best=2.160e-04@54200 | 5.4 it/s
+LBFGS 54400/100000 | total=2.146e-04 true=2.146e-04 f=1.807e-04 ic=4.303e-06 wall=4.802e-06 inlet=1.056e-06 outlet=3.164e-07 | min_w=1.000e+00 | best=2.146e-04@54400 | 5.4 it/s
+LBFGS 54600/100000 | total=2.134e-04 true=2.134e-04 f=1.797e-04 ic=4.334e-06 wall=4.749e-06 inlet=1.067e-06 outlet=3.259e-07 | min_w=1.000e+00 | best=2.134e-04@54600 | 5.4 it/s
+LBFGS 54800/100000 | total=2.122e-04 true=2.122e-04 f=1.786e-04 ic=4.295e-06 wall=4.743e-06 inlet=1.041e-06 outlet=3.372e-07 | min_w=1.000e+00 | best=2.122e-04@54800 | 5.4 it/s
+LBFGS 55000/100000 | total=2.108e-04 true=2.108e-04 f=1.776e-04 ic=4.249e-06 wall=4.706e-06 inlet=1.032e-06 outlet=3.276e-07 | min_w=1.000e+00 | best=2.108e-04@55000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 55200/100000 | total=2.094e-04 true=2.094e-04 f=1.763e-04 ic=4.283e-06 wall=4.667e-06 inlet=1.024e-06 outlet=3.180e-07 | min_w=1.000e+00 | best=2.094e-04@55200 | 5.4 it/s
+LBFGS 55400/100000 | total=2.081e-04 true=2.081e-04 f=1.753e-04 ic=4.221e-06 wall=4.615e-06 inlet=1.037e-06 outlet=3.114e-07 | min_w=1.000e+00 | best=2.081e-04@55400 | 5.4 it/s
+LBFGS 55600/100000 | total=2.067e-04 true=2.067e-04 f=1.741e-04 ic=4.192e-06 wall=4.579e-06 inlet=1.034e-06 outlet=3.231e-07 | min_w=1.000e+00 | best=2.067e-04@55600 | 5.4 it/s
+LBFGS 55800/100000 | total=2.053e-04 true=2.053e-04 f=1.730e-04 ic=4.123e-06 wall=4.543e-06 inlet=1.023e-06 outlet=3.073e-07 | min_w=1.000e+00 | best=2.053e-04@55800 | 5.4 it/s
+LBFGS 56000/100000 | total=2.040e-04 true=2.040e-04 f=1.720e-04 ic=4.063e-06 wall=4.515e-06 inlet=1.016e-06 outlet=2.580e-07 | min_w=1.000e+00 | best=2.040e-04@56000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 56200/100000 | total=2.028e-04 true=2.028e-04 f=1.711e-04 ic=4.088e-06 wall=4.470e-06 inlet=9.955e-07 outlet=2.439e-07 | min_w=1.000e+00 | best=2.028e-04@56199 | 5.4 it/s
+LBFGS 56400/100000 | total=2.014e-04 true=2.014e-04 f=1.700e-04 ic=4.077e-06 wall=4.405e-06 inlet=1.019e-06 outlet=2.417e-07 | min_w=1.000e+00 | best=2.014e-04@56400 | 5.4 it/s
+LBFGS 56600/100000 | total=2.001e-04 true=2.001e-04 f=1.689e-04 ic=4.044e-06 wall=4.365e-06 inlet=1.032e-06 outlet=2.265e-07 | min_w=1.000e+00 | best=2.001e-04@56600 | 5.4 it/s
+LBFGS 56800/100000 | total=1.989e-04 true=1.989e-04 f=1.678e-04 ic=3.937e-06 wall=4.364e-06 inlet=1.034e-06 outlet=2.060e-07 | min_w=1.000e+00 | best=1.989e-04@56800 | 5.4 it/s
+LBFGS 57000/100000 | total=1.977e-04 true=1.977e-04 f=1.667e-04 ic=3.913e-06 wall=4.352e-06 inlet=1.032e-06 outlet=1.761e-07 | min_w=1.000e+00 | best=1.977e-04@57000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 57200/100000 | total=1.966e-04 true=1.966e-04 f=1.658e-04 ic=3.846e-06 wall=4.337e-06 inlet=1.018e-06 outlet=1.679e-07 | min_w=1.000e+00 | best=1.966e-04@57200 | 5.4 it/s
+LBFGS 57400/100000 | total=1.953e-04 true=1.953e-04 f=1.649e-04 ic=3.830e-06 wall=4.285e-06 inlet=1.002e-06 outlet=1.575e-07 | min_w=1.000e+00 | best=1.953e-04@57400 | 5.4 it/s
+LBFGS 57600/100000 | total=1.942e-04 true=1.942e-04 f=1.640e-04 ic=3.807e-06 wall=4.262e-06 inlet=9.993e-07 outlet=1.535e-07 | min_w=1.000e+00 | best=1.942e-04@57600 | 5.4 it/s
+LBFGS 57800/100000 | total=1.931e-04 true=1.931e-04 f=1.629e-04 ic=3.750e-06 wall=4.270e-06 inlet=9.813e-07 outlet=1.582e-07 | min_w=1.000e+00 | best=1.931e-04@57800 | 5.4 it/s
+LBFGS 58000/100000 | total=1.919e-04 true=1.919e-04 f=1.619e-04 ic=3.723e-06 wall=4.244e-06 inlet=9.768e-07 outlet=1.608e-07 | min_w=1.000e+00 | best=1.919e-04@58000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 58200/100000 | total=1.909e-04 true=1.909e-04 f=1.609e-04 ic=3.705e-06 wall=4.252e-06 inlet=9.715e-07 outlet=1.548e-07 | min_w=1.000e+00 | best=1.909e-04@58200 | 5.4 it/s
+LBFGS 58400/100000 | total=1.897e-04 true=1.897e-04 f=1.599e-04 ic=3.616e-06 wall=4.224e-06 inlet=9.800e-07 outlet=1.452e-07 | min_w=1.000e+00 | best=1.897e-04@58400 | 5.4 it/s
+LBFGS 58600/100000 | total=1.885e-04 true=1.885e-04 f=1.588e-04 ic=3.544e-06 wall=4.220e-06 inlet=9.874e-07 outlet=1.441e-07 | min_w=1.000e+00 | best=1.885e-04@58600 | 5.4 it/s
+LBFGS 58800/100000 | total=1.874e-04 true=1.874e-04 f=1.578e-04 ic=3.551e-06 wall=4.207e-06 inlet=9.726e-07 outlet=1.501e-07 | min_w=1.000e+00 | best=1.874e-04@58800 | 5.4 it/s
+LBFGS 59000/100000 | total=1.864e-04 true=1.864e-04 f=1.570e-04 ic=3.537e-06 wall=4.188e-06 inlet=9.487e-07 outlet=1.618e-07 | min_w=1.000e+00 | best=1.864e-04@59000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 59200/100000 | total=1.854e-04 true=1.854e-04 f=1.561e-04 ic=3.484e-06 wall=4.190e-06 inlet=9.396e-07 outlet=1.640e-07 | min_w=1.000e+00 | best=1.854e-04@59200 | 5.4 it/s
+LBFGS 59400/100000 | total=1.843e-04 true=1.843e-04 f=1.553e-04 ic=3.358e-06 wall=4.163e-06 inlet=9.360e-07 outlet=1.671e-07 | min_w=1.000e+00 | best=1.843e-04@59400 | 5.4 it/s
+LBFGS 59600/100000 | total=1.832e-04 true=1.832e-04 f=1.544e-04 ic=3.303e-06 wall=4.144e-06 inlet=9.283e-07 outlet=1.752e-07 | min_w=1.000e+00 | best=1.832e-04@59600 | 5.4 it/s
+LBFGS 59800/100000 | total=1.823e-04 true=1.823e-04 f=1.535e-04 ic=3.295e-06 wall=4.151e-06 inlet=9.150e-07 outlet=1.822e-07 | min_w=1.000e+00 | best=1.823e-04@59800 | 5.4 it/s
+LBFGS 60000/100000 | total=1.814e-04 true=1.814e-04 f=1.527e-04 ic=3.290e-06 wall=4.127e-06 inlet=9.187e-07 outlet=1.811e-07 | min_w=1.000e+00 | best=1.814e-04@60000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 60200/100000 | total=1.803e-04 true=1.803e-04 f=1.518e-04 ic=3.258e-06 wall=4.109e-06 inlet=9.033e-07 outlet=1.803e-07 | min_w=1.000e+00 | best=1.803e-04@60200 | 5.4 it/s
+LBFGS 60400/100000 | total=1.793e-04 true=1.793e-04 f=1.510e-04 ic=3.242e-06 wall=4.089e-06 inlet=8.893e-07 outlet=1.804e-07 | min_w=1.000e+00 | best=1.793e-04@60400 | 5.4 it/s
+LBFGS 60600/100000 | total=1.783e-04 true=1.783e-04 f=1.501e-04 ic=3.257e-06 wall=4.084e-06 inlet=8.635e-07 outlet=1.871e-07 | min_w=1.000e+00 | best=1.783e-04@60600 | 5.4 it/s
+LBFGS 60800/100000 | total=1.774e-04 true=1.774e-04 f=1.493e-04 ic=3.288e-06 wall=4.071e-06 inlet=8.593e-07 outlet=1.904e-07 | min_w=1.000e+00 | best=1.774e-04@60800 | 5.4 it/s
+LBFGS 61000/100000 | total=1.765e-04 true=1.765e-04 f=1.485e-04 ic=3.316e-06 wall=4.053e-06 inlet=8.344e-07 outlet=2.091e-07 | min_w=1.000e+00 | best=1.765e-04@61000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 61200/100000 | total=1.754e-04 true=1.754e-04 f=1.477e-04 ic=3.323e-06 wall=4.002e-06 inlet=8.372e-07 outlet=1.907e-07 | min_w=1.000e+00 | best=1.754e-04@61200 | 5.4 it/s
+LBFGS 61400/100000 | total=1.744e-04 true=1.744e-04 f=1.468e-04 ic=3.324e-06 wall=3.992e-06 inlet=8.367e-07 outlet=1.889e-07 | min_w=1.000e+00 | best=1.744e-04@61400 | 5.4 it/s
+LBFGS 61600/100000 | total=1.735e-04 true=1.735e-04 f=1.458e-04 ic=3.379e-06 wall=3.979e-06 inlet=8.395e-07 outlet=1.910e-07 | min_w=1.000e+00 | best=1.735e-04@61600 | 5.4 it/s
+LBFGS 61800/100000 | total=1.726e-04 true=1.726e-04 f=1.452e-04 ic=3.353e-06 wall=3.959e-06 inlet=8.188e-07 outlet=1.957e-07 | min_w=1.000e+00 | best=1.726e-04@61799 | 5.4 it/s
+LBFGS 62000/100000 | total=1.717e-04 true=1.717e-04 f=1.444e-04 ic=3.339e-06 wall=3.937e-06 inlet=8.112e-07 outlet=2.132e-07 | min_w=1.000e+00 | best=1.717e-04@62000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 62200/100000 | total=1.708e-04 true=1.708e-04 f=1.437e-04 ic=3.365e-06 wall=3.897e-06 inlet=8.185e-07 outlet=2.241e-07 | min_w=1.000e+00 | best=1.708e-04@62199 | 5.4 it/s
+LBFGS 62400/100000 | total=1.699e-04 true=1.699e-04 f=1.430e-04 ic=3.386e-06 wall=3.840e-06 inlet=8.253e-07 outlet=2.242e-07 | min_w=1.000e+00 | best=1.699e-04@62400 | 5.4 it/s
+LBFGS 62600/100000 | total=1.691e-04 true=1.691e-04 f=1.423e-04 ic=3.334e-06 wall=3.828e-06 inlet=8.239e-07 outlet=2.208e-07 | min_w=1.000e+00 | best=1.691e-04@62599 | 5.4 it/s
+LBFGS 62800/100000 | total=1.686e-04 true=1.686e-04 f=1.418e-04 ic=3.351e-06 wall=3.821e-06 inlet=8.252e-07 outlet=2.276e-07 | min_w=1.000e+00 | best=1.683e-04@62799 | 5.4 it/s
+LBFGS 63000/100000 | total=1.675e-04 true=1.675e-04 f=1.410e-04 ic=3.331e-06 wall=3.777e-06 inlet=8.195e-07 outlet=2.312e-07 | min_w=1.000e+00 | best=1.675e-04@63000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 63200/100000 | total=1.668e-04 true=1.668e-04 f=1.405e-04 ic=3.272e-06 wall=3.758e-06 inlet=8.016e-07 outlet=2.378e-07 | min_w=1.000e+00 | best=1.668e-04@63200 | 5.4 it/s
+LBFGS 63400/100000 | total=1.660e-04 true=1.660e-04 f=1.399e-04 ic=3.234e-06 wall=3.738e-06 inlet=7.826e-07 outlet=2.436e-07 | min_w=1.000e+00 | best=1.660e-04@63400 | 5.4 it/s
+LBFGS 63600/100000 | total=1.652e-04 true=1.652e-04 f=1.393e-04 ic=3.220e-06 wall=3.705e-06 inlet=7.852e-07 outlet=2.389e-07 | min_w=1.000e+00 | best=1.652e-04@63600 | 5.4 it/s
+LBFGS 63800/100000 | total=1.645e-04 true=1.645e-04 f=1.387e-04 ic=3.223e-06 wall=3.685e-06 inlet=7.831e-07 outlet=2.318e-07 | min_w=1.000e+00 | best=1.645e-04@63800 | 5.4 it/s
+LBFGS 64000/100000 | total=1.637e-04 true=1.637e-04 f=1.382e-04 ic=3.205e-06 wall=3.649e-06 inlet=7.776e-07 outlet=2.284e-07 | min_w=1.000e+00 | best=1.637e-04@64000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 64200/100000 | total=1.629e-04 true=1.629e-04 f=1.376e-04 ic=3.163e-06 wall=3.616e-06 inlet=7.756e-07 outlet=2.195e-07 | min_w=1.000e+00 | best=1.629e-04@64200 | 5.4 it/s
+LBFGS 64400/100000 | total=1.620e-04 true=1.620e-04 f=1.369e-04 ic=3.089e-06 wall=3.593e-06 inlet=7.668e-07 outlet=2.162e-07 | min_w=1.000e+00 | best=1.620e-04@64400 | 5.4 it/s
+LBFGS 64600/100000 | total=1.610e-04 true=1.610e-04 f=1.361e-04 ic=3.126e-06 wall=3.575e-06 inlet=7.390e-07 outlet=2.096e-07 | min_w=1.000e+00 | best=1.610e-04@64599 | 5.4 it/s
+LBFGS 64800/100000 | total=1.602e-04 true=1.602e-04 f=1.353e-04 ic=3.161e-06 wall=3.552e-06 inlet=7.459e-07 outlet=2.158e-07 | min_w=1.000e+00 | best=1.602e-04@64800 | 5.4 it/s
+LBFGS 65000/100000 | total=1.593e-04 true=1.593e-04 f=1.346e-04 ic=3.112e-06 wall=3.539e-06 inlet=7.405e-07 outlet=2.176e-07 | min_w=1.000e+00 | best=1.593e-04@65000 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 65200/100000 | total=1.586e-04 true=1.586e-04 f=1.340e-04 ic=3.081e-06 wall=3.530e-06 inlet=7.378e-07 outlet=2.162e-07 | min_w=1.000e+00 | best=1.586e-04@65200 | 5.4 it/s
+LBFGS 65400/100000 | total=1.577e-04 true=1.577e-04 f=1.331e-04 ic=3.056e-06 wall=3.519e-06 inlet=7.511e-07 outlet=2.182e-07 | min_w=1.000e+00 | best=1.577e-04@65400 | 5.4 it/s
+LBFGS 65600/100000 | total=1.569e-04 true=1.569e-04 f=1.325e-04 ic=3.040e-06 wall=3.490e-06 inlet=7.436e-07 outlet=2.208e-07 | min_w=1.000e+00 | best=1.569e-04@65600 | 5.4 it/s
+LBFGS 65800/100000 | total=1.561e-04 true=1.561e-04 f=1.317e-04 ic=2.999e-06 wall=3.473e-06 inlet=7.473e-07 outlet=2.449e-07 | min_w=1.000e+00 | best=1.561e-04@65800 | 5.4 it/s
+LBFGS 66000/100000 | total=1.553e-04 true=1.553e-04 f=1.310e-04 ic=2.964e-06 wall=3.460e-06 inlet=7.488e-07 outlet=2.418e-07 | min_w=1.000e+00 | best=1.553e-04@65999 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+LBFGS 66200/100000 | total=1.546e-04 true=1.546e-04 f=1.305e-04 ic=2.982e-06 wall=3.431e-06 inlet=7.505e-07 outlet=2.245e-07 | min_w=1.000e+00 | best=1.546e-04@66200 | 5.4 it/s
+LBFGS 66400/100000 | total=1.538e-04 true=1.538e-04 f=1.299e-04 ic=2.988e-06 wall=3.391e-06 inlet=7.528e-07 outlet=2.252e-07 | min_w=1.000e+00 | best=1.538e-04@66400 | 5.4 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest_lbfgs.pt
+[lbfgs] converged after 66498 closure evals (max_iter=100000)
+=== Run summary | best true-loss=1.535e-04 @ iter 86498 | last iter=86498 | causality NOT reached | wall=3h24m59s ===
+--- 12299.10 seconds ---
+Saved PyTorch checkpoint to results/checkpoints/causal_eps50_uniform_from_adambest/latest.pt

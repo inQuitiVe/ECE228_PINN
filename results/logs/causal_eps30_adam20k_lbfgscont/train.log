@@ -1,0 +1,21 @@
+Using device: cuda
+Experiment: causal_eps30_adam20k_lbfgscont  eps=30.0  bins=32 (duration)  lbfgs=frozen
+[bins] mode=duration M=32 N=136242 per-bin count: min=4083 max=4490
+Loaded PyTorch checkpoint from results/checkpoints/causal_eps30_adam20k/latest_lbfgs.pt
+[lbfgs] frozen weights will be computed from results/checkpoints/causal_eps30_adam20k/best.pt
+=== Adam phase | 0 iters | lr=5.00e-04 | sched=none | early-stop: patience=0 warmup=0 gate(min_w>0.90) ===
+[lbfgs] frozen weights taken from --freeze-weight-checkpoint (decoupled from the L-BFGS start).
+[lbfgs] frozen: continuing Adam-final causal weights as constants (min_w=8.486e-01, max_w=1.000e+00).
+=== L-BFGS phase | max_iter=100000 | mode=frozen ===
+LBFGS 1/100000 | total=2.194e-04 true=2.364e-04 f=1.882e-04 ic=4.093e-06 wall=4.318e-06 inlet=1.021e-06 outlet=3.965e-07 | min_w=8.486e-01 | best=2.364e-04@1 | 5.9 it/s
+LBFGS 200/100000 | total=2.177e-04 true=2.344e-04 f=1.866e-04 ic=4.091e-06 wall=4.324e-06 inlet=1.003e-06 outlet=4.088e-07 | min_w=8.486e-01 | best=2.344e-04@200 | 4.7 it/s
+LBFGS 400/100000 | total=2.168e-04 true=2.335e-04 f=1.860e-04 ic=4.013e-06 wall=4.308e-06 inlet=9.776e-07 outlet=3.892e-07 | min_w=8.486e-01 | best=2.335e-04@400 | 4.7 it/s
+LBFGS 600/100000 | total=2.160e-04 true=2.326e-04 f=1.853e-04 ic=3.913e-06 wall=4.307e-06 inlet=9.663e-07 outlet=3.848e-07 | min_w=8.486e-01 | best=2.326e-04@599 | 4.7 it/s
+LBFGS 800/100000 | total=2.152e-04 true=2.316e-04 f=1.847e-04 ic=3.874e-06 wall=4.300e-06 inlet=9.419e-07 outlet=3.772e-07 | min_w=8.486e-01 | best=2.316e-04@800 | 4.7 it/s
+LBFGS 1000/100000 | total=2.146e-04 true=2.310e-04 f=1.842e-04 ic=3.784e-06 wall=4.308e-06 inlet=9.368e-07 outlet=3.807e-07 | min_w=8.486e-01 | best=2.310e-04@1000 | 4.7 it/s
+Saved PyTorch checkpoint to results/checkpoints/causal_eps30_adam20k_lbfgscont/latest_lbfgs.pt
+Saved PyTorch checkpoint to results/checkpoints/causal_eps30_adam20k_lbfgscont/latest_lbfgs.pt
+[lbfgs] converged after 1085 closure evals (max_iter=100000)
+=== Run summary | best true-loss=2.307e-04 @ iter 75514 | last iter=75514 | causality NOT reached | wall=3m50s ===
+--- 230.98 seconds ---
+Saved PyTorch checkpoint to results/checkpoints/causal_eps30_adam20k_lbfgscont/latest.pt
