@@ -1,0 +1,14 @@
+source_mat: data/reference/unsteady_reference_human_rot90left.mat
+colormap: rainbow
+frames_written: 51
+time_range: 0.000000 to 0.500000
+grid: 440 x 164
+fluid_points: 67876
+solid_cells: 4284
+nominal_Re: 10.000000
+char_len: 0.100000
+obstacle_bbox_from_mask: [0.20625000000000002, 0.47375, 0.12125, 0.28875]
+color_limits: u=+/-1.40666, v=+/-0.389576, p=[0, 3.67897], speed=1.41885
+gif: figures/human_rot90left_reference/human_rot90left_reference.gif
+overview: figures/human_rot90left_reference/overview_snapshots.png
+mask: figures/human_rot90left_reference/obstacle_mask.png

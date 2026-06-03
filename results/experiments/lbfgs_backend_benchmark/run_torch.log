@@ -1,0 +1,17 @@
+Using device: cuda
+Experiment: bench_torch  (checkpoints under results/phase1_reproduction/bench_torch/checkpoints)
+Strict reproduction recipe: TF-style truncated Xavier init, 80000 base LHS collocation points, Adam 5000, SciPy L-BFGS-B.
+/workspace/ECE228_PINN/src/unsteady_strict_reproduce.py:682: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(path, map_location=map_location)
+Loaded PyTorch checkpoint from results/phase1_reproduction/vanilla_pytorch/checkpoints/adam_best.pt
+LBFGS 1 | total=1.459e-01 f=4.399e-03 ic=1.074e-01 wall=5.135e-03 inlet=1.674e-03 outlet=1.028e-05
+LBFGS 200 | total=3.297e-02 f=1.261e-02 ic=1.085e-03 wall=3.028e-03 inlet=8.133e-04 outlet=7.446e-05
+LBFGS 400 | total=2.599e-02 f=1.196e-02 ic=9.273e-04 wall=2.099e-03 inlet=5.086e-04 outlet=6.869e-05
+Saved PyTorch checkpoint to results/phase1_reproduction/bench_torch/checkpoints/latest_lbfgs.pt
+LBFGS 600 | total=2.165e-02 f=1.136e-02 ic=7.257e-04 wall=1.559e-03 inlet=3.429e-04 outlet=5.932e-05
+LBFGS 800 | total=1.910e-02 f=1.082e-02 ic=6.491e-04 wall=1.255e-03 inlet=2.581e-04 outlet=7.339e-05
+LBFGS 1000 | total=1.595e-02 f=9.487e-03 ic=4.625e-04 wall=9.959e-04 inlet=1.859e-04 outlet=9.357e-05
+Saved PyTorch checkpoint to results/phase1_reproduction/bench_torch/checkpoints/latest_lbfgs.pt
+Saved PyTorch checkpoint to results/phase1_reproduction/bench_torch/checkpoints/latest_lbfgs.pt
+--- 166.41 seconds ---
+Saved PyTorch checkpoint to results/phase1_reproduction/bench_torch/checkpoints/latest.pt

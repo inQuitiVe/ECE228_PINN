@@ -34,3 +34,7 @@ results/**/*.pdf
 # Reference media under data/ is not tracked (keep .mat / .py only)
 data/**/*.png
 data/**/*.gif
+
+# Local scratch / GPU-pull mirrors / temp
+/remote_gpu_pull/
+/tmp/
