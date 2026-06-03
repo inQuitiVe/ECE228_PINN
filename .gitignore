@@ -38,3 +38,14 @@ data/**/*.gif
 # Local scratch / GPU-pull mirrors / temp
 /remote_gpu_pull/
 /tmp/
+
+# Superseded by final_report/, and agent tooling (mirrors ignored CLAUDE.md)
+/report/
+/AGENT.md
+
+# Extra human-obstacle reference data — large; regenerate via the gen_*.py generators
+data/reference/unsteady_reference_human_rot90left.mat
+data/reference/unsteady_reference_human_rot90left_re100.mat
+
+# Stray local artifacts
+/Screenshot*.png
