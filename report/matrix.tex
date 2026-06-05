@@ -1,0 +1,21 @@
+% report/matrix.tex  —  reproduce baseline vs GPU-resident
+% Mean relative L2 over the developed-flow window t>=0.1s, Re=10 unsteady cylinder.
+% (mean over the 41 snapshots t>=0.1s; pressure spatially demeaned per snapshot)
+\begin{table}[t]
+  \centering
+  \caption{Mean relative $L_2$ error against the Chorin CFD reference over the
+           41 developed-flow snapshots ($t\ge 0.1$\,s) for the $Re=10$ unsteady
+           cylinder flow. \emph{reproduce} is the SciPy L-BFGS-B
+           baseline; \emph{GPU-resident} runs the full L-BFGS loop on the GPU.
+           Pressure is spatially demeaned per snapshot.}
+  \label{tab:l2_ref_vs_gpures}
+  \begin{tabular}{lcc}
+    \toprule
+    Field & reproduce & GPU-resident \\
+    \midrule
+    $\varepsilon_u$            & 5.30\%  & 5.94\%  \\
+    $\varepsilon_v$            & 19.86\% & 22.23\% \\
+    $\varepsilon_p$ (demeaned) & 10.79\% & 10.31\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}

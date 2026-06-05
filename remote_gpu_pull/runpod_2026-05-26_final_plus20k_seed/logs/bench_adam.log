@@ -1,0 +1,33 @@
+Loaded PyTorch checkpoint from ../../results/unsteady/checkpoints/best.pt
+==================================================
+PRIMARY METRIC (t >= 0.1s, developed flow, 41 snapshots):
+  Mean L2 u : 54.17%
+  Mean L2 v : 104.36%
+  Mean L2 p : 79.30%  (demeaned)
+  Go/No-go  : L2_u FAIL  L2_v FAIL  (≤ 10%)
+REFERENCE (all 50/51 non-NaN snapshots):
+  Global Frobenius L2 u : 58.97%
+  Global Frobenius L2 v : 97.37%
+  Global Frobenius L2 p : 100.72%  (demeaned)
+==================================================
+V-FIELD DIAGNOSTICS (t >= 0.100s):
+  ref_rms range       : 8.609e-03 .. 1.028e-01
+  pred_rms mean       : 7.909e-02
+  mean |pred|/|ref|   : 1.384
+  mean cosine(pred,ref): 0.668
+  Interpretation hint : L2≈100%% with |pred|/|ref|≈0 means near-zero prediction;
+                        L2≈100%% with nonzero |pred|/|ref| and low cosine means spatial/phase mismatch.
+  Selected snapshots:
+    t      ref_rms   pred_rms  |pred|/|ref|  cosine  L2_v     note
+    0.10  8.609e-03  1.885e-02     2.190      0.708   164.2%  
+    0.20  3.277e-02  4.644e-02     1.417      0.683   103.6%  
+    0.30  6.447e-02  8.070e-02     1.252      0.659    95.8%  
+    0.40  9.160e-02  1.127e-01     1.230      0.649    95.8%  
+    0.50  1.028e-01  1.334e-01     1.297      0.654    99.3%  
+==================================================
+Saved v-field diagnostics → ../../results/unsteady/bench_adam/v_diagnostics.csv
+Saved field comparison at t=0.300s → field_comparison_t0p30ppng
+Saved field comparison at t=0.400s → field_comparison_t0p40ppng
+Saved field comparison at t=0.500s → field_comparison_t0p50ppng
+
+All outputs written to ../../results/unsteady/bench_adam

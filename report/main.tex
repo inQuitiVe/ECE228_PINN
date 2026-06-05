@@ -1,0 +1,48 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Physics-Informed Neural Networks for Incompressible Laminar Flow Around a Cylinder}
+
+\author{%
+  \IEEEauthorblockN{Chi-Han Chiu, Chen-Yan Juang, Ming-Yang Wu, and Jing-Hua Chang}
+  \IEEEauthorblockA{%
+    Department of Electrical and Computer Engineering\\
+    University of California San Diego\\
+    \{c8chiu, chjuang, miw090, jic184\}@ucsd.edu
+  }
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\todo{USER: write abstract — 150 words, covering: problem, PINN formulation, Re=10 result, comparison to Rao baseline}
+\end{abstract}
+
+\section{Introduction}
+\todo{USER: write introduction — motivate PINNs for fluid simulation, cite \cite{raissi2019pinn,karniadakis2021pinnreview}, state contribution}
+
+\section{Problem Formulation}
+\todo{USER: write problem formulation — 2D incompressible NS equations, cylinder geometry, Re=10 setup, reference to \cite{schafer1996benchmark}}
+
+\section{Methodology}
+\input{sections/methodology}
+
+\section{Results}
+\input{sections/results_phase1}
+\input{sections/results_causal}
+
+\section{Conclusion}
+\todo{USER: write conclusion — summarize Re=10 fidelity, gaps vs Rao pickle, planned extensions (Re=100, architecture ablation)}
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+\end{document}

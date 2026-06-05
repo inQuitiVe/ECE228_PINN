@@ -1,0 +1,24 @@
+Using device: cuda
+/workspace/ECE228_PINN/src/pinn_laminar_flow/unsteady.py:503: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(path, map_location=map_location)
+Loaded PyTorch checkpoint from results/unsteady/checkpoints/latest_lbfgs.pt
+Resuming from iteration 62577
+LBFGS 1 | total=3.034e-04 f=2.656e-04 ic=6.908e-06 wall=4.591e-06 inlet=1.514e-06 outlet=3.653e-07
+LBFGS 100 | total=3.024e-04 f=2.645e-04 ic=6.899e-06 wall=4.619e-06 inlet=1.512e-06 outlet=3.644e-07
+LBFGS 200 | total=3.020e-04 f=2.640e-04 ic=6.891e-06 wall=4.646e-06 inlet=1.496e-06 outlet=3.519e-07
+LBFGS 300 | total=3.016e-04 f=2.635e-04 ic=6.863e-06 wall=4.656e-06 inlet=1.517e-06 outlet=3.488e-07
+LBFGS 400 | total=3.012e-04 f=2.631e-04 ic=6.829e-06 wall=4.643e-06 inlet=1.535e-06 outlet=3.524e-07
+LBFGS 500 | total=3.007e-04 f=2.626e-04 ic=6.811e-06 wall=4.655e-06 inlet=1.532e-06 outlet=3.537e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+LBFGS 600 | total=3.003e-04 f=2.622e-04 ic=6.778e-06 wall=4.670e-06 inlet=1.524e-06 outlet=3.504e-07
+LBFGS 700 | total=2.999e-04 f=2.618e-04 ic=6.754e-06 wall=4.656e-06 inlet=1.531e-06 outlet=3.472e-07
+LBFGS 800 | total=2.995e-04 f=2.616e-04 ic=6.743e-06 wall=4.652e-06 inlet=1.517e-06 outlet=3.384e-07
+LBFGS 900 | total=2.990e-04 f=2.612e-04 ic=6.766e-06 wall=4.629e-06 inlet=1.519e-06 outlet=3.350e-07
+LBFGS 1000 | total=2.986e-04 f=2.608e-04 ic=6.759e-06 wall=4.630e-06 inlet=1.503e-06 outlet=3.318e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+LBFGS 1100 | total=2.982e-04 f=2.604e-04 ic=6.737e-06 wall=4.639e-06 inlet=1.507e-06 outlet=3.320e-07
+LBFGS 1200 | total=2.978e-04 f=2.600e-04 ic=6.692e-06 wall=4.657e-06 inlet=1.501e-06 outlet=3.305e-07
+LBFGS 1300 | total=2.975e-04 f=2.597e-04 ic=6.688e-06 wall=4.653e-06 inlet=1.513e-06 outlet=3.263e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+--- 156.59 seconds ---
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest.pt

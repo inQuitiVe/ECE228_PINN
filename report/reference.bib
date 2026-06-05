@@ -1,0 +1,229 @@
+% ECE228-PINN Project References
+% Last updated: 2026-05-24
+% Verify arXiv numbers / DOIs / page numbers via CrossRef before final compile.
+
+% ============================================================
+% BASELINE / PROBLEM FORMULATION
+% ============================================================
+
+@article{chorin1968projection,
+  title   = {Numerical Solution of the {Navier--Stokes} Equations},
+  author  = {Chorin, Alexandre Joel},
+  journal = {Mathematics of Computation},
+  volume  = {22},
+  number  = {104},
+  pages   = {745--762},
+  year    = {1968},
+  doi     = {10.1090/S0025-5718-1968-0242392-2}
+}
+
+@article{rao2020pinnflow,
+  title   = {Physics-informed deep learning for incompressible laminar flows},
+  author  = {Rao, Chengping and Sun, Hao and Liu, Yang},
+  journal = {Theoretical and Applied Mechanics Letters},
+  volume  = {10},
+  number  = {3},
+  pages   = {207--212},
+  year    = {2020},
+  note    = {arXiv:2002.10558},
+  doi     = {10.1016/j.taml.2020.01.039}
+}
+
+@article{raissi2019pinn,
+  title   = {Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations},
+  author  = {Raissi, Maziar and Perdikaris, Paris and Karniadakis, George Em},
+  journal = {Journal of Computational Physics},
+  volume  = {378},
+  pages   = {686--707},
+  year    = {2019},
+  doi     = {10.1016/j.jcp.2018.10.045}
+}
+
+% ============================================================
+% BENCHMARK
+% ============================================================
+
+@incollection{schafer1996benchmark,
+  title     = {Benchmark Computations of Laminar Flow Around a Cylinder},
+  author    = {Sch{\"a}fer, Michael and Turek, Stefan and Durst, Franz and Krause, Egon and Rannacher, Rolf},
+  booktitle = {Flow Simulation with High-Performance Computers {II}},
+  series    = {Notes on Numerical Fluid Mechanics ({NNFM})},
+  volume    = {48},
+  pages     = {547--566},
+  publisher = {Vieweg+Teubner Verlag},
+  year      = {1996},
+  doi       = {10.1007/978-3-322-89849-4_39}
+}
+
+% ============================================================
+% WORKSTREAM A — ARCHITECTURE
+% ============================================================
+
+@article{wang2024piratenets,
+  title   = {{PirateNets}: Physics-informed Deep Learning with Residual Adaptive Networks},
+  author  = {Wang, Sifan and Li, Bowen and Chen, Yuhan and Perdikaris, Paris},
+  journal = {Journal of Machine Learning Research},
+  volume  = {25},
+  number  = {402},
+  pages   = {1--51},
+  year    = {2025},
+  note    = {arXiv:2402.00326},
+  url     = {https://www.jmlr.org/papers/volume25/24-0313/24-0313.pdf}
+}
+
+@inproceedings{tancik2020fourier,
+  title     = {Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains},
+  author    = {Tancik, Matthew and Srinivasan, Pratul P. and Mildenhall, Ben and Fridovich-Keil, Sara and Raghavan, Nithin and Singhal, Utkarsh and Ramamoorthi, Ravi and Barron, Jonathan T. and Ng, Ren},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {33},
+  year      = {2020}
+}
+
+@article{sitzmann2020siren,
+  title   = {Implicit Neural Representations with Periodic Activation Functions},
+  author  = {Sitzmann, Vincent and Martel, Julien N. P. and Bergman, Alexander W. and Lindell, David B. and Wetzstein, Gordon},
+  journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume  = {33},
+  year    = {2020}
+}
+
+% ============================================================
+% WORKSTREAM B — OPTIMIZATION
+% ============================================================
+
+@article{anagnostopoulos2024rba,
+  title   = {Residual-based attention in physics-informed neural networks},
+  author  = {Anagnostopoulos, Sokratis J. and Toscano, Juan Diego and Stergiopulos, Nikos and Karniadakis, George Em},
+  journal = {Computer Methods in Applied Mechanics and Engineering},
+  volume  = {421},
+  pages   = {116805},
+  year    = {2024},
+  doi     = {10.1016/j.cma.2024.116805}
+}
+
+@article{wang2024causal,
+  title   = {Respecting causality for training physics-informed neural networks},
+  author  = {Wang, Sifan and Sankaran, Shyam and Perdikaris, Paris},
+  journal = {Computer Methods in Applied Mechanics and Engineering},
+  volume  = {421},
+  pages   = {116813},
+  year    = {2024},
+  doi     = {10.1016/j.cma.2024.116813}
+}
+
+@article{wang2022ntk,
+  title   = {When and why {PINNs} fail to train: A neural tangent kernel perspective},
+  author  = {Wang, Sifan and Yu, Xinling and Perdikaris, Paris},
+  journal = {Journal of Computational Physics},
+  volume  = {449},
+  pages   = {110768},
+  year    = {2022},
+  doi     = {10.1016/j.jcp.2021.110768}
+}
+
+% ============================================================
+% WORKSTREAM C — SAMPLING
+% ============================================================
+
+@article{wu2023rad,
+  title   = {A comprehensive study of non-adaptive and residual-based adaptive sampling for physics-informed neural networks},
+  author  = {Wu, Chenxi and Zhu, Min and Tan, Qinyang and Kartha, Yadhu and Lu, Lu},
+  journal = {Computer Methods in Applied Mechanics and Engineering},
+  volume  = {403},
+  pages   = {115671},
+  year    = {2023},
+  doi     = {10.1016/j.cma.2022.115671}
+}
+
+@inproceedings{daw2023r3,
+  title     = {Mitigating Propagation Failures in Physics-Informed Neural Networks Using Retain-Resample-Release ({R3}) Sampling},
+  author    = {Daw, Arka and Bu, Jie and Wang, Sifan and Perdikaris, Paris and Karpatne, Anuj},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  year      = {2023}
+}
+
+% ============================================================
+% WORKSTREAM D — INVERSE PROBLEM
+% ============================================================
+
+% Primary citation is raissi2019pinn above (inverse problem framing).
+% Additional 2024 extensions:
+
+@article{karniadakis2021pinnreview,
+  title   = {Physics-informed machine learning},
+  author  = {Karniadakis, George Em and Kevrekidis, Ioannis G. and Lu, Lu and Perdikaris, Paris and Wang, Sifan and Yang, Liu},
+  journal = {Nature Reviews Physics},
+  volume  = {3},
+  pages   = {422--440},
+  year    = {2021},
+  doi     = {10.1038/s42254-021-00314-5}
+}
+
+% ============================================================
+% CONDITIONAL STRETCH — KAN-PINN
+% ============================================================
+
+@article{liu2024kan,
+  title   = {{KAN}: {Kolmogorov-Arnold} Networks},
+  author  = {Liu, Ziming and Wang, Yixuan and Vaidya, Sachin and Ruehle, Fabian and Halverson, James and Solja{\v c}i{\'c}, Marin and Hou, Thomas Y. and Tegmark, Max},
+  journal = {arXiv preprint arXiv:2404.19756},
+  year    = {2024}
+}
+
+@article{cang2025pikan,
+  title   = {Physics-informed {Kolmogorov-Arnold} networks: Investigating architectures and hyperparameter impacts for solving {Navier-Stokes} equations},
+  author  = {Cang, Yifan and others},
+  journal = {Physics of Fluids},
+  volume  = {37},
+  number  = {3},
+  pages   = {037159},
+  year    = {2025},
+  doi     = {10.1063/5.0257619}
+}
+
+% ============================================================
+% BENCHMARKS (evaluation / comparison)
+% ============================================================
+
+@inproceedings{takamoto2022pdebench,
+  title     = {{PDEBench}: An Extensive Benchmark for Scientific Machine Learning},
+  author    = {Takamoto, Makoto and Praditia, Timothy and Leiteritz, Raphael and MacKinlay, Daniel and Alesiani, Francesco and Pflueger, Dirk and Niepert, Mathias},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},
+  year      = {2022}
+}
+
+@inproceedings{hao2024pinnacle,
+  title     = {{PINNacle}: A Comprehensive Benchmark of Physics-Informed Neural Networks for Solving {PDEs}},
+  author    = {Hao, Zhongkai and Yao, Jiachen and Su, Chang and Su, Hang and Wang, Ziao and Lu, Fanzhi and Xia, Zeyu and Zhang, Yichi and Liu, Songming and Lu, Lu and Zhu, Jun},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},
+  year      = {2024}
+}
+
+% ============================================================
+% DROPPED / DOCUMENTED-AS-CONSIDERED
+% ============================================================
+
+@inproceedings{cho2024separable,
+  title     = {Separable Physics-Informed Neural Networks},
+  author    = {Cho, Junwoo and Nam, Seungtae and Yang, Hyunmo and Yun, Seok-Bae and Hong, Youngjoon and Park, Eunbyung},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2024}
+}
+
+@article{li2021fno,
+  title   = {Fourier Neural Operator for Parametric Partial Differential Equations},
+  author  = {Li, Zongyi and Kovachki, Nikola and Azizzadenesheli, Kamyar and Liu, Burigede and Bhattacharya, Kaushik and Stuart, Andrew and Anandkumar, Anima},
+  journal = {arXiv preprint arXiv:2010.08895},
+  year    = {2021}
+}
+
+@article{li2024pino,
+  title   = {Physics-informed neural operator for learning partial differential equations},
+  author  = {Li, Zongyi and Zheng, Hongkai and Kovachki, Nikola and Jin, David and Chen, Haoxuan and Liu, Burigede and Azizzadenesheli, Kamyar and Anandkumar, Anima},
+  journal = {ACM/JMS Journal of Data Science},
+  volume  = {1},
+  number  = {3},
+  pages   = {1--27},
+  year    = {2024},
+  doi     = {10.1145/3648506}
+}

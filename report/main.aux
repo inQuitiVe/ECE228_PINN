@@ -1,0 +1,89 @@
+\relax 
+\citation{raissi2019pinn}
+\citation{karniadakis2021pinnreview}
+\citation{raissi2019pinn}
+\citation{karniadakis2021pinnreview}
+\citation{schafer1996benchmark}
+\citation{schafer1996benchmark}
+\citation{rao2020pinnflow}
+\citation{rao2020pinnflow}
+\citation{rao2020pinnflow}
+\citation{rao2020pinnflow}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ USER: author name(s)}{1}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid21}{20129218}{43709661}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ USER: email address(es)}{1}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid26}{20006338}{41348860}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ USER: write abstract — 150 words, covering: problem, PINN formulation, Re=10 result, comparison to Rao baseline}{1}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid31}{6794739}{38971505}
+\pgfsyspdfmark {pgfid32}{1893825}{39004650}
+\pgfsyspdfmark {pgfid33}{2532800}{38780845}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ USER: write introduction — motivate PINNs for fluid simulation, cite \cite  {raissi2019pinn,karniadakis2021pinnreview}, state contribution}{1}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid36}{3220930}{37264015}
+\pgfsyspdfmark {pgfid37}{1893825}{14857814}
+\pgfsyspdfmark {pgfid38}{2532800}{14634009}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Problem Formulation}{1}{}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ USER: write problem formulation — 2D incompressible NS equations, cylinder geometry, Re=10 setup, reference to \cite  {schafer1996benchmark}}{1}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid41}{3220930}{35535341}
+\pgfsyspdfmark {pgfid42}{1893825}{-6929725}
+\pgfsyspdfmark {pgfid43}{2532800}{-7153530}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Methodology}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Mixed-Form PINN Formulation}{1}{}\protected@file@percent }
+\newlabel{eq:streamfunction}{{1}{1}}
+\newlabel{eq:constitutive}{{2}{1}}
+\newlabel{eq:fu}{{3}{1}}
+\newlabel{eq:fv}{{4}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Network Architecture}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Boundary and Initial Conditions}{1}{}\protected@file@percent }
+\newlabel{eq:inlet}{{5}{1}}
+\newlabel{eq:loss}{{6}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Collocation Point Sampling}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Two-Phase Training}{1}{}\protected@file@percent }
+\citation{rao2020pinnflow}
+\citation{wang2024causal}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Per-snapshot $L_2$ relative error (\%) for $u$, $v$, and spatially demeaned $p$, $Re=10$. \emph  {reproduce} is the SciPy L-BFGS-B baseline; \emph  {GPU-resident} is the PyTorch L-BFGS run. Selected snapshots shown; best per column in bold.}}{2}{}\protected@file@percent }
+\newlabel{tab:l2_snapshots}{{I}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Reference Solution}{2}{}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ cite: Chorin 1968 projection method}{2}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid46}{13184905}{33115976}
+\pgfsyspdfmark {pgfid47}{1893825}{33127936}
+\pgfsyspdfmark {pgfid48}{2532800}{32904131}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Quantitative Error Comparison}{2}{}\protected@file@percent }
+\newlabel{eq:l2rel}{{7}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Discussion}{2}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Backend benchmark: $1000$ L-BFGS function evaluations from a common Adam checkpoint on one RTX\nobreakspace  {}3090, $Re=10$. Only the L-BFGS backend differs. Energy is estimated as mean GPU draw multiplied by wall-clock time.}}{2}{}\protected@file@percent }
+\newlabel{tab:backend_bench}{{II}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Controlled backend comparison for $1000$ L-BFGS evaluations. The GPU-resident backend reduces wall-clock time, per-evaluation latency, and estimated energy while increasing mean GPU utilization.}}{2}{}\protected@file@percent }
+\newlabel{fig:backend_bench}{{1}{2}}
+\citation{wang2024causal}
+\bibstyle{IEEEtran}
+\bibdata{reference}
+\bibcite{raissi2019pinn}{1}
+\bibcite{karniadakis2021pinnreview}{2}
+\bibcite{schafer1996benchmark}{3}
+\bibcite{rao2020pinnflow}{4}
+\bibcite{wang2024causal}{5}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Mean relative $L_2$ error (\%) over the 41 developed-flow snapshots ($t\geq 0.1$\nobreakspace  {}s), $Re=10$. The causal run uses $\epsilon =50$, $M=32$ temporal bins and frozen-weight L-BFGS. Pressure is spatially demeaned per snapshot.}}{3}{}\protected@file@percent }
+\newlabel{tab:l2_causal}{{III}{3}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ fig: field comparison of u, v, p at t=0.3, 0.4, 0.5 s for GPU-resident vs reproduce vs Chorin reference (rainbow colormap, cylinder masked)}{3}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid51}{3220930}{35565719}
+\pgfsyspdfmark {pgfid52}{1893825}{35577679}
+\pgfsyspdfmark {pgfid53}{2532800}{35353874}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Causal Training}{3}{}\protected@file@percent }
+\newlabel{eq:causal_weight}{{8}{3}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ add iso-budget causal ablation ($\epsilon =0/2/5$, config matched to the baselines) to separate the causal-weighting effect from the training schedule}{3}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid56}{10137600}{10462747}
+\pgfsyspdfmark {pgfid57}{1893825}{7039057}
+\pgfsyspdfmark {pgfid58}{2532800}{6815252}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ fig: causal weight profile and $\qopname  \relax m{min}_i w_i$ vs.\ iteration (results/figures/causal\_eps50\_adam20k/causal\_weight\_curve.png)}{3}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid61}{3220930}{6530587}
+\pgfsyspdfmark {pgfid62}{1893825}{-19139035}
+\pgfsyspdfmark {pgfid63}{2532800}{-19362840}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{3}{}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ USER: write conclusion — summarize Re=10 fidelity, gaps vs Rao pickle, planned extensions (Re=100, architecture ablation)}{3}{}\protected@file@percent }
+\pgfsyspdfmark {pgfid66}{3220930}{5176114}
+\pgfsyspdfmark {pgfid67}{1893825}{-32058253}
+\pgfsyspdfmark {pgfid68}{2532800}{-32282058}
+\@writefile{toc}{\contentsline {section}{References}{3}{}\protected@file@percent }
+\gdef \@abspage@last{3}

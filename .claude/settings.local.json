@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(vm_stat)",
+      "Bash(ps -o pid,rss,vsz,command -p 2687)",
+      "Bash(awk '{print \"CPU:\", $3\"%\", \"MEM:\", $4\"%\", \"Time:\", $10}')",
+      "Bash(command -v codex)",
+      "Bash(codex exec -m gpt-5.5 --config model_reasoning_effort=high --dangerously-bypass-approvals-and-sandbox 'You are in REVIEW mode. Do NOT edit any files. Do NOT run write operations. *)",
+      "Bash(git check-ignore *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 root@213.173.109.204 -p 11024 -i ~/.ssh/id_ed25519 'nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; python3 -c \"import torch; print\\(torch.__version__, torch.cuda.is_available\\(\\)\\)\" 2>&1 | tail -1; ls /workspace/ 2>&1')",
+      "Bash(tar -czf /tmp/causal_upload.tar.gz src/unsteady.py src/unsteady_causal.py src/bench_unsteady.py data/reference/unsteady_reference.mat)",
+      "Read(//tmp/**)",
+      "Bash(scp -P 11024 -i ~/.ssh/id_ed25519 /tmp/causal_upload.tar.gz root@213.173.109.204:/workspace/)",
+      "Bash(ssh -o ConnectTimeout=20 root@213.173.109.204 -p 11024 -i ~/.ssh/id_ed25519 'cd /workspace/ECE228_PINN && tar czf /tmp/causal_sweep.tar.gz \\\\ *)"
+    ]
+  }
+}

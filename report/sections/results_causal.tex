@@ -1,0 +1,87 @@
+% -----------------------------------------------------------------------
+% Section: Results — Causal training (Re=10)
+% -----------------------------------------------------------------------
+
+\subsection{Causal Training}
+
+To test whether temporal-causality weighting improves the transient
+solution, we replace the PDE-residual term with the causally-weighted
+form of Wang et al.~\cite{wang2024causal}.  The collocation points are
+binned into $M=32$ equal-duration temporal slices, and bin $i$ receives a
+stop-gradient weight
+\begin{equation}
+  w_i = \exp\!\Big(-\tfrac{\epsilon}{M}\textstyle\sum_{k<i} L_k\Big),
+  \label{eq:causal_weight}
+\end{equation}
+where $L_k$ is the mean residual of bin $k$.  The exponent is normalized
+by $M$ so that $\epsilon$ is independent of the bin count, and at
+$\epsilon=0$ the loss reduces exactly to the unweighted residual of
+Eq.~\eqref{eq:l2rel}'s underlying objective.  After the Adam phase the bin
+weights are frozen as static constants during the L-BFGS phase, keeping
+the quasi-Newton objective stationary.  We compare this \emph{frozen}
+polish against a \emph{uniform} polish that instead optimises the
+unweighted true loss (all bins equally weighted) during the L-BFGS phase.
+
+Table~\ref{tab:l2_causal} reports the developed-window error
+($t\geq0.1$~s) for causal Adam initialisations at $\epsilon\in\{30,50\}$,
+each polished with either a frozen-weight or a uniform-weight L-BFGS
+phase, alongside the \emph{reproduce} and \emph{GPU-resident} baselines.
+
+\begin{table*}[t]
+  \centering
+  \caption{$Re=10$ developed-flow error ($t\geq0.1$~s, 41 snapshots).
+           \emph{Mean} is the per-snapshot relative $L_2$ averaged over the
+           window; \emph{Global} is the Frobenius $L_2$ over all space--time
+           points; \emph{Loss} is the final unweighted training loss
+           (PDE residual ${}+{}$ BC/IC).  Causal runs use $M=32$ temporal
+           bins; \emph{frozen} keeps the Adam-end causal weights during
+           L-BFGS, while \emph{uniform} optimises the unweighted loss.
+           Pressure is spatially demeaned.  Best per column in bold.}
+  \label{tab:l2_causal}
+  \begin{tabular}{@{}l c ccc ccc@{}}
+    \toprule
+    & & \multicolumn{3}{c}{Mean $L_2$ (\%)} & \multicolumn{3}{c}{Global $L_2$ (\%)} \\
+    \cmidrule(lr){3-5}\cmidrule(lr){6-8}
+    Run & Loss & $\varepsilon_u$ & $\varepsilon_v$ & $\varepsilon_p$
+        & $\varepsilon_u$ & $\varepsilon_v$ & $\varepsilon_p$ \\
+    \midrule
+    reproduce (baseline) & $2.1{\times}10^{-4}$ & 5.30 & 19.86 & 10.79 & 4.47 & 14.75 & 27.92 \\
+    GPU-resident         & $2.9{\times}10^{-3}$ & 5.94 & 22.23 & 10.31 & 4.75 & 16.44 & 24.42 \\
+    \midrule
+    causal $\epsilon{=}30$, frozen  & $2.3{\times}10^{-4}$ & 5.22 & 20.38 & 11.03 & 4.36 & 15.02 & 28.49 \\
+    causal $\epsilon{=}30$, uniform & $\mathbf{1.5{\times}10^{-4}}$ & \textbf{4.64} & \textbf{18.60} & \textbf{8.89} & \textbf{3.93} & \textbf{13.28} & \textbf{22.51} \\
+    causal $\epsilon{=}50$, frozen  & $2.1{\times}10^{-4}$ & 5.34 & 19.86 & 10.10 & 4.47 & 15.05 & 25.83 \\
+    causal $\epsilon{=}50$, uniform & $1.5{\times}10^{-4}$ & 4.96 & 19.21 & 9.70 & 4.14 & 13.93 & 25.30 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+Two findings stand out.  First, at both $\epsilon$ values the
+\emph{uniform} L-BFGS polish consistently beats the \emph{frozen} polish
+on every field: at $\epsilon=50$ the velocity errors drop from
+$5.34\%/19.86\%$ (frozen) to $4.96\%/19.21\%$ (uniform), and the
+unweighted true loss is also lower ($1.5\times10^{-4}$ versus
+$2.1\times10^{-4}$).  A causal Adam phase supplies a good initialisation,
+but the subsequent L-BFGS reaches a more accurate field when it optimises
+all temporal bins equally rather than retaining the causal
+down-weighting of late times.  Second, the best configuration---causal
+$\epsilon=30$ with a uniform polish ($\varepsilon_u=4.64\%$,
+$\varepsilon_v=18.60\%$)---surpasses the \emph{reproduce} baseline
+($5.30\%/19.86\%$) and approaches the original Rao TF checkpoint
+($4.75\%/18.47\%$), even though that checkpoint cannot be reproduced.
+
+These results are exploratory, not a controlled ablation.  The causal
+runs use a more aggressive schedule ($20{,}000$ Adam iterations at
+learning rate $10^{-3}$ with a plateau scheduler) than the baselines, so
+the gain conflates the causal weighting with the longer, scheduled Adam
+phase; an iso-budget sweep ($\epsilon\in\{0,2,5\}$ under matched settings)
+is still required to isolate the causal-weighting contribution.
+\todo{add iso-budget causal ablation ($\epsilon=0/2/5$, config matched to
+the baselines) to separate the causal-weighting effect from the schedule}
+We also note that the causal curriculum did not fully propagate within the
+Adam budget ($\min_i w_i\approx0.77$--$0.85$), and that $\epsilon=30$ and
+$\epsilon=50$ converged to nearly identical loss, so $\epsilon$ is weakly
+determined in this regime.
+
+\todo{fig: causal weight profile and $\min_i w_i$ vs.\ iteration
+(results/figures/causal\_eps50\_adam20k/causal\_weight\_curve.png)}

@@ -1,0 +1,37 @@
+Using device: cuda
+Loaded PyTorch checkpoint from results/unsteady/checkpoints/latest_lbfgs.pt
+Resuming from iteration 59999
+LBFGS 1 | total=3.141e-04 f=2.738e-04 ic=7.083e-06 wall=4.788e-06 inlet=1.776e-06 outlet=3.339e-07
+LBFGS 100 | total=3.127e-04 f=2.726e-04 ic=7.092e-06 wall=4.765e-06 inlet=1.774e-06 outlet=3.330e-07
+LBFGS 200 | total=3.119e-04 f=2.717e-04 ic=7.059e-06 wall=4.793e-06 inlet=1.790e-06 outlet=3.232e-07
+LBFGS 300 | total=3.112e-04 f=2.711e-04 ic=6.974e-06 wall=4.791e-06 inlet=1.767e-06 outlet=3.253e-07
+LBFGS 400 | total=3.105e-04 f=2.705e-04 ic=6.923e-06 wall=4.793e-06 inlet=1.759e-06 outlet=3.327e-07
+LBFGS 500 | total=3.099e-04 f=2.700e-04 ic=6.898e-06 wall=4.792e-06 inlet=1.749e-06 outlet=3.362e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+LBFGS 600 | total=3.093e-04 f=2.694e-04 ic=6.841e-06 wall=4.801e-06 inlet=1.735e-06 outlet=3.456e-07
+LBFGS 700 | total=3.087e-04 f=2.691e-04 ic=6.846e-06 wall=4.768e-06 inlet=1.727e-06 outlet=3.491e-07
+LBFGS 800 | total=3.082e-04 f=2.686e-04 ic=6.851e-06 wall=4.751e-06 inlet=1.719e-06 outlet=3.510e-07
+LBFGS 900 | total=3.078e-04 f=2.682e-04 ic=6.875e-06 wall=4.749e-06 inlet=1.721e-06 outlet=3.401e-07
+LBFGS 1000 | total=3.073e-04 f=2.678e-04 ic=6.891e-06 wall=4.750e-06 inlet=1.709e-06 outlet=3.406e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+LBFGS 1100 | total=3.069e-04 f=2.675e-04 ic=6.865e-06 wall=4.761e-06 inlet=1.693e-06 outlet=3.528e-07
+LBFGS 1200 | total=3.065e-04 f=2.671e-04 ic=6.877e-06 wall=4.756e-06 inlet=1.688e-06 outlet=3.546e-07
+LBFGS 1300 | total=3.062e-04 f=2.668e-04 ic=6.858e-06 wall=4.754e-06 inlet=1.672e-06 outlet=3.504e-07
+LBFGS 1400 | total=3.058e-04 f=2.666e-04 ic=6.805e-06 wall=4.751e-06 inlet=1.663e-06 outlet=3.403e-07
+LBFGS 1500 | total=3.053e-04 f=2.662e-04 ic=6.782e-06 wall=4.742e-06 inlet=1.646e-06 outlet=3.427e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+LBFGS 1600 | total=3.047e-04 f=2.657e-04 ic=6.717e-06 wall=4.755e-06 inlet=1.628e-06 outlet=3.432e-07
+LBFGS 1700 | total=3.040e-04 f=2.652e-04 ic=6.668e-06 wall=4.737e-06 inlet=1.622e-06 outlet=3.392e-07
+LBFGS 1800 | total=3.034e-04 f=2.646e-04 ic=6.660e-06 wall=4.747e-06 inlet=1.608e-06 outlet=3.486e-07
+LBFGS 1900 | total=3.027e-04 f=2.639e-04 ic=6.699e-06 wall=4.749e-06 inlet=1.595e-06 outlet=3.496e-07
+LBFGS 2000 | total=3.021e-04 f=2.633e-04 ic=6.696e-06 wall=4.750e-06 inlet=1.591e-06 outlet=3.596e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+LBFGS 2100 | total=3.015e-04 f=2.630e-04 ic=6.778e-06 wall=4.721e-06 inlet=1.564e-06 outlet=3.623e-07
+LBFGS 2200 | total=3.010e-04 f=2.625e-04 ic=6.832e-06 wall=4.696e-06 inlet=1.566e-06 outlet=3.593e-07
+LBFGS 2300 | total=3.004e-04 f=2.620e-04 ic=6.881e-06 wall=4.674e-06 inlet=1.551e-06 outlet=3.594e-07
+LBFGS 2400 | total=2.998e-04 f=2.618e-04 ic=6.885e-06 wall=4.624e-06 inlet=1.526e-06 outlet=3.768e-07
+LBFGS 2500 | total=2.992e-04 f=2.613e-04 ic=6.906e-06 wall=4.610e-06 inlet=1.518e-06 outlet=3.758e-07
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest_lbfgs.pt
+--- 172.70 seconds ---
+Saved PyTorch checkpoint to results/unsteady/checkpoints/latest.pt

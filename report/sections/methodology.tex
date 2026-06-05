@@ -1,0 +1,107 @@
+% -----------------------------------------------------------------------
+% Section: Methodology
+% -----------------------------------------------------------------------
+
+\subsection{Mixed-Form PINN Formulation}
+
+The 2D incompressible Navier--Stokes equations in stress form are cast
+following~\cite{rao2020pinnflow}.  A stream function $\psi$ is introduced
+so that
+\begin{equation}
+  u = \frac{\partial\psi}{\partial y}, \qquad
+  v = -\frac{\partial\psi}{\partial x},
+  \label{eq:streamfunction}
+\end{equation}
+which satisfies the continuity equation $\partial_x u + \partial_y v = 0$
+identically and eliminates one residual term.
+
+Auxiliary stress variables $\sigma_{11}$, $\sigma_{22}$, $\sigma_{12}$
+are introduced to reduce the PDE order from second to first, giving the
+constitutive relations
+\begin{equation}
+  \sigma_{11} = 2\mu\,\partial_x u, \quad
+  \sigma_{22} = 2\mu\,\partial_y v, \quad
+  \sigma_{12} = \mu(\partial_y u + \partial_x v).
+  \label{eq:constitutive}
+\end{equation}
+The momentum residuals are
+\begin{align}
+  f_u &= \rho\bigl(u\,\partial_x u + v\,\partial_y u + \partial_t u\bigr)
+         + \partial_x p - \partial_x\sigma_{11} - \partial_y\sigma_{12},
+  \label{eq:fu}\\
+  f_v &= \rho\bigl(u\,\partial_x v + v\,\partial_y v + \partial_t v\bigr)
+         + \partial_y p - \partial_x\sigma_{12} - \partial_y\sigma_{22}.
+  \label{eq:fv}
+\end{align}
+The constitutive residuals enforce Eqs.~\eqref{eq:constitutive} as soft
+constraints in the loss.
+
+\subsection{Network Architecture}
+
+The physics-informed neural network (PINN) is a fully connected
+multilayer perceptron (MLP) $\mathcal{N}_\theta : \mathbb{R}^3 \to
+\mathbb{R}^5$ that maps the space--time coordinate $(x, y, t)$ to the
+five output fields $(\psi,\, p,\, \sigma_{11},\, \sigma_{22},\,
+\sigma_{12})$.  Velocity components are recovered via automatic
+differentiation of $\psi$ using Eq.~\eqref{eq:streamfunction}.
+
+The network comprises 7 hidden layers each with 50 units and hyperbolic
+tangent ($\tanh$) activations, for a total of 15\,755 trainable parameters.  Weights are initialised
+with truncated Xavier (Glorot) uniform initialisation using standard
+deviation $\sqrt{2/(n_\text{in}+n_\text{out})}$, truncated at $2\sigma$,
+matching the TensorFlow default used in the original
+implementation~\cite{rao2020pinnflow}.
+
+\subsection{Boundary and Initial Conditions}
+
+The spatial domain is $x\in[0,\,1.1]$~m, $y\in[0,\,0.41]$~m with a
+cylinder of radius $r=0.05$~m centred at $(0.2,\,0.2)$~m.  The fluid
+parameters are $\rho=1.0$~kg/m$^3$, $\mu=0.005$~Pa$\cdot$s, giving
+$Re=10$.
+
+The inlet profile is a pulsatile parabolic flow,
+\begin{equation}
+  u(0,y,t) = \frac{4\,U_{\max}\,y\,(H-y)}{H^2}
+              \Bigl(\sin\!\Bigl(\tfrac{2\pi t}{T}+\tfrac{3\pi}{2}\Bigr)+1\Bigr),
+  \label{eq:inlet}
+\end{equation}
+with $U_{\max}=0.5$~m/s, $H=0.41$~m, and $T=1.0$~s.  No-slip
+conditions $u=v=0$ are imposed on the top, bottom, and cylinder walls.
+A zero-stress (natural) outlet condition is applied at $x=1.1$~m.
+Initial conditions set $u=v=p=0$ at $t=0$.
+
+Each boundary condition and the initial condition are enforced as mean
+squared error terms in the composite loss,
+\begin{equation}
+  \mathcal{L} = \mathcal{L}_f
+    + \beta_\text{wall}\,\mathcal{L}_\text{wall}
+    + \beta_\text{inlet}\,\mathcal{L}_\text{inlet}
+    + \mathcal{L}_\text{outlet}
+    + \mathcal{L}_\text{ic},
+  \label{eq:loss}
+\end{equation}
+where $\beta_\text{wall}=\beta_\text{inlet}=5$ and all other weights
+are unity.
+
+\subsection{Collocation Point Sampling}
+
+Collocation points are drawn using Latin hypercube sampling
+(LHS)~\cite{rao2020pinnflow}.  A base set of 80\,000 points is drawn
+uniformly over the space--time domain, supplemented by 21\,000
+near-wall and wake-refinement points concentrated within two cylinder
+radii and in the downstream wake region.  The total collocation set is
+approximately 101\,000 points.
+
+\subsection{Two-Phase Training}
+
+Training proceeds in two phases.  In the first phase, the Adam
+optimiser runs for 5\,000 iterations with a fixed learning rate of
+$5\times10^{-4}$.  In the second phase, the L-BFGS-B algorithm (via
+SciPy) is applied with up to 100\,000 function evaluations, using
+history size $m=50$, maximum line-search steps of 50,
+$\text{ftol}\approx\varepsilon_\text{mach}$, and $\text{gtol}=0$.
+This two-phase schedule mirrors the TensorFlow training protocol of the
+original paper~\cite{rao2020pinnflow}; the SciPy L-BFGS-B wrapper was
+selected over the PyTorch built-in L-BFGS to faithfully reproduce the
+convergence criterion.  Training converged early at approximately
+68\,000 function evaluations.
