@@ -30,6 +30,8 @@ results/**/*.pt
 results/**/*.png
 results/**/*.gif
 results/**/*.pdf
+# Heavy steady-sweep run pickles (loss/weight history) — regenerate locally
+results/experiments/steady_adaptive_sweep/**/*.pickle
 *.pid
 # Reference media under data/ is not tracked (keep .mat / .py only)
 data/**/*.png
